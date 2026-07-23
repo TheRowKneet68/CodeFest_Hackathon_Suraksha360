@@ -1,13 +1,14 @@
 // --- Supabase ---
 const SUPABASE_URL = "YOUR_SUPABASE_URL";
 const SUPABASE_ANON = "YOUR_SUPABASE_ANON_KEY";
-const supabase = window.supabase?.createClient(SUPABASE_URL, SUPABASE_ANON);
 
 // --- Login ---
+let selectedRole = "patient";
 
 function selectRole(el) {
   document.querySelectorAll(".login-role").forEach(r => r.setAttribute("data-active", "false"));
   el.setAttribute("data-active", "true");
+  selectedRole = el.dataset.role;
 }
 
 function showApp() {
@@ -33,37 +34,29 @@ async function handleLogin(e) {
 
   if (!id || !pass) { status.textContent = "Fill in all fields"; return; }
 
-  if (!supabase || SUPABASE_URL === "YOUR_SUPABASE_URL") {
+  if (SUPABASE_URL === "YOUR_SUPABASE_URL") {
     status.textContent = "";
+    if (selectedRole === "doctor") { window.location.href = "doctor.html"; return; }
     showApp();
     return;
   }
 
   status.textContent = "Signing in...";
-  const { data, error } = await supabase.auth.signInWithPassword({ email: id, password: pass });
+  const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
+  const client = createClient(SUPABASE_URL, SUPABASE_ANON);
+  const { error } = await client.auth.signInWithPassword({ email: id, password: pass });
   if (error) { status.textContent = error.message; return; }
   status.textContent = "";
   showApp();
 }
 
 async function handleSignOut() {
-  if (supabase && SUPABASE_URL !== "YOUR_SUPABASE_URL") {
-    await supabase.auth.signOut();
-  }
   showLogin();
 }
 
 // Hide app initially
 document.querySelector("main").classList.add("login-hidden");
 document.querySelector("nav").classList.add("login-hidden");
-
-// Check existing session
-(async () => {
-  if (supabase && SUPABASE_URL !== "YOUR_SUPABASE_URL") {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (session) showApp();
-  }
-})();
 
 const views = {
   home: document.getElementById("home-view"),
