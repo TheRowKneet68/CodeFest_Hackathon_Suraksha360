@@ -1,0 +1,301 @@
+{
+  "province_context": "Gandaki Province / Nepal Standard",
+  "currency": "NPR",
+  "diseases_diagnostic_data": [
+    {
+      "disease_id": "DIS_DENGUE",
+      "disease_name": "Dengue Fever / Severe Dengue",
+      "department": "Tropical & Infectious Disease / General Medicine",
+      "required_diagnostic_tests": [
+        {
+          "test_name": "Dengue NS1 Antigen Test (Days 1-5)",
+          "cost_range_npr": "1,000 - 1,500"
+        },
+        {
+          "test_name": "Dengue IgM/IgG Antibody Rapid Test",
+          "cost_range_npr": "1,000 - 2,000"
+        },
+        {
+          "test_name": "Complete Blood Count (CBC) with Platelet Count",
+          "cost_range_npr": "350 - 600"
+        }
+      ],
+      "total_estimated_cost_npr": "1,350 - 4,100",
+      "average_follow_up_time": "Daily during acute phase (Days 3-7) to monitor platelet count; 1 week post-fever recovery."
+    },
+    {
+      "disease_id": "DIS_SCRUB_TYPHUS",
+      "disease_name": "Scrub Typhus",
+      "department": "Tropical & Infectious Disease",
+      "required_diagnostic_tests": [
+        {
+          "test_name": "Scrub Typhus IgM Antibodies (ELISA / Rapid Card)",
+          "cost_range_npr": "1,200 - 2,500"
+        },
+        {
+          "test_name": "Complete Blood Count (CBC) & LFT",
+          "cost_range_npr": "1,000 - 1,800"
+        }
+      ],
+      "total_estimated_cost_npr": "2,200 - 4,300",
+      "average_follow_up_time": "3 to 5 days after starting antibiotic therapy (Doxycycline)."
+    },
+    {
+      "disease_id": "DIS_TYPHOID",
+      "disease_name": "Typhoid Fever (Enteric Fever)",
+      "department": "Tropical & Infectious Disease / General Medicine",
+      "required_diagnostic_tests": [
+        {
+          "test_name": "Blood Culture & Sensitivity (Gold Standard)",
+          "cost_range_npr": "800 - 1,500"
+        },
+        {
+          "test_name": "Widal Test / Typhidot IgM",
+          "cost_range_npr": "350 - 1,200"
+        },
+        {
+          "test_name": "Complete Blood Count (CBC)",
+          "cost_range_npr": "350 - 600"
+        }
+      ],
+      "total_estimated_cost_npr": "1,500 - 3,300",
+      "average_follow_up_time": "3 to 5 days post-antibiotic treatment; 2 weeks for full resolution check."
+    },
+    {
+      "disease_id": "DIS_COPD",
+      "disease_name": "Chronic Obstructive Pulmonary Disease (COPD)",
+      "department": "Pulmonology & Respiratory Medicine",
+      "required_diagnostic_tests": [
+        {
+          "test_name": "Spirometry / Pulmonary Function Test (PFT)",
+          "cost_range_npr": "1,200 - 2,500"
+        },
+        {
+          "test_name": "Chest X-Ray (PA View)",
+          "cost_range_npr": "500 - 800"
+        },
+        {
+          "test_name": "Arterial Blood Gas (ABG) [In severe cases]",
+          "cost_range_npr": "1,000 - 2,000"
+        }
+      ],
+      "total_estimated_cost_npr": "2,700 - 5,300",
+      "average_follow_up_time": "1 month initially; every 3 to 6 months for chronic maintenance."
+    },
+    {
+      "disease_id": "DIS_TB",
+      "disease_name": "Pulmonary Tuberculosis",
+      "department": "Pulmonology & Respiratory Medicine",
+      "required_diagnostic_tests": [
+        {
+          "test_name": "GeneXpert MTB/RIF Test (Sputum)",
+          "cost_range_npr": "Free at Govt Centers / 2,000 - 3,500 in Private Labs"
+        },
+        {
+          "test_name": "Chest X-Ray PA View",
+          "cost_range_npr": "500 - 800"
+        },
+        {
+          "test_name": "Sputum AFB Smear Examination",
+          "cost_range_npr": "300 - 600"
+        }
+      ],
+      "total_estimated_cost_npr": "800 - 4,900 (Free in DOTS Government Facilities)",
+      "average_follow_up_time": "Monthly during 6-month DOTS treatment regimen."
+    },
+    {
+      "disease_id": "DIS_AGE",
+      "disease_name": "Acute Gastroenteritis / Cholera / Diarrhea",
+      "department": "Gastroenterology / General Medicine",
+      "required_diagnostic_tests": [
+        {
+          "test_name": "Stool Routine & Microscopic Examination / Culture",
+          "cost_range_npr": "300 - 800"
+        },
+        {
+          "test_name": "Serum Electrolytes (Na, K, Cl)",
+          "cost_range_npr": "700 - 1,200"
+        },
+        {
+          "test_name": "Renal Function Test (Urea & Creatinine)",
+          "cost_range_npr": "500 - 900"
+        }
+      ],
+      "total_estimated_cost_npr": "1,500 - 2,900",
+      "average_follow_up_time": "48 to 72 hours if symptoms persist or dehydration worsens."
+    },
+    {
+      "disease_id": "DIS_HEP_E",
+      "disease_name": "Acute Hepatitis E",
+      "department": "Gastroenterology & Hepatology",
+      "required_diagnostic_tests": [
+        {
+          "test_name": "Hepatitis E IgM Antibody Test",
+          "cost_range_npr": "1,500 - 2,800"
+        },
+        {
+          "test_name": "Liver Function Test (LFT Profile)",
+          "cost_range_npr": "800 - 1,500"
+        },
+        {
+          "test_name": "Ultrasound (USG) Abdomen & Pelvis",
+          "cost_range_npr": "1,200 - 2,200"
+        }
+      ],
+      "total_estimated_cost_npr": "3,500 - 6,500",
+      "average_follow_up_time": "1 to 2 weeks to review liver enzymes until normalization."
+    },
+    {
+      "disease_id": "DIS_AMS_HAPE",
+      "disease_name": "HAPE / HACE (High Altitude Edema)",
+      "department": "High-Altitude & Emergency Medicine",
+      "required_diagnostic_tests": [
+        {
+          "test_name": "Pulse Oximetry & Clinical Ataxia Screening",
+          "cost_range_npr": "Included in Triage / Minimal"
+        },
+        {
+          "test_name": "Chest X-Ray / CT Brain (Post-evacuation)",
+          "cost_range_npr": "1,000 - 6,000"
+        },
+        {
+          "test_name": "Arterial Blood Gas (ABG)",
+          "cost_range_npr": "1,000 - 2,000"
+        }
+      ],
+      "total_estimated_cost_npr": "2,000 - 8,000 (Excludes Evacuation Costs)",
+      "average_follow_up_time": "24 hours post-descent; 1 week post-emergency stabilization."
+    },
+    {
+      "disease_id": "DIS_COMMON_COLD_SINUS",
+      "disease_name": "Common Cold / Sinusitis / Allergic Rhinitis",
+      "department": "ENT / General Medicine",
+      "required_diagnostic_tests": [
+        {
+          "test_name": "Clinical Examination / Diagnostic Nasal Endoscopy",
+          "cost_range_npr": "1,000 - 2,500"
+        },
+        {
+          "test_name": "X-Ray Paranasal Sinuses (PNS) [If persistent]",
+          "cost_range_npr": "500 - 900"
+        }
+      ],
+      "total_estimated_cost_npr": "500 - 3,400",
+      "average_follow_up_time": "7 to 10 days if symptoms do not improve."
+    },
+    {
+      "disease_id": "DIS_DIABETES_T2",
+      "disease_name": "Type 2 Diabetes Mellitus",
+      "department": "General Medicine / Endocrinology",
+      "required_diagnostic_tests": [
+        {
+          "test_name": "Fasting & Postprandial Blood Sugar (FBS/PPBS)",
+          "cost_range_npr": "250 - 450"
+        },
+        {
+          "test_name": "HbA1c (Glycated Hemoglobin)",
+          "cost_range_npr": "700 - 1,200"
+        },
+        {
+          "test_name": "Urine Microalbumin / Lipid Profile",
+          "cost_range_npr": "1,000 - 2,000"
+        }
+      ],
+      "total_estimated_cost_npr": "1,950 - 3,650",
+      "average_follow_up_time": "2 to 4 weeks after starting medication; every 3 months for HbA1c."
+    },
+    {
+      "disease_id": "DIS_CAD_ANGINA",
+      "disease_name": "Coronary Artery Disease / Angina",
+      "department": "Cardiology",
+      "required_diagnostic_tests": [
+        {
+          "test_name": "12-Lead Electrocardiogram (ECG)",
+          "cost_range_npr": "400 - 800"
+        },
+        {
+          "test_name": "Echocardiogram (2D Echo)",
+          "cost_range_npr": "2,000 - 3,500"
+        },
+        {
+          "test_name": "Troponin-I / Lipid Profile",
+          "cost_range_npr": "1,500 - 3,000"
+        }
+      ],
+      "total_estimated_cost_npr": "3,900 - 7,300",
+      "average_follow_up_time": "Immediate ER evaluation for acute pain; 2 weeks for chronic angina adjustment."
+    },
+    {
+      "disease_id": "DIS_OSTEOARTHRITIS",
+      "disease_name": "Osteoarthritis / Joint Diseases",
+      "department": "Orthopedics",
+      "required_diagnostic_tests": [
+        {
+          "test_name": "X-Ray of Affected Joint (Weight-Bearing View)",
+          "cost_range_npr": "600 - 1,200"
+        },
+        {
+          "test_name": "Serum Uric Acid & RA Factor (To rule out Gout/RA)",
+          "cost_range_npr": "800 - 1,500"
+        }
+      ],
+      "total_estimated_cost_npr": "1,400 - 2,700",
+      "average_follow_up_time": "1 month after initiating physical therapy/pain management."
+    },
+    {
+      "disease_id": "DIS_STROKE_MIGRAINE",
+      "disease_name": "Stroke / Migraine / Neurological Issues",
+      "department": "Neurology",
+      "required_diagnostic_tests": [
+        {
+          "test_name": "CT Scan Head (Non-contrast for suspected Stroke)",
+          "cost_range_npr": "3,500 - 6,000"
+        },
+        {
+          "test_name": "MRI Brain (If indicated)",
+          "cost_range_npr": "8,000 - 14,000"
+        },
+        {
+          "test_name": "Fasting Blood Glucose & Lipid Profile",
+          "cost_range_npr": "1,000 - 1,800"
+        }
+      ],
+      "total_estimated_cost_npr": "4,500 - 21,800",
+      "average_follow_up_time": "Immediate emergency for Stroke; 2 to 4 weeks for Migraine management."
+    },
+    {
+      "disease_id": "DIS_CATARACT",
+      "disease_name": "Cataract",
+      "department": "Ophthalmology",
+      "required_diagnostic_tests": [
+        {
+          "test_name": "Slit Lamp Examination & Refraction Test",
+          "cost_range_npr": "300 - 700"
+        },
+        {
+          "test_name": "A-Scan Biometry (Pre-surgery intraocular lens calculation)",
+          "cost_range_npr": "800 - 1,500"
+        }
+      ],
+      "total_estimated_cost_npr": "1,100 - 2,200",
+      "average_follow_up_time": "Day 1, 1 week, and 1 month post-cataract surgery."
+    },
+    {
+      "disease_id": "DIS_FUNGAL_INFECTION",
+      "disease_name": "Fungal Skin Infections / Dermatosis",
+      "department": "Dermatology",
+      "required_diagnostic_tests": [
+        {
+          "test_name": "KOH Mount Skin Scraping Examination",
+          "cost_range_npr": "400 - 800"
+        },
+        {
+          "test_name": "Wood's Lamp Examination",
+          "cost_range_npr": "500 - 1,000"
+        }
+      ],
+      "total_estimated_cost_npr": "400 - 1,800",
+      "average_follow_up_time": "2 to 3 weeks after starting topical/oral antifungal treatments."
+    }
+  ]
+}
