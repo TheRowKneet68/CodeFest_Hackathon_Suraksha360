@@ -9,7 +9,6 @@ const DATA_FILES = {
 
 const screenTitles = {
   home: "Overview",
-  check: "Symptom Check",
   doctors: "Doctors",
   records: "Tests & Records",
   emergency: "Emergency",
@@ -33,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   bindLogin();
   bindNavigation();
   bindUtilities();
+  bindChat();
   renderInitialLoading();
   loadAllData();
   setToday();
@@ -115,11 +115,6 @@ function bindUtilities() {
 
   document.getElementById("prepare-visit").addEventListener("click", () => {
     showToast("Visit checklist created", "Bring previous reports, medicine names, and symptom start time.");
-  });
-
-  document.getElementById("run-check").addEventListener("click", runSymptomMatch);
-  document.getElementById("symptom-input").addEventListener("keydown", (event) => {
-    if ((event.ctrlKey || event.metaKey) && event.key === "Enter") runSymptomMatch();
   });
 
   document.getElementById("print-doctors").addEventListener("click", () => {
@@ -249,7 +244,6 @@ function renderAll() {
   renderSummary();
   renderConditionPreview();
   renderCostPreview();
-  renderQuickSymptoms();
   renderDepartmentFilters();
   renderDoctors();
   renderTests();
@@ -311,22 +305,6 @@ function renderCostPreview() {
       </div>
     </article>
   `).join("") : emptyMarkup("No cost data found", "Clear the search or try another disease name.");
-}
-
-function renderQuickSymptoms() {
-  const popular = ["Fever", "Headache", "Cough", "Vomiting", "Chest pain", "Skin rash", "Joint pain", "Blurred vision"];
-  document.getElementById("quick-symptoms").innerHTML = popular.map((symptom) =>
-    `<button class="chip" type="button" data-symptom="${escapeHtml(symptom)}">${escapeHtml(symptom)}</button>`
-  ).join("");
-
-  document.querySelectorAll("[data-symptom]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const input = document.getElementById("symptom-input");
-      const current = input.value.trim();
-      input.value = current ? `${current}, ${button.dataset.symptom}` : button.dataset.symptom;
-      input.focus();
-    });
-  });
 }
 
 function renderDepartmentFilters() {
@@ -413,53 +391,6 @@ function renderEdgeCases() {
       <p>${escapeHtml(item.recommended_action || "Seek urgent clinician review.")}</p>
     </article>
   `).join("") : emptyMarkup("Emergency cases unavailable", "The app still shows direct emergency call actions.");
-}
-
-function runSymptomMatch() {
-  const input = document.getElementById("symptom-input").value.trim();
-  const target = document.getElementById("match-results");
-
-  if (!input) {
-    target.className = "match-results empty-state";
-    target.innerHTML = emptyMarkup("Add symptoms first", "A few words are enough, for example fever and headache.");
-    refreshIcons();
-    return;
-  }
-
-  const terms = tokenize(input);
-  const scored = state.diseases
-    .map((disease) => ({ disease, score: scoreDisease(disease, terms) }))
-    .filter((item) => item.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 5);
-
-  target.className = "match-results";
-  if (!scored.length) {
-    target.className = "match-results empty-state";
-    target.innerHTML = emptyMarkup("No strong match yet", "Try adding symptom words like fever, cough, pain, rash, vomiting, or dizziness.");
-    refreshIcons();
-    return;
-  }
-
-  target.innerHTML = scored.map(({ disease, score }, index) => `
-    <article class="match-item">
-      <div class="panel-header">
-        <div>
-          <span class="pill">${index === 0 ? "Closest match" : `Match ${index + 1}`}</span>
-          <h3>${escapeHtml(disease.name)}</h3>
-        </div>
-        <span class="pill">${Math.min(98, 54 + score * 11)}% signal</span>
-      </div>
-      <p>${escapeHtml(disease.context || "Discuss this pattern with a clinician.")}</p>
-      <div class="meta-line">
-        <span class="tag">${escapeHtml(disease.department || "General care")}</span>
-        ${(disease.symptoms || []).slice(0, 5).map((symptom) => `<span class="tag">${escapeHtml(symptom)}</span>`).join("")}
-      </div>
-    </article>
-  `).join("");
-
-  showToast("Symptom match updated", "Top departments are ranked from the existing JSON data.");
-  refreshIcons();
 }
 
 function scoreDisease(disease, terms) {
@@ -572,4 +503,93 @@ function escapeHtml(value = "") {
 
 function escapeAttribute(value = "") {
   return escapeHtml(value).replaceAll("`", "&#096;");
+}
+
+function bindChat() {
+  const fab = document.getElementById("chat-fab");
+  const overlay = document.getElementById("chat-overlay");
+  const closeBtn = document.getElementById("chat-close");
+  const form = document.getElementById("chat-form");
+  const input = document.getElementById("chat-input");
+  const messages = document.getElementById("chat-messages");
+
+  function openChat() {
+    overlay.classList.remove("is-hidden");
+    refreshIcons();
+    if (!messages.children.length) {
+      addBotMessage("Namaste! I can help match your symptoms to the right department. Describe what you're feeling — for example fever, headache, or chest pain.");
+    }
+    input.focus();
+  }
+
+  function closeChat() {
+    overlay.classList.add("is-hidden");
+  }
+
+  fab.addEventListener("click", openChat);
+  closeBtn.addEventListener("click", closeChat);
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) closeChat(); });
+
+  document.getElementById("hero-chat-btn")?.addEventListener("click", openChat);
+  document.getElementById("panel-chat-btn")?.addEventListener("click", openChat);
+  document.getElementById("mobile-chat-btn")?.addEventListener("click", openChat);
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+    addUserMessage(text);
+    input.value = "";
+    setTimeout(() => respondToSymptoms(text), 300);
+  });
+}
+
+function addBotMessage(text) {
+  const el = document.createElement("div");
+  el.className = "chat-msg bot";
+  el.innerHTML = `<strong>${escapeHtml("Swasthya Sathi")}</strong><span>${escapeHtml(text)}</span>`;
+  document.getElementById("chat-messages").appendChild(el);
+  scrollChat();
+}
+
+function addUserMessage(text) {
+  const el = document.createElement("div");
+  el.className = "chat-msg user";
+  el.innerHTML = `<span>${escapeHtml(text)}</span>`;
+  document.getElementById("chat-messages").appendChild(el);
+  scrollChat();
+}
+
+function respondToSymptoms(input) {
+  const terms = tokenize(input);
+  const scored = state.diseases
+    .map((disease) => ({ disease, score: scoreDisease(disease, terms) }))
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3);
+
+  if (!scored.length) {
+    addBotMessage("I couldn't find a strong match. Try adding words like fever, cough, pain, rash, vomiting, or dizziness.");
+    return;
+  }
+
+  const el = document.createElement("div");
+  el.className = "chat-msg bot";
+  let html = `<strong>${escapeHtml("Swasthya Sathi")}</strong><span>Here are the best matches:</span>`;
+  scored.forEach(({ disease }, i) => {
+    html += `<div class="chat-match"><strong>${i === 0 ? "Closest match" : `Match ${i + 1}`}: ${escapeHtml(disease.name)}</strong>`;
+    html += `<span>${escapeHtml(disease.context || "Consult a clinician.")}</span>`;
+    html += `<div class="symptom-line"><span class="tag">${escapeHtml(disease.department || "General")}</span>`;
+    (disease.symptoms || []).slice(0, 3).forEach((s) => { html += `<span class="tag">${escapeHtml(s)}</span>`; });
+    html += `</div></div>`;
+  });
+  html += `<span style="margin-top:8px;font-size:0.82rem;color:var(--muted);">This is not a diagnosis. Please consult a doctor for confirmation.</span>`;
+  el.innerHTML = html;
+  document.getElementById("chat-messages").appendChild(el);
+  scrollChat();
+}
+
+function scrollChat() {
+  const box = document.getElementById("chat-messages");
+  box.scrollTop = box.scrollHeight;
 }

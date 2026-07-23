@@ -82,7 +82,6 @@
       </a>
       <nav class="side-nav">
         <button class="nav-item is-active" type="button" data-nav="home"><i data-lucide="layout-dashboard"></i><span>Overview</span></button>
-        <button class="nav-item" type="button" data-nav="check"><i data-lucide="message-circle-heart"></i><span>Symptom Check</span></button>
         <button class="nav-item" type="button" data-nav="doctors"><i data-lucide="stethoscope"></i><span>Doctors</span></button>
         <button class="nav-item" type="button" data-nav="records"><i data-lucide="file-heart"></i><span>Tests & Records</span></button>
         <button class="nav-item" type="button" data-nav="emergency"><i data-lucide="siren"></i><span>Emergency</span></button>
@@ -121,7 +120,7 @@
               <p>Review likely conditions, compare diagnostic costs, and book with a relevant specialist from one dashboard.</p>
             </div>
             <div class="hero-actions">
-              <button class="btn btn-primary" type="button" data-nav="check"><i data-lucide="sparkles"></i> Start symptom check</button>
+              <button class="btn btn-primary" type="button" id="hero-chat-btn"><i data-lucide="sparkles"></i> Start symptom check</button>
               <button class="btn btn-secondary" type="button" data-nav="doctors"><i data-lucide="calendar-plus"></i> Find a doctor</button>
             </div>
           </article>
@@ -142,7 +141,7 @@
                 <p class="eyebrow">Common in Gandaki</p>
                 <h2>Symptoms to watch</h2>
               </div>
-              <button class="btn btn-text" type="button" data-nav="check">Open checker</button>
+              <button class="btn btn-text" type="button" id="panel-chat-btn">Open checker</button>
             </div>
             <div id="condition-preview" class="condition-list"></div>
           </section>
@@ -155,36 +154,6 @@
               </div>
             </div>
             <div id="cost-preview" class="cost-stack"></div>
-          </section>
-        </div>
-      </section>
-
-      <section id="check-screen" class="screen" data-screen="check" aria-labelledby="check-heading">
-        <div class="section-intro">
-          <p class="eyebrow">Symptom check</p>
-          <h1 id="check-heading">Match symptoms to likely departments.</h1>
-          <p>This is not a diagnosis. It helps patients understand urgency and which department to contact first.</p>
-        </div>
-
-        <div class="checker-grid">
-          <section class="panel">
-            <label class="input-label" for="symptom-input">Describe symptoms</label>
-            <textarea id="symptom-input" rows="6" placeholder="Example: fever, headache, vomiting, body ache"></textarea>
-            <div class="chip-row" id="quick-symptoms"></div>
-            <button id="run-check" class="btn btn-primary btn-block" type="button"><i data-lucide="scan-search"></i> Match symptoms</button>
-          </section>
-          <section class="panel">
-            <div class="panel-header">
-              <div>
-                <p class="eyebrow">Suggested triage</p>
-                <h2>Best matches</h2>
-              </div>
-            </div>
-            <div id="match-results" class="match-results empty-state">
-              <i data-lucide="message-circle-heart"></i>
-              <h3>Start with a few symptoms.</h3>
-              <p>We will compare your words with the existing disease JSON and show care options.</p>
-            </div>
           </section>
         </div>
       </section>
@@ -257,9 +226,25 @@
       </section>
     </main>
 
+    <button id="chat-fab" class="chat-fab" type="button" aria-label="Open symptom checker"><i data-lucide="message-circle-heart"></i></button>
+
+    <div id="chat-overlay" class="chat-overlay is-hidden">
+      <div class="chat-popup">
+        <div class="chat-header">
+          <div><strong>Symptom Checker</strong><small>AI-assisted triage</small></div>
+          <button id="chat-close" class="icon-button" type="button" aria-label="Close chat"><i data-lucide="x"></i></button>
+        </div>
+        <div id="chat-messages" class="chat-messages"></div>
+        <form id="chat-form" class="chat-input-row">
+          <input id="chat-input" type="text" placeholder="Describe your symptoms..." autocomplete="off">
+          <button class="btn btn-primary" type="submit"><i data-lucide="send"></i></button>
+        </form>
+      </div>
+    </div>
+
     <nav class="mobile-nav" aria-label="Mobile navigation">
       <button class="is-active" type="button" data-nav="home"><i data-lucide="layout-dashboard"></i><span>Home</span></button>
-      <button type="button" data-nav="check"><i data-lucide="message-circle-heart"></i><span>Check</span></button>
+      <button type="button" id="mobile-chat-btn"><i data-lucide="message-circle-heart"></i><span>Check</span></button>
       <button type="button" data-nav="doctors"><i data-lucide="stethoscope"></i><span>Doctors</span></button>
       <button type="button" data-nav="records"><i data-lucide="file-heart"></i><span>Tests</span></button>
     </nav>
