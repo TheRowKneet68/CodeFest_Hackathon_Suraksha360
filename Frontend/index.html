@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swasthya Sathi - Patient Care Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section id="login-view" class="login-view" aria-labelledby="login-title">
+    <div class="login-panel">
+      <div class="brand-lockup">
+        <span class="brand-mark" aria-hidden="true"><i data-lucide="heart-pulse"></i></span>
+        <div>
+          <p class="eyebrow">Suraksha360</p>
+          <h1 id="login-title">Swasthya Sathi</h1>
+        </div>
+      </div>
+      <p class="login-copy">Regional symptom guidance, trusted doctors, and diagnostic costs for patients in Gandaki Province.</p>
+
+      <div class="role-grid" role="radiogroup" aria-label="Choose portal">
+        <button class="role-card is-selected" type="button" data-role="patient" aria-pressed="true">
+          <i data-lucide="user-round"></i>
+          <span>Patient</span>
+          <small>Check symptoms and find care</small>
+        </button>
+        <button class="role-card" type="button" data-role="doctor" aria-pressed="false">
+          <i data-lucide="stethoscope"></i>
+          <span>Doctor</span>
+          <small>Review patients and schedule</small>
+        </button>
+      </div>
+
+      <form id="login-form" class="login-form">
+        <label>
+          <span>Patient ID or license number</span>
+          <input id="login-id" type="text" autocomplete="username" placeholder="SS-1024">
+        </label>
+        <label>
+          <span>Secure PIN</span>
+          <input id="login-pass" type="password" autocomplete="current-password" placeholder="Enter any demo PIN">
+        </label>
+        <button class="btn btn-primary btn-block" type="submit">
+          <i data-lucide="lock-keyhole"></i>
+          Enter secure demo
+        </button>
+        <p id="login-status" class="form-note" role="status"></p>
+      </form>
+    </div>
+
+    <aside class="login-context" aria-label="Platform highlights">
+      <div class="context-card context-large">
+        <span class="pill">Hackathon demo</span>
+        <h2>Care guidance built around real regional data.</h2>
+        <p>Doctors, disease patterns, and estimated diagnostic costs are rendered from the JSON files already in this project.</p>
+      </div>
+      <div class="context-card">
+        <i data-lucide="activity"></i>
+        <strong>Fast triage</strong>
+        <span>Spot warning signs before delays become dangerous.</span>
+      </div>
+      <div class="context-card">
+        <i data-lucide="map-pinned"></i>
+        <strong>Gandaki focused</strong>
+        <span>Departments, hospitals, and OPD timings stay close to the patient.</span>
+      </div>
+    </aside>
+  </section>
+
+  <div id="app-view" class="app-shell is-hidden">
+    <aside class="sidebar" aria-label="Primary navigation">
+      <a class="sidebar-brand" href="#home" data-nav="home">
+        <span class="brand-mark" aria-hidden="true"><i data-lucide="heart-pulse"></i></span>
+        <span>
+          <strong>Swasthya Sathi</strong>
+          <small>Patient portal</small>
+        </span>
+      </a>
+      <nav class="side-nav">
+        <button class="nav-item is-active" type="button" data-nav="home"><i data-lucide="layout-dashboard"></i><span>Overview</span></button>
+        <button class="nav-item" type="button" data-nav="check"><i data-lucide="message-circle-heart"></i><span>Symptom Check</span></button>
+        <button class="nav-item" type="button" data-nav="doctors"><i data-lucide="stethoscope"></i><span>Doctors</span></button>
+        <button class="nav-item" type="button" data-nav="records"><i data-lucide="file-heart"></i><span>Tests & Records</span></button>
+        <button class="nav-item" type="button" data-nav="emergency"><i data-lucide="siren"></i><span>Emergency</span></button>
+        <button class="nav-item" type="button" data-nav="profile"><i data-lucide="shield-user"></i><span>Profile</span></button>
+      </nav>
+      <div class="sidebar-card">
+        <span class="status-dot"></span>
+        <strong>Data source</strong>
+        <p id="data-source-label">Loading JSON files...</p>
+      </div>
+    </aside>
+
+    <header class="topbar">
+      <div>
+        <p class="eyebrow" id="today-label">Today</p>
+        <h2 id="screen-title">Overview</h2>
+      </div>
+      <div class="topbar-actions">
+        <label class="search-field" for="global-search">
+          <i data-lucide="search"></i>
+          <input id="global-search" type="search" placeholder="Search symptoms, doctors, tests">
+        </label>
+        <button id="theme-toggle" class="icon-button" type="button" aria-label="Toggle dark mode"><i data-lucide="moon"></i></button>
+        <button id="notification-button" class="icon-button has-badge" type="button" aria-label="Show notifications"><i data-lucide="bell"></i></button>
+        <button id="logout-button" class="icon-button" type="button" aria-label="Log out"><i data-lucide="log-out"></i></button>
+      </div>
+    </header>
+
+    <main class="content-shell">
+      <section id="home-screen" class="screen is-active" data-screen="home" aria-labelledby="home-heading">
+        <div class="hero-grid">
+          <article class="hero-card">
+            <div>
+              <p class="eyebrow">Care snapshot</p>
+              <h1 id="home-heading">Namaste, Sanskar. Your care plan is ready for today.</h1>
+              <p>Review likely conditions, compare diagnostic costs, and book with a relevant specialist from one dashboard.</p>
+            </div>
+            <div class="hero-actions">
+              <button class="btn btn-primary" type="button" data-nav="check"><i data-lucide="sparkles"></i> Start symptom check</button>
+              <button class="btn btn-secondary" type="button" data-nav="doctors"><i data-lucide="calendar-plus"></i> Find a doctor</button>
+            </div>
+          </article>
+          <aside class="next-visit-card">
+            <span class="pill">Next step</span>
+            <h2>General Medicine review</h2>
+            <p>Today, 11:30 AM at Charak Memorial Hospital</p>
+            <button class="btn btn-ghost" type="button" id="prepare-visit"><i data-lucide="clipboard-check"></i> Prepare visit</button>
+          </aside>
+        </div>
+
+        <div id="summary-grid" class="summary-grid skeleton-grid" aria-live="polite"></div>
+
+        <div class="layout-two">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Common in Gandaki</p>
+                <h2>Symptoms to watch</h2>
+              </div>
+              <button class="btn btn-text" type="button" data-nav="check">Open checker</button>
+            </div>
+            <div id="condition-preview" class="condition-list"></div>
+          </section>
+
+          <section class="panel accent-panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Care budget</p>
+                <h2>Estimated test costs</h2>
+              </div>
+            </div>
+            <div id="cost-preview" class="cost-stack"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="check-screen" class="screen" data-screen="check" aria-labelledby="check-heading">
+        <div class="section-intro">
+          <p class="eyebrow">Symptom check</p>
+          <h1 id="check-heading">Match symptoms to likely departments.</h1>
+          <p>This is not a diagnosis. It helps patients understand urgency and which department to contact first.</p>
+        </div>
+
+        <div class="checker-grid">
+          <section class="panel">
+            <label class="input-label" for="symptom-input">Describe symptoms</label>
+            <textarea id="symptom-input" rows="6" placeholder="Example: fever, headache, vomiting, body ache"></textarea>
+            <div class="chip-row" id="quick-symptoms"></div>
+            <button id="run-check" class="btn btn-primary btn-block" type="button"><i data-lucide="scan-search"></i> Match symptoms</button>
+          </section>
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Suggested triage</p>
+                <h2>Best matches</h2>
+              </div>
+            </div>
+            <div id="match-results" class="match-results empty-state">
+              <i data-lucide="message-circle-heart"></i>
+              <h3>Start with a few symptoms.</h3>
+              <p>We will compare your words with the existing disease JSON and show care options.</p>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section id="doctors-screen" class="screen" data-screen="doctors" aria-labelledby="doctors-heading">
+        <div class="section-intro with-actions">
+          <div>
+            <p class="eyebrow">Doctor directory</p>
+            <h1 id="doctors-heading">Find the right specialist faster.</h1>
+            <p>Search by doctor, hospital, department, or specialty. All results use the unchanged doctors JSON.</p>
+          </div>
+          <button id="print-doctors" class="btn btn-secondary" type="button"><i data-lucide="printer"></i> Print list</button>
+        </div>
+        <div id="department-filters" class="filter-row"></div>
+        <div id="doctor-grid" class="doctor-grid"></div>
+      </section>
+
+      <section id="records-screen" class="screen" data-screen="records" aria-labelledby="records-heading">
+        <div class="section-intro with-actions">
+          <div>
+            <p class="eyebrow">Tests and records</p>
+            <h1 id="records-heading">Know the test plan before the visit.</h1>
+            <p>Compare recommended diagnostics, cost ranges, and follow-up expectations in NPR.</p>
+          </div>
+          <button id="export-records" class="btn btn-secondary" type="button"><i data-lucide="download"></i> Export summary</button>
+        </div>
+        <div id="test-grid" class="test-grid"></div>
+      </section>
+
+      <section id="emergency-screen" class="screen" data-screen="emergency" aria-labelledby="emergency-heading">
+        <div class="emergency-hero">
+          <div>
+            <p class="eyebrow">Emergency support</p>
+            <h1 id="emergency-heading">Do not wait if symptoms are severe.</h1>
+            <p>Call local emergency services or visit the nearest emergency department for chest pain, breathing difficulty, stroke symptoms, loss of consciousness, heavy bleeding, or severe dehydration.</p>
+          </div>
+          <div class="emergency-actions">
+            <a class="btn btn-danger" href="tel:102"><i data-lucide="phone-call"></i> Call ambulance 102</a>
+            <a class="btn btn-secondary" href="tel:100"><i data-lucide="shield-alert"></i> Police 100</a>
+          </div>
+        </div>
+        <div id="edge-cases" class="edge-grid"></div>
+      </section>
+
+      <section id="profile-screen" class="screen" data-screen="profile" aria-labelledby="profile-heading">
+        <div class="profile-layout">
+          <section class="panel profile-card">
+            <img src="profile.jpeg" alt="Patient profile portrait">
+            <div>
+              <p class="eyebrow">Patient profile</p>
+              <h1 id="profile-heading">Sanskar Joshi</h1>
+              <p>Pokhara, Gandaki Province</p>
+              <span class="pill good">Records verified</span>
+            </div>
+          </section>
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Onboarding</p>
+                <h2>Before your next visit</h2>
+              </div>
+            </div>
+            <ol class="checklist">
+              <li><i data-lucide="check"></i><span>Bring previous reports or upload photos before reaching the hospital.</span></li>
+              <li><i data-lucide="check"></i><span>Write down symptom start time, severity, medicines taken, and allergies.</span></li>
+              <li><i data-lucide="check"></i><span>Use the test-cost screen to plan budget and follow-up timing.</span></li>
+            </ol>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <button class="is-active" type="button" data-nav="home"><i data-lucide="layout-dashboard"></i><span>Home</span></button>
+      <button type="button" data-nav="check"><i data-lucide="message-circle-heart"></i><span>Check</span></button>
+      <button type="button" data-nav="doctors"><i data-lucide="stethoscope"></i><span>Doctors</span></button>
+      <button type="button" data-nav="records"><i data-lucide="file-heart"></i><span>Tests</span></button>
+    </nav>
+  </div>
+
+  <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+  <script src="app.js"></script>
+</body>
+</html>
