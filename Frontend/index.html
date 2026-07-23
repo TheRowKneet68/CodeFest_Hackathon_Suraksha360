@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,12 @@
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <section id="login-view" class="login-view" aria-labelledby="login-title">
     <div class="login-panel">
@@ -20,7 +24,8 @@
           <h1 id="login-title">Swasthya Sathi</h1>
         </div>
       </div>
-      <p class="login-copy">Regional symptom guidance, trusted doctors, and diagnostic costs for patients in Gandaki Province.</p>
+      <p class="login-copy">Regional symptom guidance, trusted doctors, and diagnostic costs for patients in Gandaki
+        Province.</p>
 
       <div class="role-grid" role="radiogroup" aria-label="Choose portal">
         <button class="role-card is-selected" type="button" data-role="patient" aria-pressed="true">
@@ -54,9 +59,9 @@
 
     <aside class="login-context" aria-label="Platform highlights">
       <div class="context-card context-large">
-        <span class="pill">Hackathon demo</span>
         <h2>Care guidance built around real regional data.</h2>
-        <p>Doctors, disease patterns, and estimated diagnostic costs are rendered from the JSON files already in this project.</p>
+        <p>Doctors, disease patterns, and estimated diagnostic costs are rendered from the JSON files already in this
+          project.</p>
       </div>
       <div class="context-card">
         <i data-lucide="activity"></i>
@@ -81,11 +86,16 @@
         </span>
       </a>
       <nav class="side-nav">
-        <button class="nav-item is-active" type="button" data-nav="home"><i data-lucide="layout-dashboard"></i><span>Overview</span></button>
-        <button class="nav-item" type="button" data-nav="doctors"><i data-lucide="stethoscope"></i><span>Doctors</span></button>
-        <button class="nav-item" type="button" data-nav="records"><i data-lucide="file-heart"></i><span>Tests & Records</span></button>
-        <button class="nav-item" type="button" data-nav="emergency"><i data-lucide="siren"></i><span>Emergency</span></button>
-        <button class="nav-item" type="button" data-nav="profile"><i data-lucide="shield-user"></i><span>Profile</span></button>
+        <button class="nav-item is-active" type="button" data-nav="home"><i
+            data-lucide="layout-dashboard"></i><span>Overview</span></button>
+        <button class="nav-item" type="button" data-nav="doctors"><i
+            data-lucide="stethoscope"></i><span>Doctors</span></button>
+        <button class="nav-item" type="button" data-nav="records"><i data-lucide="file-heart"></i><span>Tests &
+            Records</span></button>
+        <button class="nav-item" type="button" data-nav="emergency"><i
+            data-lucide="siren"></i><span>Emergency</span></button>
+        <button class="nav-item" type="button" data-nav="profile"><i
+            data-lucide="shield-user"></i><span>Profile</span></button>
       </nav>
       <div class="sidebar-card">
         <span class="status-dot"></span>
@@ -104,9 +114,12 @@
           <i data-lucide="search"></i>
           <input id="global-search" type="search" placeholder="Search symptoms, doctors, tests">
         </label>
-        <button id="theme-toggle" class="icon-button" type="button" aria-label="Toggle dark mode"><i data-lucide="moon"></i></button>
-        <button id="notification-button" class="icon-button has-badge" type="button" aria-label="Show notifications"><i data-lucide="bell"></i></button>
-        <button id="logout-button" class="icon-button" type="button" aria-label="Log out"><i data-lucide="log-out"></i></button>
+        <button id="theme-toggle" class="icon-button" type="button" aria-label="Toggle dark mode"><i
+            data-lucide="moon"></i></button>
+        <button id="notification-button" class="icon-button has-badge" type="button" aria-label="Show notifications"><i
+            data-lucide="bell"></i></button>
+        <button id="logout-button" class="icon-button" type="button" aria-label="Log out"><i
+            data-lucide="log-out"></i></button>
       </div>
     </header>
 
@@ -117,18 +130,22 @@
             <div>
               <p class="eyebrow">Care snapshot</p>
               <h1 id="home-heading">Namaste, Sanskar. Your care plan is ready for today.</h1>
-              <p>Review likely conditions, compare diagnostic costs, and book with a relevant specialist from one dashboard.</p>
+              <p>Review likely conditions, compare diagnostic costs, and book with a relevant specialist from one
+                dashboard.</p>
             </div>
             <div class="hero-actions">
-              <button class="btn btn-primary" type="button" id="hero-chat-btn"><i data-lucide="sparkles"></i> Start symptom check</button>
-              <button class="btn btn-secondary" type="button" data-nav="doctors"><i data-lucide="calendar-plus"></i> Find a doctor</button>
+              <button class="btn btn-primary" type="button" id="hero-chat-btn"><i data-lucide="sparkles"></i> Start
+                symptom check</button>
+              <button class="btn btn-secondary" type="button" data-nav="doctors"><i data-lucide="calendar-plus"></i>
+                Find a doctor</button>
             </div>
           </article>
           <aside class="next-visit-card">
             <span class="pill">Next step</span>
             <h2>General Medicine review</h2>
             <p>Today, 11:30 AM at Charak Memorial Hospital</p>
-            <button class="btn btn-ghost" type="button" id="prepare-visit"><i data-lucide="clipboard-check"></i> Prepare visit</button>
+            <button class="btn btn-ghost" type="button" id="prepare-visit"><i data-lucide="clipboard-check"></i> Prepare
+              visit</button>
           </aside>
         </div>
 
@@ -165,7 +182,8 @@
             <h1 id="doctors-heading">Find the right specialist faster.</h1>
             <p>Search by doctor, hospital, department, or specialty. All results use the unchanged doctors JSON.</p>
           </div>
-          <button id="print-doctors" class="btn btn-secondary" type="button"><i data-lucide="printer"></i> Print list</button>
+          <button id="print-doctors" class="btn btn-secondary" type="button"><i data-lucide="printer"></i> Print
+            list</button>
         </div>
         <div id="department-filters" class="filter-row"></div>
         <div id="doctor-grid" class="doctor-grid"></div>
@@ -178,7 +196,8 @@
             <h1 id="records-heading">Know the test plan before the visit.</h1>
             <p>Compare recommended diagnostics, cost ranges, and follow-up expectations in NPR.</p>
           </div>
-          <button id="export-records" class="btn btn-secondary" type="button"><i data-lucide="download"></i> Export summary</button>
+          <button id="export-records" class="btn btn-secondary" type="button"><i data-lucide="download"></i> Export
+            summary</button>
         </div>
         <div id="test-grid" class="test-grid"></div>
       </section>
@@ -188,7 +207,8 @@
           <div>
             <p class="eyebrow">Emergency support</p>
             <h1 id="emergency-heading">Do not wait if symptoms are severe.</h1>
-            <p>Call local emergency services or visit the nearest emergency department for chest pain, breathing difficulty, stroke symptoms, loss of consciousness, heavy bleeding, or severe dehydration.</p>
+            <p>Call local emergency services or visit the nearest emergency department for chest pain, breathing
+              difficulty, stroke symptoms, loss of consciousness, heavy bleeding, or severe dehydration.</p>
           </div>
           <div class="emergency-actions">
             <a class="btn btn-danger" href="tel:102"><i data-lucide="phone-call"></i> Call ambulance 102</a>
@@ -217,22 +237,27 @@
               </div>
             </div>
             <ol class="checklist">
-              <li><i data-lucide="check"></i><span>Bring previous reports or upload photos before reaching the hospital.</span></li>
-              <li><i data-lucide="check"></i><span>Write down symptom start time, severity, medicines taken, and allergies.</span></li>
-              <li><i data-lucide="check"></i><span>Use the test-cost screen to plan budget and follow-up timing.</span></li>
+              <li><i data-lucide="check"></i><span>Bring previous reports or upload photos before reaching the
+                  hospital.</span></li>
+              <li><i data-lucide="check"></i><span>Write down symptom start time, severity, medicines taken, and
+                  allergies.</span></li>
+              <li><i data-lucide="check"></i><span>Use the test-cost screen to plan budget and follow-up timing.</span>
+              </li>
             </ol>
           </section>
         </div>
       </section>
     </main>
 
-    <button id="chat-fab" class="chat-fab" type="button" aria-label="Open symptom checker"><i data-lucide="message-circle-heart"></i></button>
+    <button id="chat-fab" class="chat-fab" type="button" aria-label="Open symptom checker"><i
+        data-lucide="message-circle-heart"></i></button>
 
     <div id="chat-overlay" class="chat-overlay is-hidden">
       <div class="chat-popup">
         <div class="chat-header">
           <div><strong>Symptom Checker</strong><small>AI-assisted triage</small></div>
-          <button id="chat-close" class="icon-button" type="button" aria-label="Close chat"><i data-lucide="x"></i></button>
+          <button id="chat-close" class="icon-button" type="button" aria-label="Close chat"><i
+              data-lucide="x"></i></button>
         </div>
         <div id="chat-messages" class="chat-messages"></div>
         <form id="chat-form" class="chat-input-row">
@@ -243,7 +268,8 @@
     </div>
 
     <nav class="mobile-nav" aria-label="Mobile navigation">
-      <button class="is-active" type="button" data-nav="home"><i data-lucide="layout-dashboard"></i><span>Home</span></button>
+      <button class="is-active" type="button" data-nav="home"><i
+          data-lucide="layout-dashboard"></i><span>Home</span></button>
       <button type="button" id="mobile-chat-btn"><i data-lucide="message-circle-heart"></i><span>Check</span></button>
       <button type="button" data-nav="doctors"><i data-lucide="stethoscope"></i><span>Doctors</span></button>
       <button type="button" data-nav="records"><i data-lucide="file-heart"></i><span>Tests</span></button>
@@ -253,4 +279,5 @@
   <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
   <script src="app.js"></script>
 </body>
+
 </html>
