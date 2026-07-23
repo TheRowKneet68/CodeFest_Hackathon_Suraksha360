@@ -3,7 +3,7 @@ const SUPABASE_URL = "YOUR_SUPABASE_URL";
 const SUPABASE_ANON = "YOUR_SUPABASE_ANON_KEY";
 
 // --- Login ---
-let selectedRole = "patient";
+let selectedRole = "patient"; 
 
 function selectRole(el) {
   document.querySelectorAll(".login-role").forEach(r => r.setAttribute("data-active", "false"));
