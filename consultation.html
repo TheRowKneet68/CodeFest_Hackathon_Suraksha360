@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swastha Sathi - Consultation Workspace</title>
+    <link rel="stylesheet" href="script.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon"><i class="fas fa-heartbeat"></i></div>
+                    <span class="logo-text">Swastha Sathi</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="script.html" class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+                <a href="ehr.html" class="nav-item"><i class="fas fa-folder-open"></i><span>EHR</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-users"></i><span>Patients</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-calendar-check"></i><span>Appointments</span></a>
+                <a href="#" class="nav-item active"><i class="fas fa-stethoscope"></i><span>Consultation</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-flask"></i><span>Laboratory</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-prescription"></i><span>Prescriptions</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-chart-bar"></i><span>Analytics</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-envelope"></i><span>Messages</span><span class="badge">3</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-bell"></i><span>Notifications</span><span class="badge">5</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-cog"></i><span>Settings</span></a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <header class="top-nav">
+                <div class="nav-left">
+                    <div class="hospital-info">
+                        <div class="hospital-logo"><i class="fas fa-hospital"></i></div>
+                        <div class="hospital-details">
+                            <span class="hospital-name">Manipal Teaching Hospital</span>
+                            <span class="hospital-location">Pokhara, Nepal</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-center">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" placeholder="Search Patient..." class="search-input">
+                        <span class="search-shortcut">⌘K</span>
+                    </div>
+                </div>
+                <div class="nav-right">
+                    <button class="icon-btn" id="darkModeToggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+                    <button class="icon-btn notification-btn" title="Notifications"><i class="fas fa-bell"></i><span class="notification-badge">5</span></button>
+                    <div class="doctor-profile">
+                        <div class="doctor-avatar"><img src="https://ui-avatars.com/api/?name=Ram+Sharma&background=2563EB&color=fff&size=40" alt="Dr. Ram Sharma"></div>
+                        <div class="doctor-info">
+                            <span class="doctor-name">Dr. Ram Sharma</span>
+                            <span class="doctor-specialty">Internal Medicine</span>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+
+            <main class="consultation">
+                <div class="consult-header">
+                    <div class="consult-breadcrumb">
+                        <a href="script.html">Dashboard</a> <i class="fas fa-chevron-right"></i>
+                        <a href="#">Appointments</a> <i class="fas fa-chevron-right"></i>
+                        <span>Consultation</span>
+                    </div>
+                    <div class="consult-timer">
+                        <i class="fas fa-clock"></i>
+                        <span id="consultTimer">00:00</span>
+                    </div>
+                </div>
+
+                <div class="consult-grid">
+                    <!-- LEFT COLUMN -->
+                    <section class="consult-left">
+                        <div class="consult-card patient-mini-card">
+                            <div class="patient-mini-avatar">
+                                <img src="https://ui-avatars.com/api/?name=Sita+Thapa&background=2563EB&color=fff&size=72" alt="Sita Thapa">
+                                <div class="patient-mini-status"></div>
+                            </div>
+                            <div class="patient-mini-info">
+                                <h3>Sita Thapa</h3>
+                                <span>Health ID: SW-2024-00892</span>
+                                <span>32 yrs, Female, A+</span>
+                            </div>
+                        </div>
+
+                        <div class="consult-card">
+                            <h3 class="card-title"><i class="fas fa-notes-medical"></i> Medical History</h3>
+                            <div class="history-timeline">
+                                <div class="history-item">
+                                    <div class="history-dot"></div>
+                                    <div class="history-content">
+                                        <span class="history-title">Hypertension (2021)</span>
+                                        <span class="history-desc">Diagnosed Stage 1, managed with Amlodipine</span>
+                                    </div>
+                                </div>
+                                <div class="history-item">
+                                    <div class="history-dot yellow"></div>
+                                    <div class="history-content">
+                                        <span class="history-title">Type 2 Diabetes (2022)</span>
+                                        <span class="history-desc">HbA1c 7.2%, on Metformin 500mg</span>
+                                    </div>
+                                </div>
+                                <div class="history-item">
+                                    <div class="history-dot green"></div>
+                                    <div class="history-content">
+                                        <span class="history-title">Laparoscopic Cholecystectomy (2019)</span>
+                                        <span class="history-desc">Uneventful recovery</span>
+                                    </div>
+                                </div>
+                                <div class="history-item">
+                                    <div class="history-dot"></div>
+                                    <div class="history-content">
+                                        <span class="history-title">GERD (2024)</span>
+                                        <span class="history-desc">On Omeprazole 20mg, intermittent symptoms</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="consult-card">
+                            <h3 class="card-title"><i class="fas fa-heartbeat"></i> Vital Signs</h3>
+                            <div class="vitals-grid">
+                                <div class="vital-item">
+                                    <div class="vital-icon bp"><i class="fas fa-heart"></i></div>
+                                    <div class="vital-data">
+                                        <span class="vital-value">135/85</span>
+                                        <span class="vital-label">Blood Pressure</span>
+                                    </div>
+                                </div>
+                                <div class="vital-item">
+                                    <div class="vital-icon hr"><i class="fas fa-heart-pulse"></i></div>
+                                    <div class="vital-data">
+                                        <span class="vital-value">78</span>
+                                        <span class="vital-label">Heart Rate</span>
+                                    </div>
+                                </div>
+                                <div class="vital-item">
+                                    <div class="vital-icon temp"><i class="fas fa-temperature-high"></i></div>
+                                    <div class="vital-data">
+                                        <span class="vital-value">98.6°F</span>
+                                        <span class="vital-label">Temperature</span>
+                                    </div>
+                                </div>
+                                <div class="vital-item">
+                                    <div class="vital-icon rr"><i class="fas fa-lungs"></i></div>
+                                    <div class="vital-data">
+                                        <span class="vital-value">16</span>
+                                        <span class="vital-label">Respiratory Rate</span>
+                                    </div>
+                                </div>
+                                <div class="vital-item">
+                                    <div class="vital-icon spo2"><i class="fas fa-droplet"></i></div>
+                                    <div class="vital-data">
+                                        <span class="vital-value">98%</span>
+                                        <span class="vital-label">SpO₂</span>
+                                    </div>
+                                </div>
+                                <div class="vital-item">
+                                    <div class="vital-icon glucose"><i class="fas fa-syringe"></i></div>
+                                    <div class="vital-data">
+                                        <span class="vital-value">142</span>
+                                        <span class="vital-label">Blood Glucose</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="consult-card">
+                            <h3 class="card-title"><i class="fas fa-allergies"></i> Allergies</h3>
+                            <div class="allergy-list">
+                                <div class="allergy-item danger"><i class="fas fa-exclamation-circle"></i> Penicillin</div>
+                                <div class="allergy-item warning"><i class="fas fa-exclamation-triangle"></i> Sulfa Drugs</div>
+                            </div>
+                        </div>
+
+                        <div class="consult-card">
+                            <h3 class="card-title"><i class="fas fa-pills"></i> Current Medication</h3>
+                            <div class="med-list-sm">
+                                <div class="med-row"><span class="med-row-name">Omeprazole 20mg</span><span class="med-row-dosage">1-0-0</span></div>
+                                <div class="med-row"><span class="med-row-name">Amlodipine 5mg</span><span class="med-row-dosage">0-0-1</span></div>
+                                <div class="med-row"><span class="med-row-name">Metformin 500mg</span><span class="med-row-dosage">1-0-1</span></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- CENTER COLUMN -->
+                    <section class="consult-center">
+                        <div class="consult-card">
+                            <h3 class="card-title"><i class="fas fa-edit"></i> Consultation Form</h3>
+                            <form class="consult-form" id="consultForm">
+                                <div class="form-group">
+                                    <label><i class="fas fa-comment-medical"></i> Chief Complaint</label>
+                                    <textarea rows="2" placeholder="Describe the patient's primary reason for visit...">Chest pain and shortness of breath for past 2 weeks. Pain is intermittent, sharp, located centrally. Patient reports worsening after meals.</textarea>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label><i class="fas fa-thermometer-half"></i> Symptoms</label>
+                                        <div class="symptom-tags">
+                                            <span class="symptom-tag">Chest Pain <i class="fas fa-times"></i></span>
+                                            <span class="symptom-tag">Shortness of Breath <i class="fas fa-times"></i></span>
+                                            <span class="symptom-tag">Fatigue <i class="fas fa-times"></i></span>
+                                            <span class="symptom-tag">Heartburn <i class="fas fa-times"></i></span>
+                                            <button class="add-symptom-btn"><i class="fas fa-plus"></i> Add</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="fas fa-clock"></i> Duration</label>
+                                        <select>
+                                            <option>2 weeks</option>
+                                            <option>1 month</option>
+                                            <option>3 months</option>
+                                            <option>6 months</option>
+                                            <option selected>1 year</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><i class="fas fa-stethoscope"></i> Clinical Findings</label>
+                                    <textarea rows="3" placeholder="Document examination findings, observations, and clinical notes...">BP: 135/85 mmHg, HR: 78 bpm regular. Chest auscultation clear. No peripheral edema. Abdominal exam soft, non-tender. ECG showed sinus rhythm with occasional PVCs.</textarea>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label><i class="fas fa-diagnoses"></i> Diagnosis</label>
+                                        <div class="diagnosis-list">
+                                            <div class="diagnosis-item"><span>1. Hypertension (I10)</span><span class="diagnosis-type primary">Primary</span></div>
+                                            <div class="diagnosis-item"><span>2. GERD (K21.9)</span><span class="diagnosis-type secondary">Secondary</span></div>
+                                            <div class="diagnosis-item"><span>3. Type 2 Diabetes (E11)</span><span class="diagnosis-type chronic">Chronic</span></div>
+                                            <button class="add-diagnosis-btn"><i class="fas fa-plus"></i> Add Diagnosis</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><i class="fas fa-notes-medical"></i> Treatment Plan</label>
+                                    <textarea rows="3" placeholder="Outline the treatment strategy...">1. Continue Amlodipine 5mg daily - monitor BP weekly
+2. Increase Omeprazole to 40mg daily for 4 weeks
+3. Continue Metformin 500mg twice daily
+4. Lifestyle modifications: low-sodium diet, 30min exercise daily
+5. Follow-up in 2 weeks with BP log</textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><i class="fas fa-user-md"></i> Doctor Notes</label>
+                                    <textarea rows="4" placeholder="Additional notes, observations, instructions...">Patient is anxious about chest pain. Reassured that initial workup does not suggest acute cardiac event. Discussed lifestyle modifications. Patient advised to maintain BP diary and return if symptoms worsen. Will consider referral to cardiology if no improvement in 2 weeks.</textarea>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label><i class="fas fa-calendar-alt"></i> Follow-up Date</label>
+                                        <input type="date" value="2026-08-06">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="fas fa-check-circle"></i> Follow-up Type</label>
+                                        <select>
+                                            <option>In-person Visit</option>
+                                            <option selected>Telemedicine</option>
+                                            <option>Phone Call</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+
+                    <!-- RIGHT COLUMN -->
+                    <section class="consult-right">
+                        <div class="consult-card ai-insight-card">
+                            <div class="card-title-row">
+                                <h3 class="card-title"><i class="fas fa-robot"></i> AI Assistant</h3>
+                                <span class="ai-badge">AI Powered</span>
+                            </div>
+
+                            <div class="ai-section">
+                                <h4 class="ai-section-title"><i class="fas fa-file-medical-alt"></i> Clinical Summary</h4>
+                                <p class="ai-text">57-year-old female with HTN, T2DM, and GERD presenting with chest pain and SOB. Symptoms partly cardiac and partly GERD-related. Current vitals stable. Consider cardiac workup given family history of stroke.</p>
+                            </div>
+
+                            <div class="ai-section">
+                                <h4 class="ai-section-title"><i class="fas fa-exclamation-triangle"></i> Possible Drug Interactions</h4>
+                                <div class="ai-alert warning">
+                                    <i class="fas fa-info-circle"></i>
+                                    <div><strong>Omeprazole + Amlodipine</strong> — Prolonged use may increase hypomagnesemia risk. Consider monitoring Mg levels.</div>
+                                </div>
+                                <div class="ai-alert info">
+                                    <i class="fas fa-info-circle"></i>
+                                    <div><strong>Metformin + Contrast</strong> — Hold Metformin 48h before contrast imaging.</div>
+                                </div>
+                            </div>
+
+                            <div class="ai-section">
+                                <h4 class="ai-section-title"><i class="fas fa-users"></i> Previous Similar Cases</h4>
+                                <div class="similar-case">
+                                    <div class="similar-case-avatar"><img src="https://ui-avatars.com/api/?name=Hari+Gurung&background=DBEAFE&color=1E40AF&size=32" alt="Hari"></div>
+                                    <div class="similar-case-info">
+                                        <span class="similar-case-name">Hari Gurung, 45</span>
+                                        <span class="similar-case-dx">Hypertension + GERD</span>
+                                        <span class="similar-case-outcome positive">Improved with lifestyle changes</span>
+                                    </div>
+                                </div>
+                                <div class="similar-case">
+                                    <div class="similar-case-avatar"><img src="https://ui-avatars.com/api/?name=Maya+Shrestha&background=D1FAE5&color=065F46&size=32" alt="Maya"></div>
+                                    <div class="similar-case-info">
+                                        <span class="similar-case-name">Maya Shrestha, 52</span>
+                                        <span class="similar-case-dx">Chest pain, GERD suspected</span>
+                                        <span class="similar-case-outcome">Referred to cardiology</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ai-section">
+                                <h4 class="ai-section-title"><i class="fas fa-flask"></i> Suggested Tests</h4>
+                                <ul class="ai-test-list">
+                                    <li><i class="fas fa-check-circle"></i> Complete Blood Count</li>
+                                    <li><i class="fas fa-check-circle"></i> Lipid Profile</li>
+                                    <li><i class="fas fa-clock"></i> Echocardiogram</li>
+                                    <li><i class="fas fa-clock"></i> Stress Test (TMT)</li>
+                                    <li><i class="fas fa-check-circle"></i> HbA1c</li>
+                                </ul>
+                            </div>
+
+                            <div class="ai-section">
+                                <h4 class="ai-section-title"><i class="fas fa-bell"></i> Important Alerts</h4>
+                                <div class="ai-alert critical">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <div><strong>Family History of Stroke</strong> — Father had stroke at 68. Consider cardiovascular risk assessment.</div>
+                                </div>
+                                <div class="ai-alert warning">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <div><strong>Elevated HbA1c (7.2%)</strong> — Diabetes management needs optimization.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- ACTION BUTTONS -->
+                <section class="consult-actions">
+                    <button class="consult-action-btn primary save-btn"><i class="fas fa-save"></i> Save Consultation</button>
+                    <button class="consult-action-btn primary prescription-gen-btn"><i class="fas fa-prescription"></i> Generate Prescription</button>
+                    <button class="consult-action-btn secondary upload-files-btn"><i class="fas fa-upload"></i> Upload Medical Files</button>
+                    <button class="consult-action-btn secondary print-btn"><i class="fas fa-print"></i> Print Consultation</button>
+                </section>
+            </main>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

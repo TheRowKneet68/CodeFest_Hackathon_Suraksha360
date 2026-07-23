@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swastha Sathi - Electronic Health Record</title>
+    <link rel="stylesheet" href="script.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon"><i class="fas fa-heartbeat"></i></div>
+                    <span class="logo-text">Swastha Sathi</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="script.html" class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+                <a href="#" class="nav-item active"><i class="fas fa-folder-open"></i><span>EHR</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-users"></i><span>Patients</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-calendar-check"></i><span>Appointments</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-video"></i><span>Consultations</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-flask"></i><span>Laboratory</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-prescription"></i><span>Prescriptions</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-chart-bar"></i><span>Analytics</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-envelope"></i><span>Messages</span><span class="badge">3</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-bell"></i><span>Notifications</span><span class="badge">5</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-cog"></i><span>Settings</span></a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <header class="top-nav">
+                <div class="nav-left">
+                    <div class="hospital-info">
+                        <div class="hospital-logo"><i class="fas fa-hospital"></i></div>
+                        <div class="hospital-details">
+                            <span class="hospital-name">Manipal Teaching Hospital</span>
+                            <span class="hospital-location">Pokhara, Nepal</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-center">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" placeholder="Search Patient..." class="search-input">
+                        <span class="search-shortcut">⌘K</span>
+                    </div>
+                </div>
+                <div class="nav-right">
+                    <button class="icon-btn" id="darkModeToggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+                    <button class="icon-btn notification-btn" title="Notifications"><i class="fas fa-bell"></i><span class="notification-badge">5</span></button>
+                    <div class="doctor-profile">
+                        <div class="doctor-avatar"><img src="https://ui-avatars.com/api/?name=Ram+Sharma&background=2563EB&color=fff&size=40" alt="Dr. Ram Sharma"></div>
+                        <div class="doctor-info">
+                            <span class="doctor-name">Dr. Ram Sharma</span>
+                            <span class="doctor-specialty">Internal Medicine</span>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+
+            <main class="ehr">
+                <div class="ehr-header">
+                    <div class="ehr-breadcrumb">
+                        <a href="script.html">Dashboard</a> <i class="fas fa-chevron-right"></i>
+                        <a href="#">Patients</a> <i class="fas fa-chevron-right"></i>
+                        <span>Sita Thapa</span>
+                    </div>
+                    <div class="ehr-header-actions">
+                        <button class="ehr-header-btn back-btn" onclick="history.back()"><i class="fas fa-arrow-left"></i> Back</button>
+                        <button class="ehr-header-btn print-btn"><i class="fas fa-print"></i> Print</button>
+                        <button class="ehr-header-btn share-btn"><i class="fas fa-share-alt"></i> Share</button>
+                    </div>
+                </div>
+
+                <div class="ehr-grid">
+                    <!-- LEFT PANEL - Patient Info -->
+                    <section class="ehr-left">
+                        <div class="ehr-card patient-profile-card">
+                            <div class="patient-photo">
+                                <img src="https://ui-avatars.com/api/?name=Sita+Thapa&background=2563EB&color=fff&size=120" alt="Sita Thapa">
+                                <div class="patient-status online"></div>
+                            </div>
+                            <h2 class="patient-name">Sita Thapa</h2>
+                            <span class="patient-id">Health ID: SW-2024-00892</span>
+                            <div class="patient-badge active">Active Patient</div>
+                        </div>
+
+                        <div class="ehr-card">
+                            <h3 class="card-title"><i class="fas fa-address-card"></i> Demographics</h3>
+                            <div class="info-grid">
+                                <div class="info-item"><span class="info-label">Age</span><span class="info-value">32 years</span></div>
+                                <div class="info-item"><span class="info-label">Gender</span><span class="info-value">Female</span></div>
+                                <div class="info-item"><span class="info-label">Blood Group</span><span class="info-value blood">A+</span></div>
+                                <div class="info-item"><span class="info-label">Height</span><span class="info-value">162 cm</span></div>
+                                <div class="info-item"><span class="info-label">Weight</span><span class="info-value">58 kg</span></div>
+                                <div class="info-item"><span class="info-label">BMI</span><span class="info-value">22.1</span></div>
+                            </div>
+                        </div>
+
+                        <div class="ehr-card">
+                            <h3 class="card-title"><i class="fas fa-phone-alt"></i> Contact & Insurance</h3>
+                            <div class="info-list">
+                                <div class="info-item"><span class="info-label">Emergency Contact</span><span class="info-value">+977 984-1234567</span></div>
+                                <div class="info-item"><span class="info-label">Relationship</span><span class="info-value">Spouse (Ram Thapa)</span></div>
+                                <div class="info-item"><span class="info-label">Insurance Status</span><span class="info-value insured">Insured</span></div>
+                                <div class="info-item"><span class="info-label">Insurance Provider</span><span class="info-value">Nepal Life Care</span></div>
+                                <div class="info-item"><span class="info-label">Policy No.</span><span class="info-value">NLC-88723-01</span></div>
+                                <div class="info-item"><span class="info-label">Primary Physician</span><span class="info-value">Dr. Ram Sharma</span></div>
+                            </div>
+                        </div>
+
+                        <div class="ehr-card">
+                            <h3 class="card-title"><i class="fas fa-calendar-alt"></i> Registration</h3>
+                            <div class="info-list">
+                                <div class="info-item"><span class="info-label">Registered On</span><span class="info-value">March 15, 2024</span></div>
+                                <div class="info-item"><span class="info-label">Last Visit</span><span class="info-value">July 22, 2026</span></div>
+                                <div class="info-item"><span class="info-label">Total Visits</span><span class="info-value">12</span></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- CENTER PANEL - Medical Records -->
+                    <section class="ehr-center">
+                        <div class="ehr-card">
+                            <h3 class="card-title"><i class="fas fa-notes-medical"></i> Medical Summary</h3>
+                            <p class="medical-summary-text">Patient presents with recurring chest pain and shortness of breath over the past 3 months. Previous ECG showed mild arrhythmia. Currently under observation for suspected GERD vs. cardiac origin. Family history positive for hypertension and diabetes.</p>
+                        </div>
+
+                        <div class="ehr-card">
+                            <h3 class="card-title"><i class="fas fa-allergies"></i> Allergies <span class="badge-alert">2 Active</span></h3>
+                            <div class="tag-list">
+                                <span class="tag tag-danger">Penicillin <i class="fas fa-times"></i></span>
+                                <span class="tag tag-warning">Sulfa Drugs <i class="fas fa-times"></i></span>
+                                <span class="tag tag-safe">No known food allergies</span>
+                            </div>
+                        </div>
+
+                        <div class="med-section-grid">
+                            <div class="ehr-card">
+                                <h3 class="card-title"><i class="fas fa-pills"></i> Current Medications</h3>
+                                <div class="med-list">
+                                    <div class="med-item">
+                                        <div class="med-icon"><i class="fas fa-capsules"></i></div>
+                                        <div class="med-info"><span class="med-name">Omeprazole 20mg</span><span class="med-dosage">Once daily - Morning</span></div>
+                                    </div>
+                                    <div class="med-item">
+                                        <div class="med-icon"><i class="fas fa-capsules"></i></div>
+                                        <div class="med-info"><span class="med-name">Amlodipine 5mg</span><span class="med-dosage">Once daily - Evening</span></div>
+                                    </div>
+                                    <div class="med-item">
+                                        <div class="med-icon"><i class="fas fa-tablets"></i></div>
+                                        <div class="med-info"><span class="med-name">Metformin 500mg</span><span class="med-dosage">Twice daily with meals</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ehr-card">
+                                <h3 class="card-title"><i class="fas fa-disease"></i> Chronic Diseases</h3>
+                                <div class="tag-list">
+                                    <span class="tag tag-danger">Hypertension</span>
+                                    <span class="tag tag-warning">Type 2 Diabetes</span>
+                                    <span class="tag tag-info">GERD</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="med-section-grid">
+                            <div class="ehr-card">
+                                <h3 class="card-title"><i class="fas fa-scalpel"></i> Previous Surgeries</h3>
+                                <div class="surgery-list">
+                                    <div class="surgery-item">
+                                        <div class="surgery-year">2019</div>
+                                        <div class="surgery-detail"><span class="surgery-name">Laparoscopic Cholecystectomy</span><span class="surgery-hosp">Manipal Hospital</span></div>
+                                    </div>
+                                    <div class="surgery-item">
+                                        <div class="surgery-year">2021</div>
+                                        <div class="surgery-detail"><span class="surgery-name">Tonsillectomy</span><span class="surgery-hosp">Pokhara ENT Center</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ehr-card">
+                                <h3 class="card-title"><i class="fas fa-syringe"></i> Vaccination History</h3>
+                                <div class="vaccine-list">
+                                    <div class="vaccine-item"><span class="vaccine-name">COVID-19 (Moderna)</span><span class="vaccine-date">Dec 2021</span><span class="vaccine-status done"><i class="fas fa-check"></i></span></div>
+                                    <div class="vaccine-item"><span class="vaccine-name">COVID-19 Booster</span><span class="vaccine-date">Jun 2022</span><span class="vaccine-status done"><i class="fas fa-check"></i></span></div>
+                                    <div class="vaccine-item"><span class="vaccine-name">Influenza 2025</span><span class="vaccine-date">Oct 2025</span><span class="vaccine-status done"><i class="fas fa-check"></i></span></div>
+                                    <div class="vaccine-item"><span class="vaccine-name">Hepatitis B</span><span class="vaccine-date">Mar 2020</span><span class="vaccine-status due"><i class="fas fa-exclamation"></i></span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ehr-card">
+                            <h3 class="card-title"><i class="fas fa-users"></i> Family History</h3>
+                            <div class="family-grid">
+                                <div class="family-item"><span class="relation">Father</span><span class="condition">Hypertension, Stroke (age 68)</span></div>
+                                <div class="family-item"><span class="relation">Mother</span><span class="condition">Type 2 Diabetes, Thyroid Disorder</span></div>
+                                <div class="family-item"><span class="relation">Sibling</span><span class="condition">No significant conditions</span></div>
+                            </div>
+                        </div>
+
+                        <div class="ehr-card timeline-card">
+                            <h3 class="card-title"><i class="fas fa-timeline"></i> Medical Timeline</h3>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-date">Jul 22, 2026</span>
+                                        <span class="timeline-title">Follow-up Consultation</span>
+                                        <span class="timeline-desc">BP 135/85, prescribed adjusted Amlodipine dosage. ECG normal.</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-date">Jun 15, 2026</span>
+                                        <span class="timeline-title">Cardiology Referral</span>
+                                        <span class="timeline-desc">Referred to Dr. Poudel for persistent chest pain evaluation.</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-date">May 03, 2026</span>
+                                        <span class="timeline-title">Blood Work</span>
+                                        <span class="timeline-desc">HbA1c 7.2%, Total Cholesterol 210 mg/dL. Started on Metformin.</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <span class="timeline-date">Apr 10, 2026</span>
+                                        <span class="timeline-title">Initial Presentation</span>
+                                        <span class="timeline-desc">Complained of chest pain and shortness of breath. ECG taken.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ehr-card">
+                            <h3 class="card-title"><i class="fas fa-history"></i> Recent Visits</h3>
+                            <div class="visits-table-wrapper">
+                                <table class="visits-table">
+                                    <thead><tr><th>Date</th><th>Department</th><th>Doctor</th><th>Diagnosis</th><th>Actions</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Jul 22, 2026</td><td>Internal Medicine</td><td>Dr. Ram Sharma</td><td>Hypertension Follow-up</td><td><button class="table-btn-sm"><i class="fas fa-eye"></i></button></td></tr>
+                                        <tr><td>Jun 15, 2026</td><td>Cardiology</td><td>Dr. S. Poudel</td><td>Chest Pain Evaluation</td><td><button class="table-btn-sm"><i class="fas fa-eye"></i></button></td></tr>
+                                        <tr><td>May 03, 2026</td><td>Endocrinology</td><td>Dr. K. Adhikari</td><td>Diabetes Management</td><td><button class="table-btn-sm"><i class="fas fa-eye"></i></button></td></tr>
+                                        <tr><td>Apr 10, 2026</td><td>Internal Medicine</td><td>Dr. Ram Sharma</td><td>GERD Investigation</td><td><button class="table-btn-sm"><i class="fas fa-eye"></i></button></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- RIGHT PANEL - AI Clinical -->
+                    <section class="ehr-right">
+                        <div class="ehr-card ai-card">
+                            <div class="card-title-row">
+                                <h3 class="card-title"><i class="fas fa-robot"></i> AI Clinical Summary</h3>
+                                <span class="ai-badge">AI Powered</span>
+                            </div>
+                            <div class="ai-summary">
+                                <p>Patient likely has hypertension-related complications with possible GERD comorbidity. Chest pain pattern suggests non-cardiac origin, but further cardiac workup recommended. Diabetes management requires optimization based on rising HbA1c.</p>
+                            </div>
+                        </div>
+
+                        <div class="ehr-card">
+                            <h3 class="card-title"><i class="fas fa-thermometer-half"></i> Today's Symptoms</h3>
+                            <div class="symptoms-list">
+                                <div class="symptom-item"><span class="symptom-name">Chest Pain</span><span class="symptom-severity moderate">Moderate</span></div>
+                                <div class="symptom-item"><span class="symptom-name">Shortness of Breath</span><span class="symptom-severity mild">Mild</span></div>
+                                <div class="symptom-item"><span class="symptom-name">Fatigue</span><span class="symptom-severity mild">Mild</span></div>
+                                <div class="symptom-item"><span class="symptom-name">Heartburn</span><span class="symptom-severity severe">Severe</span></div>
+                            </div>
+                        </div>
+
+                        <div class="ehr-card">
+                            <h3 class="card-title"><i class="fas fa-exclamation-triangle"></i> Risk Level</h3>
+                            <div class="risk-indicator moderate-risk">
+                                <div class="risk-gauge">
+                                    <div class="risk-bar" style="width: 65%"></div>
+                                </div>
+                                <div class="risk-details">
+                                    <span class="risk-label">Moderate Risk</span>
+                                    <span class="risk-score">Score: 65/100</span>
+                                </div>
+                                <p class="risk-note">Cardiovascular risk factors present. Recommend regular monitoring.</p>
+                            </div>
+                        </div>
+
+                        <div class="ehr-card">
+                            <h3 class="card-title"><i class="fas fa-flask"></i> Recommended Tests</h3>
+                            <div class="test-list">
+                                <label class="test-item">
+                                    <input type="checkbox" checked> <span>Complete Blood Count (CBC)</span>
+                                </label>
+                                <label class="test-item">
+                                    <input type="checkbox" checked> <span>Lipid Profile</span>
+                                </label>
+                                <label class="test-item">
+                                    <input type="checkbox"> <span>Echocardiogram</span>
+                                </label>
+                                <label class="test-item">
+                                    <input type="checkbox"> <span>Stress Test (TMT)</span>
+                                </label>
+                                <label class="test-item">
+                                    <input type="checkbox" checked> <span>HbA1c</span>
+                                </label>
+                            </div>
+                            <button class="ehr-action-btn order-btn"><i class="fas fa-clipboard-list"></i> Order Selected Tests</button>
+                        </div>
+
+                        <div class="ehr-card">
+                            <h3 class="card-title"><i class="fas fa-user-md"></i> Suggested Specialist</h3>
+                            <div class="specialist-card">
+                                <div class="spec-icon"><i class="fas fa-heart"></i></div>
+                                <div class="spec-info">
+                                    <span class="spec-name">Dr. Sagar Poudel</span>
+                                    <span class="spec-field">Cardiologist</span>
+                                    <span class="spec-avail">Available: Today 3:00 PM</span>
+                                </div>
+                                <button class="spec-refer-btn">Refer</button>
+                            </div>
+                            <div class="specialist-card">
+                                <div class="spec-icon"><i class="fas fa-stomach"></i></div>
+                                <div class="spec-info">
+                                    <span class="spec-name">Dr. Anju Gurung</span>
+                                    <span class="spec-field">Gastroenterologist</span>
+                                    <span class="spec-avail">Available: Tomorrow 10:00 AM</span>
+                                </div>
+                                <button class="spec-refer-btn">Refer</button>
+                            </div>
+                        </div>
+
+                        <div class="ehr-card alert-card">
+                            <div class="card-title-row">
+                                <h3 class="card-title"><i class="fas fa-bell"></i> Drug Interaction Alerts</h3>
+                                <span class="alert-count">2 Alerts</span>
+                            </div>
+                            <div class="drug-alert">
+                                <div class="drug-alert-icon"><i class="fas fa-exclamation-circle"></i></div>
+                                <div class="drug-alert-content">
+                                    <span class="drug-alert-title">Omeprazole + Amlodipine</span>
+                                    <span class="drug-alert-desc">May increase risk of hypomagnesemia with prolonged use.</span>
+                                </div>
+                            </div>
+                            <div class="drug-alert">
+                                <div class="drug-alert-icon"><i class="fas fa-info-circle"></i></div>
+                                <div class="drug-alert-content">
+                                    <span class="drug-alert-title">Metformin + Contrast Dye</span>
+                                    <span class="drug-alert-desc">Hold Metformin 48h before contrast imaging to prevent lactic acidosis.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ehr-card">
+                            <h3 class="card-title"><i class="fas fa-calendar-check"></i> Upcoming Appointment</h3>
+                            <div class="upcoming-appt">
+                                <div class="appt-date-box">
+                                    <span class="appt-month">JUL</span>
+                                    <span class="appt-day">28</span>
+                                </div>
+                                <div class="appt-details">
+                                    <span class="appt-title">Follow-up: Cardiology</span>
+                                    <span class="appt-time"><i class="fas fa-clock"></i> 10:30 AM</span>
+                                    <span class="appt-location"><i class="fas fa-map-marker-alt"></i> Room 204, OPD Block B</span>
+                                </div>
+                                <button class="appt-reschedule">Reschedule</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- BOTTOM SECTION - Medical Documents -->
+                <section class="ehr-documents">
+                    <div class="section-header">
+                        <h2><i class="fas fa-folder-open"></i> Medical Documents</h2>
+                        <button class="upload-all-btn"><i class="fas fa-cloud-upload-alt"></i> Upload All</button>
+                    </div>
+                    <div class="doc-grid">
+                        <div class="doc-card">
+                            <div class="doc-thumb mri">
+                                <i class="fas fa-brain"></i>
+                                <div class="doc-type-badge">MRI</div>
+                            </div>
+                            <div class="doc-info">
+                                <span class="doc-name">Brain MRI - 22 Jul 2026</span>
+                                <span class="doc-meta">Radiology • 12 MB</span>
+                            </div>
+                            <div class="doc-actions">
+                                <button class="doc-btn preview"><i class="fas fa-eye"></i> Preview</button>
+                                <button class="doc-btn download"><i class="fas fa-download"></i> Download</button>
+                            </div>
+                        </div>
+                        <div class="doc-card">
+                            <div class="doc-thumb xray">
+                                <i class="fas fa- lungs"></i>
+                                <div class="doc-type-badge">X-ray</div>
+                            </div>
+                            <div class="doc-info">
+                                <span class="doc-name">Chest X-ray - 15 Jun 2026</span>
+                                <span class="doc-meta">Radiology • 8 MB</span>
+                            </div>
+                            <div class="doc-actions">
+                                <button class="doc-btn preview"><i class="fas fa-eye"></i> Preview</button>
+                                <button class="doc-btn download"><i class="fas fa-download"></i> Download</button>
+                            </div>
+                        </div>
+                        <div class="doc-card">
+                            <div class="doc-thumb blood">
+                                <i class="fas fa-droplet"></i>
+                                <div class="doc-type-badge">Blood</div>
+                            </div>
+                            <div class="doc-info">
+                                <span class="doc-name">CBC Report - 03 May 2026</span>
+                                <span class="doc-meta">Lab • 4 MB</span>
+                            </div>
+                            <div class="doc-actions">
+                                <button class="doc-btn preview"><i class="fas fa-eye"></i> Preview</button>
+                                <button class="doc-btn download"><i class="fas fa-download"></i> Download</button>
+                            </div>
+                        </div>
+                        <div class="doc-card">
+                            <div class="doc-thumb lab">
+                                <i class="fas fa-flask"></i>
+                                <div class="doc-type-badge">Lab</div>
+                            </div>
+                            <div class="doc-info">
+                                <span class="doc-name">Lipid Profile - 03 May 2026</span>
+                                <span class="doc-meta">Lab • 3 MB</span>
+                            </div>
+                            <div class="doc-actions">
+                                <button class="doc-btn preview"><i class="fas fa-eye"></i> Preview</button>
+                                <button class="doc-btn download"><i class="fas fa-download"></i> Download</button>
+                            </div>
+                        </div>
+                        <div class="doc-card">
+                            <div class="doc-thumb prescription">
+                                <i class="fas fa-prescription"></i>
+                                <div class="doc-type-badge">Rx</div>
+                            </div>
+                            <div class="doc-info">
+                                <span class="doc-name">Current Prescription - Jul 2026</span>
+                                <span class="doc-meta">Pharmacy • 2 MB</span>
+                            </div>
+                            <div class="doc-actions">
+                                <button class="doc-btn preview"><i class="fas fa-eye"></i> Preview</button>
+                                <button class="doc-btn download"><i class="fas fa-download"></i> Download</button>
+                            </div>
+                        </div>
+                        <div class="doc-card">
+                            <div class="doc-thumb notes">
+                                <i class="fas fa-file-alt"></i>
+                                <div class="doc-type-badge">Notes</div>
+                            </div>
+                            <div class="doc-info">
+                                <span class="doc-name">Consultation Note - 22 Jul 2026</span>
+                                <span class="doc-meta">Clinical • 1 MB</span>
+                            </div>
+                            <div class="doc-actions">
+                                <button class="doc-btn preview"><i class="fas fa-eye"></i> Preview</button>
+                                <button class="doc-btn download"><i class="fas fa-download"></i> Download</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BOTTOM ACTION BUTTONS -->
+                <section class="ehr-actions-bar">
+                    <button class="action-btn-primary consultation-btn"><i class="fas fa-stethoscope"></i> Add Consultation</button>
+                    <button class="action-btn-primary prescription-btn"><i class="fas fa-prescription"></i> Write Prescription</button>
+                    <button class="action-btn-secondary upload-btn"><i class="fas fa-upload"></i> Upload Report</button>
+                    <button class="action-btn-secondary lab-btn"><i class="fas fa-flask"></i> Order Laboratory Test</button>
+                    <button class="action-btn-secondary followup-btn"><i class="fas fa-calendar-plus"></i> Schedule Follow-up</button>
+                </section>
+            </main>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

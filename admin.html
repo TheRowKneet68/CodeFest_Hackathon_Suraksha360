@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swastha Sathi - Hospital Administration</title>
+    <link rel="stylesheet" href="script.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon"><i class="fas fa-heartbeat"></i></div>
+                    <span class="logo-text">Swastha Sathi</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="script.html" class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+                <a href="ehr.html" class="nav-item"><i class="fas fa-folder-open"></i><span>EHR</span></a>
+                <a href="consultation.html" class="nav-item"><i class="fas fa-stethoscope"></i><span>Consultation</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-users"></i><span>Patients</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-calendar-check"></i><span>Appointments</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-chart-bar"></i><span>Analytics</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-user-md"></i><span>Doctors</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-building"></i><span>Departments</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-envelope"></i><span>Messages</span><span class="badge">3</span></a>
+                <a href="#" class="nav-item"><i class="fas fa-bell"></i><span>Notifications</span><span class="badge">5</span></a>
+                <a href="#" class="nav-item active"><i class="fas fa-cog"></i><span>Admin</span></a>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item logout"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <header class="top-nav">
+                <div class="nav-left">
+                    <div class="hospital-info">
+                        <div class="hospital-logo"><i class="fas fa-hospital"></i></div>
+                        <div class="hospital-details">
+                            <span class="hospital-name">Manipal Teaching Hospital</span>
+                            <span class="hospital-location">Pokhara, Nepal</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-center">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" placeholder="Search Hospital..." class="search-input">
+                        <span class="search-shortcut">⌘K</span>
+                    </div>
+                </div>
+                <div class="nav-right">
+                    <button class="icon-btn" id="darkModeToggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+                    <button class="icon-btn notification-btn" title="Notifications"><i class="fas fa-bell"></i><span class="notification-badge">5</span></button>
+                    <div class="doctor-profile">
+                        <div class="doctor-avatar"><img src="https://ui-avatars.com/api/?name=Admin&background=2563EB&color=fff&size=40" alt="Admin"></div>
+                        <div class="doctor-info">
+                            <span class="doctor-name">Hospital Admin</span>
+                            <span class="doctor-specialty">Manipal Teaching Hospital</span>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+
+            <main class="admin">
+                <div class="admin-header">
+                    <div>
+                        <h1>Hospital Administration</h1>
+                        <p>Overview and management of Manipal Teaching Hospital</p>
+                    </div>
+                    <div class="admin-period">
+                        <button class="period-btn active">Today</button>
+                        <button class="period-btn">This Week</button>
+                        <button class="period-btn">This Month</button>
+                        <button class="period-btn">This Year</button>
+                    </div>
+                </div>
+
+                <!-- Hospital Overview Stats -->
+                <section class="admin-stats">
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon blue"><i class="fas fa-user-md"></i></div>
+                        <div class="admin-stat-content">
+                            <span class="admin-stat-value">128</span>
+                            <span class="admin-stat-label">Total Doctors</span>
+                        </div>
+                        <span class="admin-stat-change up"><i class="fas fa-arrow-up"></i> +4</span>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon green"><i class="fas fa-users"></i></div>
+                        <div class="admin-stat-content">
+                            <span class="admin-stat-value">2,847</span>
+                            <span class="admin-stat-label">Active Patients</span>
+                        </div>
+                        <span class="admin-stat-change up"><i class="fas fa-arrow-up"></i> +12.5%</span>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon purple"><i class="fas fa-calendar-check"></i></div>
+                        <div class="admin-stat-content">
+                            <span class="admin-stat-value">48</span>
+                            <span class="admin-stat-label">Today's Appointments</span>
+                        </div>
+                        <span class="admin-stat-change down"><i class="fas fa-arrow-down"></i> -3</span>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon orange"><i class="fas fa-bed"></i></div>
+                        <div class="admin-stat-content">
+                            <span class="admin-stat-value">76%</span>
+                            <span class="admin-stat-label">Bed Occupancy</span>
+                        </div>
+                        <span class="admin-stat-change up"><i class="fas fa-arrow-up"></i> +5%</span>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon red"><i class="fas fa-ambulance"></i></div>
+                        <div class="admin-stat-content">
+                            <span class="admin-stat-value">7</span>
+                            <span class="admin-stat-label">Emergency Cases</span>
+                        </div>
+                        <span class="admin-stat-change down"><i class="fas fa-arrow-down"></i> -2</span>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon indigo"><i class="fas fa-building"></i></div>
+                        <div class="admin-stat-content">
+                            <span class="admin-stat-value">14</span>
+                            <span class="admin-stat-label">Departments</span>
+                        </div>
+                        <span class="admin-stat-change neutral">Stable</span>
+                    </div>
+                </section>
+
+                <!-- Charts Row 1 -->
+                <div class="admin-charts-row">
+                    <div class="admin-card chart-card revenue-card">
+                        <div class="admin-card-header">
+                            <h3><i class="fas fa-chart-line"></i> Revenue Overview</h3>
+                            <span class="admin-badge">+18.2% vs last month</span>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="admin-card chart-card trends-card">
+                        <div class="admin-card-header">
+                            <h3><i class="fas fa-calendar-alt"></i> Appointment Trends</h3>
+                            <select class="chart-filter">
+                                <option>Last 6 months</option>
+                                <option>Last 3 months</option>
+                                <option selected>This Year</option>
+                            </select>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="appointmentChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row 2 -->
+                <div class="admin-charts-row three-col">
+                    <div class="admin-card chart-card satisfaction-card">
+                        <div class="admin-card-header">
+                            <h3><i class="fas fa-smile"></i> Patient Satisfaction</h3>
+                            <span class="admin-badge green">4.8 / 5.0</span>
+                        </div>
+                        <div class="chart-container-sm">
+                            <canvas id="satisfactionChart"></canvas>
+                        </div>
+                        <div class="sat-meta">
+                            <span><i class="fas fa-star" style="color: #F59E0B"></i> 4.8 Avg Rating</span>
+                            <span><i class="fas fa-comment"></i> 312 Reviews</span>
+                        </div>
+                    </div>
+                    <div class="admin-card chart-card performance-card">
+                        <div class="admin-card-header">
+                            <h3><i class="fas fa-trophy"></i> Doctor Performance</h3>
+                            <span class="admin-badge">Top 5</span>
+                        </div>
+                        <div class="chart-container-sm">
+                            <canvas id="performanceChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="admin-card dept-card">
+                        <div class="admin-card-header">
+                            <h3><i class="fas fa-building"></i> Departments</h3>
+                            <a href="#" class="admin-link">View All</a>
+                        </div>
+                        <div class="dept-list">
+                            <div class="dept-item">
+                                <div class="dept-icon cardiology"><i class="fas fa-heart"></i></div>
+                                <div class="dept-info"><span class="dept-name">Cardiology</span><span class="dept-count">18 Doctors</span></div>
+                                <span class="dept-pct">92%</span>
+                            </div>
+                            <div class="dept-item">
+                                <div class="dept-icon neurology"><i class="fas fa-brain"></i></div>
+                                <div class="dept-info"><span class="dept-name">Neurology</span><span class="dept-count">12 Doctors</span></div>
+                                <span class="dept-pct">88%</span>
+                            </div>
+                            <div class="dept-item">
+                                <div class="dept-icon pediatrics"><i class="fas fa-child"></i></div>
+                                <div class="dept-info"><span class="dept-name">Pediatrics</span><span class="dept-count">15 Doctors</span></div>
+                                <span class="dept-pct">85%</span>
+                            </div>
+                            <div class="dept-item">
+                                <div class="dept-icon ortho"><i class="fas fa-bone"></i></div>
+                                <div class="dept-info"><span class="dept-name">Orthopedics</span><span class="dept-count">10 Doctors</span></div>
+                                <span class="dept-pct">79%</span>
+                            </div>
+                            <div class="dept-item">
+                                <div class="dept-icon emergency"><i class="fas fa-ambulance"></i></div>
+                                <div class="dept-info"><span class="dept-name">Emergency</span><span class="dept-count">22 Doctors</span></div>
+                                <span class="dept-pct">94%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Row -->
+                <div class="admin-bottom-row">
+                    <div class="admin-card admissions-card">
+                        <div class="admin-card-header">
+                            <h3><i class="fas fa-hospital-user"></i> Recent Admissions</h3>
+                            <a href="#" class="admin-link">View All</a>
+                        </div>
+                        <table class="admissions-table">
+                            <thead><tr><th>Patient</th><th>Department</th><th>Doctor</th><th>Room</th><th>Status</th></tr></thead>
+                            <tbody>
+                                <tr><td><div class="adm-patient"><img src="https://ui-avatars.com/api/?name=Raj+Tamang&background=FEE2E2&color=991B1B&size=28" alt="Raj"><span>Raj Tamang</span></div></td><td>Cardiology</td><td>Dr. S. Poudel</td><td>301</td><td><span class="adm-status critical">Critical</span></td></tr>
+                                <tr><td><div class="adm-patient"><img src="https://ui-avatars.com/api/?name=Anita+Rai&background=DBEAFE&color=1E40AF&size=28" alt="Anita"><span>Anita Rai</span></div></td><td>Pediatrics</td><td>Dr. K. Sharma</td><td>205</td><td><span class="adm-status stable">Stable</span></td></tr>
+                                <tr><td><div class="adm-patient"><img src="https://ui-avatars.com/api/?name=Hari+Gurung&background=D1FAE5&color=065F46&size=28" alt="Hari"><span>Hari Gurung</span></div></td><td>Orthopedics</td><td>Dr. P. Thapa</td><td>412</td><td><span class="adm-status recovering">Recovering</span></td></tr>
+                                <tr><td><div class="adm-patient"><img src="https://ui-avatars.com/api/?name=Sita+Thapa&background=FEF3C7&color=92400E&size=28" alt="Sita"><span>Sita Thapa</span></div></td><td>Internal Med</td><td>Dr. R. Sharma</td><td>218</td><td><span class="adm-status stable">Stable</span></td></tr>
+                                <tr><td><div class="adm-patient"><img src="https://ui-avatars.com/api/?name=Bishal+Magar&background=EDE9FE&color=5B21B6&size=28" alt="Bishal"><span>Bishal Magar</span></div></td><td>Neurology</td><td>Dr. A. Gurung</td><td>305</td><td><span class="adm-status critical">Critical</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="admin-right-col">
+                        <div class="admin-card notifications-card">
+                            <div class="admin-card-header">
+                                <h3><i class="fas fa-bell"></i> System Notifications</h3>
+                                <span class="notif-count">8 new</span>
+                            </div>
+                            <div class="notif-list">
+                                <div class="notif-item unread">
+                                    <div class="notif-icon alert"><i class="fas fa-exclamation"></i></div>
+                                    <div class="notif-content"><span class="notif-title">Bed Alert</span><span class="notif-text">ICU at 95% capacity</span><span class="notif-time">5 mins ago</span></div>
+                                </div>
+                                <div class="notif-item unread">
+                                    <div class="notif-icon info"><i class="fas fa-user-plus"></i></div>
+                                    <div class="notif-content"><span class="notif-title">New Admission</span><span class="notif-text">Patient admitted to Cardiology</span><span class="notif-time">12 mins ago</span></div>
+                                </div>
+                                <div class="notif-item">
+                                    <div class="notif-icon warning"><i class="fas fa-exclamation-triangle"></i></div>
+                                    <div class="notif-content"><span class="notif-title">Staff Shortage</span><span class="notif-text">Night shift - 3 nurses required</span><span class="notif-time">1 hr ago</span></div>
+                                </div>
+                                <div class="notif-item">
+                                    <div class="notif-icon success"><i class="fas fa-check"></i></div>
+                                    <div class="notif-content"><span class="notif-title">Lab Results Ready</span><span class="notif-text">12 reports pending review</span><span class="notif-time">2 hrs ago</span></div>
+                                </div>
+                                <div class="notif-item">
+                                    <div class="notif-icon alert"><i class="fas fa-ambulance"></i></div>
+                                    <div class="notif-content"><span class="notif-title">Emergency Response</span><span class="notif-text">Code Blue - Floor 2</span><span class="notif-time">3 hrs ago</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="admin-card quick-actions-card">
+                            <div class="admin-card-header">
+                                <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                            </div>
+                            <div class="admin-quick-actions">
+                                <button class="admin-qa-btn"><i class="fas fa-user-md"></i> Manage Doctors</button>
+                                <button class="admin-qa-btn"><i class="fas fa-users"></i> Manage Patients</button>
+                                <button class="admin-qa-btn"><i class="fas fa-building"></i> Manage Departments</button>
+                                <button class="admin-qa-btn"><i class="fas fa-file-alt"></i> Generate Reports</button>
+                                <button class="admin-qa-btn"><i class="fas fa-cog"></i> Settings</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Chart.defaults.font.family = 'Inter, sans-serif';
+            Chart.defaults.color = '#64748B';
+
+            new Chart(document.getElementById('revenueChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Revenue (NPR)',
+                        data: [4200000, 4800000, 5100000, 4900000, 5600000, 6200000, 5800000, 6500000, 7100000, 6800000, 7400000, 8200000],
+                        borderColor: '#2563EB',
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#2563EB',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 4,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { callback: v => 'NPR ' + (v/1000000).toFixed(1) + 'M' }, grid: { color: 'rgba(0,0,0,0.04)' } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+
+            new Chart(document.getElementById('appointmentChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Appointments',
+                        data: [320, 380, 410, 390, 450, 480, 520, 490, 510, 470, 530, 560],
+                        backgroundColor: 'rgba(37, 99, 235, 0.7)',
+                        borderRadius: 6,
+                        borderSkipped: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+
+            new Chart(document.getElementById('satisfactionChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Excellent', 'Good', 'Average', 'Poor'],
+                    datasets: [{
+                        data: [68, 22, 7, 3],
+                        backgroundColor: ['#22C55E', '#3B82F6', '#F59E0B', '#EF4444'],
+                        borderWidth: 0,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '72%',
+                    plugins: {
+                        legend: { position: 'bottom', labels: { usePointStyle: true, padding: 12, font: { size: 11 } } }
+                    }
+                }
+            });
+
+            new Chart(document.getElementById('performanceChart'), {
+                type: 'bar',
+                data: {
+                    labels: ['Dr. Poudel', 'Dr. Sharma', 'Dr. Gurung', 'Dr. Thapa', 'Dr. Rai'],
+                    datasets: [{
+                        label: 'Patients',
+                        data: [142, 128, 115, 98, 87],
+                        backgroundColor: ['#2563EB', '#3B82F6', '#60A5FA', '#93C5FD', '#BFDBFE'],
+                        borderRadius: 6,
+                        borderSkipped: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' } },
+                        y: { grid: { display: false } }
+                    }
+                }
+            });
+
+            // Period buttons
+            document.querySelectorAll('.period-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
