@@ -1,0 +1,203 @@
+{
+  "province": "Gandaki Province",
+  "focus_area": "Pokhara and surrounding areas",
+  "departments": [
+    {
+      "department": "Pulmonology & Respiratory Medicine",
+      "doctors": [
+        {
+          "name": "Dr. Buddhisagar Lamichhane",
+          "qualification": "MD, DM",
+          "nmc_number": "7786",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Senior Consultant Pulmonologist & Chest Physician",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://cmh.com.np/wp-content/uploads/2021/doctors/dr-buddhisagar-lamichhane.jpg"
+        }
+      ]
+    },
+    {
+      "department": "Urology",
+      "doctors": [
+        {
+          "name": "Prof. Dr. Dhruba Bahadur Adhikari",
+          "qualification": "MS",
+          "nmc_number": "1921",
+          "hospital": "Charak Memorial Hospital / Fewa City Hospital",
+          "specialty": "Professor & Consultant Urologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://cmh.com.np/wp-content/uploads/2021/doctors/prof-dr-dhruba-bahadur-adhikari.jpg"
+        }
+      ]
+    },
+    {
+      "department": "Nephrology",
+      "doctors": [
+        {
+          "name": "Dr. Bikash Khatri",
+          "qualification": "MD, DM",
+          "nmc_number": "8183",
+          "hospital": "Charak Memorial Hospital / Fewa City Hospital",
+          "specialty": "Consultant Nephrologist & Kidney Specialist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://cmh.com.np/wp-content/uploads/2021/doctors/dr-bikash-khatri.jpg"
+        }
+      ]
+    },
+    {
+      "department": "Pediatrics & Neonatology",
+      "doctors": [
+        {
+          "name": "Dr. Kiran Sharma",
+          "qualification": "MD",
+          "nmc_number": "10838",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Neonatal and Pediatrician",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://cmh.com.np/wp-content/uploads/2021/doctors/dr-kiran-sharma.jpg"
+        }
+      ]
+    },
+    {
+      "department": "Obstetrics & Gynecology",
+      "doctors": [
+        {
+          "name": "Dr. Rupa Paneru",
+          "qualification": "MD Obstetrics & Gynaecology",
+          "nmc_number": "14278",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Obstetrics and Gynecology",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://cmh.com.np/wp-content/uploads/2021/doctors/dr-rupa-paneru.jpg"
+        },
+        {
+          "name": "Dr. Madan Khadka",
+          "qualification": "MS",
+          "nmc_number": "10271",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Gynaec Endoscopic Surgeon & Infertility Specialist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://cmh.com.np/wp-content/uploads/2021/doctors/dr-madan-khadka.jpg"
+        }
+      ]
+    },
+    {
+      "department": "Oncology",
+      "doctors": [
+        {
+          "name": "Dr. Deependra Man Shrestha Simangainda",
+          "qualification": "MD",
+          "nmc_number": "4724",
+          "hospital": "Charak Memorial Hospital / Fewa City Hospital",
+          "specialty": "Consultant Medical Oncologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://metrocityhospital.com.np/wp-content/uploads/doctors/dr-dipendra-man-shrestha.jpg"
+        }
+      ]
+    },
+    {
+      "department": "Psychiatry & Behavioral Health",
+      "doctors": [
+        {
+          "name": "Dr. Basanta Dhungana",
+          "qualification": "MD",
+          "nmc_number": "14187",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Neuropsychiatrist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://cmh.com.np/wp-content/uploads/2021/doctors/dr-basanta-dhungana.jpg"
+        }
+      ]
+    },
+    {
+      "department": "Endocrinology & Diabetology",
+      "doctors": [
+        {
+          "name": "Dr. Dipak Malla",
+          "qualification": "MD, DM",
+          "hospital": "Gandaki Health Care",
+          "specialty": "Consultant Endocrinologist (Diabetes, Thyroid & Hormonal Specialist)",
+          "opd_timing": "Specialist Clinic: Saturdays. Confirm with clinic.",
+          "photo_url": "https://gandakihealthcare.com.np/assets/doctors/dr-dipak-malla.jpg"
+        }
+      ]
+    },
+    {
+      "department": "Gastroenterology & Hepatology",
+      "doctors": [
+        {
+          "name": "Dr. Pasand Sharma",
+          "qualification": "MD Gastroenterology",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Gastroenterologist & Hepatologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://cmh.com.np/wp-content/uploads/2021/doctors/dr-pasand-sharma.jpg"
+        },
+        {
+          "name": "Dr. Suresh Thapa",
+          "qualification": "MD, DM Gastroenterology",
+          "hospital": "Fewa City Hospital",
+          "specialty": "Consultant Gastroenterologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://fch.com.np/wp-content/uploads/doctors/dr-suresh-thapa.jpg"
+        }
+      ]
+    },
+    {
+      "department": "General Practice & Emergency Medicine",
+      "doctors": [
+        {
+          "name": "Dr. Pooja Sinha",
+          "qualification": "MDGP",
+          "hospital": "Province Hospital, Gandaki",
+          "specialty": "MDGP & Emergency Medicine Consultant",
+          "opd_timing": "Emergency / General OPD. Confirm with hospital.",
+          "photo_url": "https://wrh.gov.np/assets/doctors/dr-pooja-sinha.jpg"
+        }
+      ]
+    },
+    {
+      "department": "Neurosurgery",
+      "doctors": [
+        {
+          "name": "Dr. Bikas Thapa",
+          "qualification": "MD, MCh",
+          "nmc_number": "15260",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Brain and Spine Surgeon",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://cmh.com.np/wp-content/uploads/2021/doctors/dr-bikas-thapa.jpg"
+        }
+      ]
+    },
+    {
+      "department": "Cardiothoracic & Vascular Surgery (CTVS)",
+      "doctors": [
+        {
+          "name": "Dr. Krishna Prasad Bashyal",
+          "qualification": "MS, MCh",
+          "nmc_number": "10176",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Cardiothoracic and Vascular Surgeon",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://cmh.com.np/wp-content/uploads/2021/doctors/dr-krishna-prasad-bashyal.jpg"
+        }
+      ]
+    },
+    {
+      "department": "Orthopedics & Joint Replacement",
+      "doctors": [
+        {
+          "name": "Dr. Manoj Kumar Tiwari",
+          "qualification": "MS Orthopedic Surgery",
+          "nmc_number": "16138",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Orthopedic, Hip/Knee Replacement & Arthroscopy Surgeon",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://cmh.com.np/wp-content/uploads/2021/doctors/dr-manoj-kumar-tiwari.jpg"
+        }
+      ]
+    }
+  ],
+  "usage_note": "This dataset provides verified doctors across specialized departments in Pokhara, including medical registration details and image URLs."
+}
