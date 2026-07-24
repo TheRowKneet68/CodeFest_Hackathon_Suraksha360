@@ -2,12 +2,14 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { createClient } from "@/lib/supabase/client";
+import type { User } from "@supabase/supabase-js";
 import {
   HeartPulse, UserRound, Stethoscope, LockKeyhole, LayoutDashboard, FileHeart,
   Siren, ShieldUser, Search, Moon, Sun, Bell, LogOut, Sparkles, CalendarPlus,
   ClipboardCheck, Activity, Building2, ReceiptText, Printer, Download,
   MessageCircleHeart, Send, X, Hospital, Clock, SearchX, PhoneCall, ShieldAlert,
-  Check, FlaskConical
+  Check, FlaskConical, Mail, KeyRound, UserPlus, ArrowLeft
 } from "lucide-react";
 
 type Doctor = { name?: string; department?: string; hospital?: string; specialty?: string; qualification?: string; opd_timing?: string; photo_url?: string };
@@ -23,10 +25,6 @@ const DATA_FILES = {
   additional: "/ADDITIONAL DISEASES.json",
   tests: "/TESTS AND COST.json",
 };
-
-function escapeHtml(value = "") {
-  return String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;");
-}
 
 function parseJsonLenient(text: string) {
   try { return JSON.parse(text); } catch { return JSON.parse(text.replace(/,\s*([}\]])/g, "$1")); }
@@ -80,15 +78,22 @@ export default function PatientPortal() {
   const [diseases, setDiseases] = useState<Disease[]>([]);
   const [tests, setTests] = useState<TestItem[]>([]);
   const [edgeCases, setEdgeCases] = useState<EdgeCase[]>([]);
-  const [loadErrors, setLoadErrors] = useState<string[]>([]);
   const [dataLoaded, setDataLoaded] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [authLoading, setAuthLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [chatMessages, setChatMessages] = useState<{ role: "bot" | "user"; text: string; matches?: Disease[] }[]>([]);
   const [chatInput, setChatInput] = useState("");
   const [toasts, setToasts] = useState<{ id: number; title: string; message: string }[]>([]);
+  const [authMode, setAuthMode] = useState<"login" | "signup">("login");
+  const [authEmail, setAuthEmail] = useState("");
+  const [authPassword, setAuthPassword] = useState("");
+  const [authFullName, setAuthFullName] = useState("");
+  const [authError, setAuthError] = useState("");
+  const [authBusy, setAuthBusy] = useState(false);
 
+  const supabase = createClient();
   const todayLabel = new Intl.DateTimeFormat("en", { weekday: "long", day: "numeric", month: "long" }).format(new Date());
 
   const showToast = useCallback((title: string, message: string) => {
@@ -104,6 +109,17 @@ export default function PatientPortal() {
       document.documentElement.dataset.theme = "dark";
     }
   }, []);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      setAuthLoading(false);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+    return () => subscription.unsubscribe();
+  }, [supabase]);
 
   useEffect(() => {
     async function loadAllData() {
@@ -136,14 +152,50 @@ export default function PatientPortal() {
     localStorage.setItem("swasthya-theme", next ? "dark" : "light");
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
+    setAuthError("");
+    setAuthBusy(true);
+
+    if (authMode === "signup") {
+      const { data, error } = await supabase.auth.signUp({
+        email: authEmail,
+        password: authPassword,
+        options: { data: { full_name: authFullName, role: selectedRole } },
+      });
+      if (error) {
+        setAuthError(error.message);
+        setAuthBusy(false);
+        return;
+      }
+      if (data.user && !data.session) {
+        showToast("Check your email", "We sent a confirmation link to verify your account.");
+        setAuthBusy(false);
+        return;
+      }
+    } else {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: authEmail,
+        password: authPassword,
+      });
+      if (error) {
+        setAuthError(error.message);
+        setAuthBusy(false);
+        return;
+      }
+    }
+
     if (selectedRole === "doctor") {
       window.location.href = "/doctor";
       return;
     }
-    setIsLoggedIn(true);
-    showToast("Signed in", "Demo patient workspace is ready.");
+    showToast("Signed in", "Welcome to Swasthya Sathi.");
+    setAuthBusy(false);
+  };
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    showToast("Signed out", "You have been logged out securely.");
   };
 
   const filteredDoctors = doctors.filter(d => {
@@ -181,7 +233,18 @@ export default function PatientPortal() {
     }
   };
 
-  if (!isLoggedIn) {
+  if (authLoading) {
+    return (
+      <div className="login-view" style={{ placeItems: "center" }}>
+        <div style={{ textAlign: "center" }}>
+          <span className="brand-mark" style={{ width: 64, height: 64, fontSize: 28 }}><HeartPulse /></span>
+          <p style={{ marginTop: 16, color: "var(--muted)" }}>Loading Swasthya Sathi...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
     return (
       <div className="login-view">
         <div className="login-panel">
@@ -201,17 +264,63 @@ export default function PatientPortal() {
               <Stethoscope /><span>Doctor</span><small>Review patients and schedule</small>
             </button>
           </div>
-          <form className="login-form" onSubmit={handleLogin}>
-            <label>
-              <span>Patient ID or license number</span>
-              <input type="text" autoComplete="username" placeholder="SS-1024" />
-            </label>
-            <label>
-              <span>Secure PIN</span>
-              <input type="password" autoComplete="current-password" placeholder="Enter any demo PIN" />
-            </label>
-            <button className="btn btn-primary btn-block" type="submit"><LockKeyhole /> Enter secure demo</button>
-          </form>
+
+          {authMode === "login" ? (
+            <form className="login-form" onSubmit={handleAuth}>
+              <label>
+                <span>Email address</span>
+                <div style={{ position: "relative" }}>
+                  <Mail size={16} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "var(--muted)" }} />
+                  <input type="email" required autoComplete="email" placeholder="you@example.com" value={authEmail} onChange={e => setAuthEmail(e.target.value)} style={{ paddingLeft: 36 }} />
+                </div>
+              </label>
+              <label>
+                <span>Password</span>
+                <div style={{ position: "relative" }}>
+                  <KeyRound size={16} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "var(--muted)" }} />
+                  <input type="password" required autoComplete="current-password" placeholder="Enter your password" value={authPassword} onChange={e => setAuthPassword(e.target.value)} style={{ paddingLeft: 36 }} />
+                </div>
+              </label>
+              {authError && <p className="form-note">{authError}</p>}
+              <button className="btn btn-primary btn-block" type="submit" disabled={authBusy}>
+                <LockKeyhole /> {authBusy ? "Please wait..." : "Sign in"}
+              </button>
+              <button className="btn btn-text btn-block" type="button" onClick={() => { setAuthMode("signup"); setAuthError(""); }}>
+                <UserPlus /> Don&apos;t have an account? Sign up
+              </button>
+            </form>
+          ) : (
+            <form className="login-form" onSubmit={handleAuth}>
+              <label>
+                <span>Full name</span>
+                <div style={{ position: "relative" }}>
+                  <UserRound size={16} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "var(--muted)" }} />
+                  <input type="text" required autoComplete="name" placeholder="Sanskar Joshi" value={authFullName} onChange={e => setAuthFullName(e.target.value)} style={{ paddingLeft: 36 }} />
+                </div>
+              </label>
+              <label>
+                <span>Email address</span>
+                <div style={{ position: "relative" }}>
+                  <Mail size={16} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "var(--muted)" }} />
+                  <input type="email" required autoComplete="email" placeholder="you@example.com" value={authEmail} onChange={e => setAuthEmail(e.target.value)} style={{ paddingLeft: 36 }} />
+                </div>
+              </label>
+              <label>
+                <span>Password</span>
+                <div style={{ position: "relative" }}>
+                  <KeyRound size={16} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "var(--muted)" }} />
+                  <input type="password" required autoComplete="new-password" placeholder="Min 6 characters" value={authPassword} onChange={e => setAuthPassword(e.target.value)} style={{ paddingLeft: 36 }} />
+                </div>
+              </label>
+              {authError && <p className="form-note">{authError}</p>}
+              <button className="btn btn-primary btn-block" type="submit" disabled={authBusy}>
+                <UserPlus /> {authBusy ? "Please wait..." : "Create account"}
+              </button>
+              <button className="btn btn-text btn-block" type="button" onClick={() => { setAuthMode("login"); setAuthError(""); }}>
+                <ArrowLeft /> Already have an account? Sign in
+              </button>
+            </form>
+          )}
         </div>
         <aside className="login-context" aria-label="Platform highlights">
           <div className="context-card context-large">
@@ -234,6 +343,7 @@ export default function PatientPortal() {
   }
 
   const screenTitles: Record<string, string> = { home: "Overview", doctors: "Doctors", records: "Tests & Records", emergency: "Emergency", profile: "Profile" };
+  const userName = user.user_metadata?.full_name || user.email?.split("@")[0] || "Patient";
 
   return (
     <div className="app-shell">
@@ -257,7 +367,7 @@ export default function PatientPortal() {
         <div className="sidebar-card">
           <span className={`status-dot ${dataLoaded ? "is-ready" : ""}`}></span>
           <strong>Data source</strong>
-          <p>{dataLoaded ? (loadErrors.length ? `${Object.keys(DATA_FILES).length - loadErrors.length} of ${Object.keys(DATA_FILES).length} JSON files loaded.` : "All JSON files loaded.") : "Loading JSON files..."}</p>
+          <p>{dataLoaded ? (dataLoaded ? "All data loaded successfully." : "Loading...") : "Loading data..."}</p>
         </div>
       </aside>
 
@@ -273,7 +383,7 @@ export default function PatientPortal() {
           </label>
           <button className="icon-button" type="button" onClick={toggleTheme}>{darkMode ? <Sun /> : <Moon />}</button>
           <button className="icon-button has-badge" type="button" onClick={() => showToast("No urgent alerts", "Two OPD reminders and one report tip are waiting in your dashboard.")}><Bell /></button>
-          <button className="icon-button" type="button" onClick={() => { setIsLoggedIn(false); showToast("Signed out", "You have been logged out securely."); }}><LogOut /></button>
+          <button className="icon-button" type="button" onClick={handleLogout}><LogOut /></button>
         </div>
       </header>
 
@@ -284,7 +394,7 @@ export default function PatientPortal() {
               <article className="hero-card">
                 <div>
                   <p className="eyebrow">Care snapshot</p>
-                  <h1>Namaste, Sanskar. Your care plan is ready for today.</h1>
+                  <h1>Namaste, {userName}. Your care plan is ready for today.</h1>
                   <p>Review likely conditions, compare diagnostic costs, and book with a relevant specialist from one dashboard.</p>
                 </div>
                 <div className="hero-actions">
@@ -459,9 +569,9 @@ export default function PatientPortal() {
               <img src="/profile.jpeg" alt="Patient profile" width={108} height={108} />
               <div>
                 <p className="eyebrow">Patient profile</p>
-                <h1>Sanskar Joshi</h1>
-                <p>Pokhara, Gandaki Province</p>
-                <span className="pill good">Records verified</span>
+                <h1>{userName}</h1>
+                <p>{user.email}</p>
+                <span className="pill good">Connected to Supabase</span>
               </div>
             </section>
             <section className="panel">
