@@ -1,0 +1,43 @@
+ESP8266 NODEMCU + SIM800L + OLED + EMERGENCY BUTTON WIRING
+
+IMPORTANT
+- Connect every GND pin together: NodeMCU GND, SIM800L GND, OLED GND,
+  button GND, and the negative terminal of the SIM800L power supply.
+- Power the SIM800L from a separate stable 3.7V to 4.2V supply capable of
+  handling approximately 2A current spikes. Do not use the NodeMCU 3.3V pin
+  to power the SIM800L.
+
+1. OLED DISPLAY (I2C, 128x64 SSD1306)
+- NodeMCU D1 (GPIO5)  -> OLED SCL
+- NodeMCU D2 (GPIO4)  -> OLED SDA
+- NodeMCU 3V3         -> OLED VCC
+- NodeMCU GND         -> OLED GND
+
+2. EMERGENCY BUTTON
+- NodeMCU D7 (GPIO13) -> One button terminal
+- NodeMCU GND         -> Other button terminal
+- The sketch uses INPUT_PULLUP, so no external pull-up resistor is needed.
+
+3. SIM800L SERIAL CONNECTION
+- SIM800L TX          -> NodeMCU RX (RX / GPIO3) directly
+- NodeMCU TX (TX / GPIO1) -> 10k ohm resistor -> SIM800L RX
+- At the SIM800L RX point, connect a 20k ohm resistor from SIM800L RX to GND.
+
+  ESP8266 TX (3.3V)
+          |
+        10k ohm
+          |
+          +----------> SIM800L RX
+          |
+        20k ohm
+          |
+         GND
+
+4. SIM800L POWER
+- SIM800L VCC         -> Positive terminal of separate 3.7V to 4.2V supply
+- SIM800L GND         -> Negative terminal of that supply and common GND
+- SIM800L TX/RX must share the same common GND with the NodeMCU.
+
+5. UPLOAD NOTE
+- Disconnect the SIM800L TX and RX wires while uploading the sketch to the
+  NodeMCU. Reconnect them after the upload finishes.
