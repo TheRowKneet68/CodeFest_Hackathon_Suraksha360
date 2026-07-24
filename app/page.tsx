@@ -29,61 +29,12 @@ const STATIC_PRESCRIPTIONS: Prescription[] = [
   { id: "RX-005", medication_name: "Omeprazole 20mg", dosage: "20mg", frequency: "Once daily before breakfast", route: "Oral", start_date: "2026-07-10", end_date: "2026-08-10", status: "active", notes: "Take 30 minutes before eating.", times: ["07:00"] },
 ];
 
-const DATA_FILES = {
-  doctors: "/gandaki_doctors.json",
-  additionalDocs: "/additional_doctors.json",
-  common: "/gandaki_common_diseases.json",
-  symptoms: "/gandaki_symptoms_diseases.json",
-  expanded: "/gandaki_diseases_expanded.json",
-  additional: "/ADDITIONAL DISEASES.json",
-  tests: "/TESTS AND COST.json",
-};
-
-function parseJsonLenient(text: string) {
-  try { return JSON.parse(text); } catch { return JSON.parse(text.replace(/,\s*([}\]])/g, "$1")); }
-}
-
 function calcBMI(weightKg: string, heightCm: string): string {
   const w = parseFloat(weightKg);
   const h = parseFloat(heightCm);
   if (!w || !h || h <= 0) return "--";
   const hm = h / 100;
   return (w / (hm * hm)).toFixed(1);
-}
-
-function flattenDoctors(source: any = {}, additionalSource: any = {}): Doctor[] {
-  let id = 64;
-  const main = (source.departments || []).flatMap((d: any) =>
-    (d.doctors || []).map((doc: any) => ({ ...doc, department: d.department, photo_url: doc.photo_url || `https://picsum.photos/id/${id++}/300/300` }))
-  );
-  const extra = (additionalSource.departments || []).flatMap((d: any) =>
-    (d.doctors || []).map((doc: any) => ({ ...doc, department: d.department, photo_url: doc.photo_url || `https://picsum.photos/id/${id++}/300/300` }))
-  );
-  return [...main, ...extra];
-}
-
-function flattenDiseases(common: any = {}, expanded: any = {}, additional: any = {}): Disease[] {
-  const diseases: Disease[] = [];
-  (common.diseases || []).forEach((d: any) => {
-    diseases.push({ name: d.disease, department: d.department, symptoms: d.symptoms || [], context: d.nepal_context, source: "Very common" });
-  });
-  (expanded.departments || []).forEach((dept: any) => {
-    (dept.common_diseases || []).forEach((d: any) => {
-      diseases.push({ name: d.disease, department: dept.department, symptoms: d.symptoms || [], context: d.nepal_context, source: "Department data" });
-    });
-  });
-  (additional.healthcare_departments || []).forEach((dept: any) => {
-    (dept.common_diseases || []).forEach((d: any) => {
-      diseases.push({ name: d.disease_name, nepaliName: d.nepali_name, department: dept.department_name, symptoms: d.symptoms || [], context: d.description, action: d.recommended_action, source: "Expanded risk model" });
-    });
-  });
-  const seen = new Set<string>();
-  return diseases.filter((d) => {
-    const key = `${d.name}|${d.department}`.toLowerCase();
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
 }
 
 function scoreDisease(disease: Disease, terms: string[]) {
@@ -155,23 +106,54 @@ export default function PatientPortal() {
 
   useEffect(() => {
     async function loadAllData() {
-      const entries = await Promise.all(
-        Object.entries(DATA_FILES).map(async ([key, path]) => {
-          try {
-            const res = await fetch(path);
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            const text = await res.text();
-            return [key, parseJsonLenient(text)];
-          } catch {
-            return [key, {}];
+      const [docsRes, disRes, testsRes, edgesRes] = await Promise.all([
+        supabase.from("doctors").select("*, departments(name), hospitals(name)"),
+        supabase.from("diseases").select("*, departments(name), disease_symptoms(symptoms(name))"),
+        supabase.from("diagnostic_tests").select("*"),
+        supabase.from("edge_cases").select("*"),
+      ]);
+
+      if (docsRes.data) {
+        setDoctors(docsRes.data.map(d => ({
+          name: d.name,
+          department: (d as any).departments?.name || "General",
+          hospital: (d as any).hospitals?.name,
+          specialty: d.specialty,
+          qualification: d.qualification,
+          opd_timing: d.opd_timing,
+          photo_url: d.photo_url,
+        })));
+      }
+
+      if (disRes.data) {
+        setDiseases(disRes.data.map(d => ({
+          name: d.name,
+          department: (d as any).departments?.name || "General",
+          symptoms: [...new Set(((d as any).disease_symptoms || []).map((ds: any) => ds.symptoms?.name).filter((s: any) => s))] as string[],
+          context: d.nepal_context || d.description || "",
+          nepaliName: d.nepali_name,
+        })));
+      }
+
+      if (testsRes.data) {
+        const grouped: Record<string, any> = {};
+        testsRes.data.forEach(t => {
+          const key = t.disease_name;
+          if (!grouped[key]) {
+            grouped[key] = {
+              disease_name: t.disease_name,
+              department: t.department,
+              required_diagnostic_tests: [],
+              total_estimated_cost_npr: t.total_estimated_cost_npr,
+              average_follow_up_time: t.average_follow_up_time,
+            };
           }
-        })
-      );
-      const data = Object.fromEntries(entries);
-      setDoctors(flattenDoctors(data.doctors, data.additionalDocs));
-      setDiseases(flattenDiseases(data.common, data.expanded, data.additional));
-      setTests(data.tests?.diseases_diagnostic_data || []);
-      setEdgeCases(data.additional?.critical_misdiagnosis_edge_cases || []);
+          grouped[key].required_diagnostic_tests.push({ test_name: t.test_name, cost_range_npr: t.cost_range_npr });
+        });
+        setTests(Object.values(grouped));
+      }
+
+      if (edgesRes.data) setEdgeCases(edgesRes.data as any);
       setDataLoaded(true);
     }
     loadAllData();

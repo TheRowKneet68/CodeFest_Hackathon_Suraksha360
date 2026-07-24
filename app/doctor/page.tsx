@@ -16,41 +16,6 @@ type Doctor = { name?: string; department?: string; hospital?: string; specialty
 type Disease = { name?: string; department?: string; symptoms?: string[]; context?: string };
 type EdgeCase = { case_id?: string; title?: string; patient_profile?: string; diagnostic_challenge?: string; reported_symptoms?: string[]; expected_department?: string; recommended_action?: string };
 
-const DATA_FILES = {
-  doctors: "/gandaki_doctors.json",
-  additionalDocs: "/additional_doctors.json",
-  common: "/gandaki_common_diseases.json",
-  additional: "/ADDITIONAL DISEASES.json",
-  tests: "/TESTS AND COST.json",
-};
-
-function parseJsonLenient(text: string) {
-  try { return JSON.parse(text); } catch { return JSON.parse(text.replace(/,\s*([}\]])/g, "$1")); }
-}
-
-function flattenDoctors(source: any = {}, additionalSource: any = {}): Doctor[] {
-  let id = 64;
-  const main = (source.departments || []).flatMap((d: any) =>
-    (d.doctors || []).map((doc: any) => ({ ...doc, department: d.department, photo_url: doc.photo_url || `https://picsum.photos/id/${id++}/300/300` }))
-  );
-  const extra = (additionalSource.departments || []).flatMap((d: any) =>
-    (d.doctors || []).map((doc: any) => ({ ...doc, department: d.department, photo_url: doc.photo_url || `https://picsum.photos/id/${id++}/300/300` }))
-  );
-  return [...main, ...extra];
-}
-
-function flattenDiseases(common: any = {}, additional: any = {}): Disease[] {
-  const base = (common.diseases || []).map((d: any) => ({
-    name: d.disease, department: d.department, symptoms: d.symptoms || [], context: d.nepal_context
-  }));
-  const expanded = (additional.healthcare_departments || []).flatMap((dept: any) =>
-    (dept.common_diseases || []).map((d: any) => ({
-      name: d.disease_name, department: dept.department_name, symptoms: d.symptoms || [], context: d.description
-    }))
-  );
-  return [...base, ...expanded];
-}
-
 function initials(name: string) {
   return name.split(" ").map(p => p[0]).join("").slice(0, 2).toUpperCase();
 }
@@ -93,7 +58,6 @@ export default function DoctorDashboard() {
   const [diseases, setDiseases] = useState<Disease[]>([]);
   const [edgeCases, setEdgeCases] = useState<EdgeCase[]>([]);
   const [dataLoaded, setDataLoaded] = useState(false);
-  const [loadErrors, setLoadErrors] = useState<string[]>([]);
   const [toasts, setToasts] = useState<{ id: number; title: string; message: string }[]>([]);
   const [user, setUser] = useState<User | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
@@ -121,23 +85,34 @@ export default function DoctorDashboard() {
 
   useEffect(() => {
     async function loadDoctorData() {
-      const entries = await Promise.all(
-        Object.entries(DATA_FILES).map(async ([key, path]) => {
-          try {
-            const res = await fetch(path);
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            const text = await res.text();
-            return [key, parseJsonLenient(text)];
-          } catch {
-            setLoadErrors(prev => [...prev, key]);
-            return [key, {}];
-          }
-        })
-      );
-      const data = Object.fromEntries(entries);
-      setDoctors(flattenDoctors(data.doctors, data.additionalDocs));
-      setDiseases(flattenDiseases(data.common, data.additional));
-      setEdgeCases(data.additional?.critical_misdiagnosis_edge_cases || []);
+      const [docsRes, disRes, edgesRes] = await Promise.all([
+        supabase.from("doctors").select("*, departments(name), hospitals(name)"),
+        supabase.from("diseases").select("*, departments(name), disease_symptoms(symptoms(name))"),
+        supabase.from("edge_cases").select("*"),
+      ]);
+
+      if (docsRes.data) {
+        setDoctors(docsRes.data.map(d => ({
+          name: d.name,
+          department: (d as any).departments?.name || "General",
+          hospital: (d as any).hospitals?.name,
+          specialty: d.specialty,
+          qualification: d.qualification,
+          opd_timing: d.opd_timing,
+          photo_url: d.photo_url,
+        })));
+      }
+
+      if (disRes.data) {
+        setDiseases(disRes.data.map(d => ({
+          name: d.name,
+          department: (d as any).departments?.name || "General",
+          symptoms: [...new Set(((d as any).disease_symptoms || []).map((ds: any) => ds.symptoms?.name).filter((s: any) => s))] as string[],
+          context: d.nepal_context || d.description || "",
+        })));
+      }
+
+      if (edgesRes.data) setEdgeCases(edgesRes.data as any);
       setDataLoaded(true);
     }
     loadDoctorData();
@@ -258,7 +233,7 @@ export default function DoctorDashboard() {
         <div className="sidebar-card">
           <span className={`status-dot ${dataLoaded ? "is-ready" : ""}`}></span>
           <strong>Clinical data</strong>
-          <p>{dataLoaded ? (loadErrors.length ? `${Object.keys(DATA_FILES).length - loadErrors.length} of ${Object.keys(DATA_FILES).length} JSON files loaded.` : "All clinical JSON files loaded.") : "Loading JSON files..."}</p>
+          <p>{dataLoaded ? "All clinical data loaded from database." : "Loading data..."}</p>
         </div>
       </aside>
 

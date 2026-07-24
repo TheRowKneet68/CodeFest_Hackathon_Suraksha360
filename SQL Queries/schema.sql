@@ -610,3 +610,41 @@ create policy "Emergency override: doctors read profiles"
     and auth.uid() in (select id from profiles where role = 'doctor')
     and id <> auth.uid()
   );
+
+-- ============================================================
+-- 9. DIAGNOSTIC TESTS TABLE
+-- ============================================================
+create table if not exists diagnostic_tests (
+  id              uuid primary key default gen_random_uuid(),
+  disease_id      text,
+  disease_name    text not null,
+  department      text,
+  test_name       text not null,
+  cost_range_npr  text,
+  total_estimated_cost_npr text,
+  average_follow_up_time text,
+  created_at      timestamptz not null default now()
+);
+
+alter table diagnostic_tests enable row level security;
+create policy "Public read diagnostic tests"
+  on diagnostic_tests for select using (true);
+
+-- ============================================================
+-- 10. EDGE CASES TABLE (critical misdiagnosis scenarios)
+-- ============================================================
+create table if not exists edge_cases (
+  id                uuid primary key default gen_random_uuid(),
+  case_id           text not null,
+  title             text not null,
+  patient_profile   text,
+  reported_symptoms text[],
+  diagnostic_challenge text,
+  expected_department text,
+  recommended_action  text,
+  created_at        timestamptz not null default now()
+);
+
+alter table edge_cases enable row level security;
+create policy "Public read edge cases"
+  on edge_cases for select using (true);
