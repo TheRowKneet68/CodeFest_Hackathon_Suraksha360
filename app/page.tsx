@@ -164,9 +164,20 @@ export default function PatientPortal() {
         options: { data: { full_name: authFullName, role: selectedRole } },
       });
       if (error) {
-        setAuthError(error.message);
+        const msg = error.message.toLowerCase().includes("already registered")
+          ? "This email is already registered. Please sign in instead, or use a different email."
+          : error.message;
+        setAuthError(msg);
         setAuthBusy(false);
         return;
+      }
+      if (data.user) {
+        await supabase.from("profiles").insert({
+          id: data.user.id,
+          role: selectedRole,
+          name: authFullName,
+          email: authEmail,
+        });
       }
       if (data.user && !data.session) {
         showToast("Check your email", "We sent a confirmation link to verify your account.");
@@ -174,12 +185,19 @@ export default function PatientPortal() {
         return;
       }
     } else {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email: authEmail,
         password: authPassword,
       });
       if (error) {
         setAuthError(error.message);
+        setAuthBusy(false);
+        return;
+      }
+      const userRole = data.user?.user_metadata?.role;
+      if (userRole && userRole !== selectedRole) {
+        await supabase.auth.signOut();
+        setAuthError(`This email is registered as a ${userRole}. Please select the "${userRole}" role to sign in.`);
         setAuthBusy(false);
         return;
       }

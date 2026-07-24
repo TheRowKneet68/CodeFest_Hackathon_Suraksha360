@@ -2,10 +2,13 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase/client";
+import type { User } from "@supabase/supabase-js";
 import {
   HeartPulse, LayoutDashboard, UsersRound, Stethoscope, Brain,
   Search, CalendarDays, LogOut, Megaphone, FilePenLine, Siren,
-  Building2, Clock, Hospital, FileSearch, SearchX
+  Building2, Clock, Hospital, FileSearch, SearchX, ArrowLeft
 } from "lucide-react";
 
 type Doctor = { name?: string; department?: string; hospital?: string; specialty?: string; qualification?: string; opd_timing?: string; photo_url?: string };
@@ -68,6 +71,7 @@ const STATIC_APPOINTMENTS: Appointment[] = [
 ];
 
 export default function DoctorDashboard() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState("dashboard");
   const [query, setQuery] = useState("");
   const [doctors, setDoctors] = useState<Doctor[]>([]);
@@ -76,12 +80,27 @@ export default function DoctorDashboard() {
   const [dataLoaded, setDataLoaded] = useState(false);
   const [loadErrors, setLoadErrors] = useState<string[]>([]);
   const [toasts, setToasts] = useState<{ id: number; title: string; message: string }[]>([]);
+  const [user, setUser] = useState<User | null>(null);
+  const [authLoading, setAuthLoading] = useState(true);
+
+  const supabase = createClient();
 
   const showToast = useCallback((title: string, message: string) => {
     const id = Date.now();
     setToasts(prev => [...prev, { id, title, message }]);
     setTimeout(() => setToasts(prev => prev.filter(t => t.id !== id)), 3400);
   }, []);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      setAuthLoading(false);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+    return () => subscription.unsubscribe();
+  }, [supabase]);
 
   useEffect(() => {
     async function loadDoctorData() {
@@ -148,6 +167,42 @@ export default function DoctorDashboard() {
     <div className="empty-state"><SearchX /><h3>{title}</h3><p>{message}</p></div>
   );
 
+  if (authLoading) {
+    return (
+      <div className="login-view" style={{ placeItems: "center" }}>
+        <div style={{ textAlign: "center" }}>
+          <span className="brand-mark" style={{ width: 64, height: 64, fontSize: 28 }}><HeartPulse /></span>
+          <p style={{ marginTop: 16, color: "var(--muted)" }}>Loading Doctor Console...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    router.push("/");
+    return null;
+  }
+
+  if (user.user_metadata?.role !== "doctor") {
+    return (
+      <div className="login-view">
+        <div className="login-panel">
+          <div className="brand-lockup">
+            <span className="brand-mark"><HeartPulse /></span>
+            <div>
+              <p className="eyebrow">Suraksha360</p>
+              <h1>Doctor Console</h1>
+            </div>
+          </div>
+          <p className="login-copy">This account is not registered as a doctor. Please use the patient portal, or sign up as a doctor.</p>
+          <Link className="btn btn-primary btn-block" href="/" style={{ textDecoration: "none" }}>
+            <ArrowLeft /> Go to Patient Portal
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="doctor-shell">
       <aside className="sidebar doctor-sidebar" aria-label="Doctor navigation">
@@ -193,7 +248,7 @@ export default function DoctorDashboard() {
             <input type="search" placeholder="Search patients, departments, diseases" value={query} onChange={e => setQuery(e.target.value.trim().toLowerCase())} />
           </label>
           <Link className="btn btn-secondary" href="/appointments"><CalendarDays /> Appointments</Link>
-          <Link className="icon-button" href="/" aria-label="Log out"><LogOut /></Link>
+          <button className="icon-button" type="button" onClick={async () => { await supabase.auth.signOut(); }} aria-label="Log out"><LogOut /></button>
         </div>
       </header>
 
