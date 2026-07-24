@@ -1,0 +1,161 @@
+{
+  "province": "Gandaki Province",
+  "focus_area": "Pokhara and surrounding areas",
+  "departments": [
+    {
+      "department": "ENT",
+      "doctors": [
+        {
+          "name": "Dr. Nabin Raj Gautam",
+          "qualification": "MS",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant ENT, Head and Neck Surgery",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://picsum.photos/id/64/300/300"
+        },
+        {
+          "name": "Dr. Donjan Bahadur Lamechhine",
+          "qualification": "MBBS, MS",
+          "hospital": "Fewa City Hospital",
+          "specialty": "ENT",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://picsum.photos/id/65/300/300"
+        },
+        {
+          "name": "Dr. Bonu Gaudel",
+          "qualification": "MBBS, MS",
+          "hospital": "Fewa City Hospital",
+          "specialty": "ENT",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://picsum.photos/id/66/300/300"
+        }
+      ]
+    },
+    {
+      "department": "General Medicine",
+      "doctors": [
+        {
+          "name": "Dr. Maan Bahadur Gurung",
+          "qualification": "MD",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Senior Consultant General Physician",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://picsum.photos/id/67/300/300"
+        },
+        {
+          "name": "Dr. Bhoj Raj Neupane",
+          "qualification": "MBBS, MS",
+          "hospital": "Fewa City Hospital",
+          "specialty": "General Surgeon",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://picsum.photos/id/68/300/300"
+        }
+      ]
+    },
+    {
+      "department": "Cardiology",
+      "doctors": [
+        {
+          "name": "Dr. SK Jayswal",
+          "qualification": "MD",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Cardiologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://picsum.photos/id/69/300/300"
+        },
+        {
+          "name": "Dr. Arun Kadel",
+          "qualification": "MBBS, MD",
+          "hospital": "Fewa City Hospital",
+          "specialty": "Cardiologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://picsum.photos/id/70/300/300"
+        }
+      ]
+    },
+    {
+      "department": "Orthopedics",
+      "doctors": [
+        {
+          "name": "Dr. Jhapindra Pokharel",
+          "qualification": "MS",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Senior Consultant Orthopaedic and Trauma",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://picsum.photos/id/71/300/300"
+        },
+        {
+          "name": "Dr. Bharat Bahadur Khatri",
+          "qualification": "MBBS, MS Ortho",
+          "hospital": "Metrocity Hospital",
+          "specialty": "Senior Orthopedic Surgeon",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://picsum.photos/id/72/300/300"
+        }
+      ]
+    },
+    {
+      "department": "Ophthalmology",
+      "doctors": [
+        {
+          "name": "Dr. Jamuna Gurung",
+          "qualification": "MS",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Ophthalmology",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://picsum.photos/id/73/300/300"
+        },
+        {
+          "name": "Dr. Renu Poudel",
+          "qualification": "MBBS, MD",
+          "hospital": "Fewa City Hospital",
+          "specialty": "Ophthalmologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://picsum.photos/id/74/300/300"
+        }
+      ]
+    },
+    {
+      "department": "Dermatology",
+      "doctors": [
+        {
+          "name": "Dr. Pravin Baniya",
+          "qualification": "MD",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Senior Consultant Dermatologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://picsum.photos/id/75/300/300"
+        },
+        {
+          "name": "Dr. Saraswati Neupane Sharma",
+          "qualification": "MBBS, MD",
+          "hospital": "Metrocity Hospital",
+          "specialty": "Senior Dermatologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://picsum.photos/id/76/300/300"
+        }
+      ]
+    },
+    {
+      "department": "Neurology",
+      "doctors": [
+        {
+          "name": "Dr. Krishna Dhungana",
+          "qualification": "DM",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Neurologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://picsum.photos/id/77/300/300"
+        },
+        {
+          "name": "Dr. Rajan Kumar Sharma",
+          "qualification": "MS, MCh",
+          "hospital": "Charak / Fewa City",
+          "specialty": "Neurosurgeon",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://picsum.photos/id/78/300/300"
+        }
+      ]
+    }
+  ],
+}

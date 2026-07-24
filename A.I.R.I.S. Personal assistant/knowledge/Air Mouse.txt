@@ -1,0 +1,10 @@
+{
+    "description": "Gesture-controlled air mouse project.",
+    "status": "active",
+    "technologies": [
+        "ESP32",
+        "BLE",
+        "Computer Vision"
+    ],
+    "awards": []
+}

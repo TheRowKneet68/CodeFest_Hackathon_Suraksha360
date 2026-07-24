@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swasthya Sathi - Doctor Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="doctor.css">
+</head>
+<body>
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="sidebar-toggle" id="sidebarToggle"><i data-lucide="menu"></i></button>
+    <div class="search-box">
+      <i data-lucide="search" class="search-icon"></i>
+      <input type="text" id="searchInput" placeholder="Search patients, records...">
+    </div>
+    <div class="topbar-right">
+      <button class="icon-btn notification-btn" id="notificationBtn">
+        <i data-lucide="bell"></i>
+        <span class="badge">4</span>
+      </button>
+      <div class="profile-menu" id="profileMenu">
+        <div class="avatar">Dr</div>
+        <span class="profile-name">Dr. Sumin</span>
+        <i data-lucide="chevron-down" class="chevron"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <div class="logo-icon"><i data-lucide="heart-pulse"></i></div>
+        <div class="logo-text">
+          <h2>Swasthya Sathi</h2>
+          <span>Doctor Portal</span>
+        </div>
+      </div>
+    </div>
+    <ul class="nav-menu">
+      <li><a href="#" class="nav-link active" data-page="dashboard"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a></li>
+      <li><a href="#" class="nav-link" data-page="patients"><i data-lucide="users"></i><span>Patients</span></a></li>
+      <li><a href="#" class="nav-link" data-page="appointments"><i data-lucide="calendar-check"></i><span>Appointments</span></a></li>
+      <li><a href="#" class="nav-link" data-page="records"><i data-lucide="folder-open"></i><span>Records</span></a></li>
+      <li><a href="#" class="nav-link" data-page="insights"><i data-lucide="brain"></i><span>AI Insights</span></a></li>
+      <li><a href="#" class="nav-link" data-page="schedule"><i data-lucide="clock"></i><span>Schedule</span></a></li>
+      <li><a href="#" class="nav-link" data-page="settings"><i data-lucide="settings"></i><span>Settings</span></a></li>
+    </ul>
+    <div class="sidebar-footer">
+      <a href="index.html" class="nav-link"><i data-lucide="log-out"></i><span>Back to Patient View</span></a>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <!-- Stats Row -->
+    <section class="stats-row">
+      <div class="stat-card">
+        <div class="stat-info">
+          <p class="stat-label">Today's Patients</p>
+          <p class="stat-value">24</p>
+          <p class="stat-change positive"><i data-lucide="trending-up"></i> +3 from yesterday</p>
+        </div>
+        <div class="stat-icon blue"><i data-lucide="users"></i></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-info">
+          <p class="stat-label">Appointments</p>
+          <p class="stat-value">18</p>
+          <p class="stat-change neutral"><i data-lucide="calendar"></i> 6 remaining today</p>
+        </div>
+        <div class="stat-icon teal"><i data-lucide="calendar-check"></i></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-info">
+          <p class="stat-label">Critical Cases</p>
+          <p class="stat-value">3</p>
+          <p class="stat-change negative"><i data-lucide="alert-triangle"></i> 2 need immediate attention</p>
+        </div>
+        <div class="stat-icon red"><i data-lucide="alert-circle"></i></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-info">
+          <p class="stat-label">Prescriptions</p>
+          <p class="stat-value">12</p>
+          <p class="stat-change positive"><i data-lucide="file-check"></i> All digitally signed</p>
+        </div>
+        <div class="stat-icon purple"><i data-lucide="file-text"></i></div>
+      </div>
+    </section>
+
+    <!-- Main Grid -->
+    <div class="dashboard-grid">
+      <!-- Patients Table -->
+      <section class="card">
+        <div class="card-header">
+          <h3>Recent Patients</h3>
+          <a href="#" class="btn btn-primary btn-sm" id="viewAllPatients">View All</a>
+        </div>
+        <div class="table-container">
+          <table class="patients-table">
+            <thead>
+              <tr><th>Patient</th><th>Condition</th><th>Status</th><th>Last Visit</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><div class="patient-cell"><div class="avatar-sm bg-blue">AP</div><div><p class="name">Anita Poudel</p><p class="id">PAT-001</p></div></div></td><td>Hypertension</td><td><span class="status-badge stable">Stable</span></td><td>2024-01-15</td><td><button class="btn btn-outline btn-sm view-btn" data-patient="PAT-001">View</button></td></tr>
+              <tr><td><div class="patient-cell"><div class="avatar-sm bg-teal">RK</div><div><p class="name">Ram Kumar</p><p class="id">PAT-002</p></div></div></td><td>Diabetes Type 2</td><td><span class="status-badge improving">Improving</span></td><td>2024-01-14</td><td><button class="btn btn-outline btn-sm view-btn" data-patient="PAT-002">View</button></td></tr>
+              <tr><td><div class="patient-cell"><div class="avatar-sm bg-yellow">SG</div><div><p class="name">Sita Gurung</p><p class="id">PAT-003</p></div></div></td><td>Asthma</td><td><span class="status-badge monitoring">Monitoring</span></td><td>2024-01-13</td><td><button class="btn btn-outline btn-sm view-btn" data-patient="PAT-003">View</button></td></tr>
+              <tr><td><div class="patient-cell"><div class="avatar-sm bg-red">BM</div><div><p class="name">Bikash Magar</p><p class="id">PAT-004</p></div></div></td><td>Heart Disease</td><td><span class="status-badge critical">Critical</span></td><td>2024-01-15</td><td><button class="btn btn-outline btn-sm view-btn" data-patient="PAT-004">View</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Appointments -->
+      <section class="card">
+        <div class="card-header">
+          <h3>Today's Appointments</h3>
+          <a href="#" class="btn btn-primary btn-sm" id="viewAllAppointments">View All</a>
+        </div>
+        <div class="appointments-list">
+          <div class="appointment-item completed">
+            <div class="appointment-time">9:00 AM</div>
+            <div class="appointment-details"><p class="patient-name">Anita Poudel</p><p class="appointment-type">Checkup - Hypertension</p></div>
+            <span class="appointment-status completed">Completed</span>
+          </div>
+          <div class="appointment-item completed">
+            <div class="appointment-time">10:30 AM</div>
+            <div class="appointment-details"><p class="patient-name">Ram Kumar</p><p class="appointment-type">Follow-up - Diabetes</p></div>
+            <span class="appointment-status completed">Completed</span>
+          </div>
+          <div class="appointment-item current">
+            <div class="appointment-time">11:45 AM</div>
+            <div class="appointment-details"><p class="patient-name">Sita Gurung</p><p class="appointment-type">Consultation - Asthma</p></div>
+            <span class="appointment-status current">In Progress</span>
+          </div>
+          <div class="appointment-item upcoming">
+            <div class="appointment-time">2:00 PM</div>
+            <div class="appointment-details"><p class="patient-name">Bikash Magar</p><p class="appointment-type">Emergency Review</p></div>
+            <span class="appointment-status upcoming">Upcoming</span>
+          </div>
+          <div class="appointment-item upcoming">
+            <div class="appointment-time">3:30 PM</div>
+            <div class="appointment-details"><p class="patient-name">Sunita Thapa</p><p class="appointment-type">Routine Checkup</p></div>
+            <span class="appointment-status upcoming">Upcoming</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Actions -->
+      <section class="card quick-actions-card">
+        <h3>Quick Actions</h3>
+        <div class="quick-actions-grid">
+          <button class="action-btn" id="newPrescriptionBtn"><div class="action-icon"><i data-lucide="file-plus"></i></div><span>New Prescription</span></button>
+          <button class="action-btn" id="viewRecordsBtn"><div class="action-icon"><i data-lucide="folder-open"></i></div><span>View Records</span></button>
+          <button class="action-btn" id="scheduleBtn"><div class="action-icon"><i data-lucide="calendar-plus"></i></div><span>Schedule</span></button>
+          <button class="action-btn" id="reportBtn"><div class="action-icon"><i data-lucide="bar-chart-2"></i></div><span>Reports</span></button>
+          <button class="action-btn" id="messagesBtn"><div class="action-icon"><i data-lucide="message-square"></i></div><span>Messages</span></button>
+          <button class="action-btn" id="emergencyBtn"><div class="action-icon emergency"><i data-lucide="siren"></i></div><span>Emergency</span></button>
+        </div>
+      </section>
+
+      <!-- AI Insights -->
+      <section class="card ai-insights-card">
+        <div class="card-header">
+          <h3><i data-lucide="brain" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;"></i>AI Insights</h3>
+        </div>
+        <div class="insights-list">
+          <div class="insight-item critical">
+            <i data-lucide="alert-triangle"></i>
+            <div><p class="insight-text">Patient Bikash Magar shows irregular heart patterns. Recommend ECG within 24 hours.</p><p class="insight-meta">Based on recent vitals</p></div>
+          </div>
+          <div class="insight-item warning">
+            <i data-lucide="alert-circle"></i>
+            <div><p class="insight-text">3 patients need prescription refills this week. Auto-generated reminders sent.</p><p class="insight-meta">Prescription management</p></div>
+          </div>
+          <div class="insight-item success">
+            <i data-lucide="check-circle"></i>
+            <div><p class="insight-text">Ram Kumar's glucose levels have improved 15% this month. Current treatment plan effective.</p><p class="insight-meta">Progress tracking</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Weekly Schedule -->
+      <section class="card schedule-card">
+        <div class="card-header">
+          <h3>Weekly Schedule</h3>
+        </div>
+        <div class="schedule-grid">
+          <div class="schedule-day active"><p class="day-name">Mon</p><p class="day-count">8</p></div>
+          <div class="schedule-day active"><p class="day-name">Tue</p><p class="day-count">6</p></div>
+          <div class="schedule-day today"><p class="day-name">Wed</p><p class="day-count">9</p></div>
+          <div class="schedule-day"><p class="day-name">Thu</p><p class="day-count">7</p></div>
+          <div class="schedule-day"><p class="day-name">Fri</p><p class="day-count">5</p></div>
+          <div class="schedule-day weekend"><p class="day-name">Sat</p><p class="day-count">2</p></div>
+          <div class="schedule-day weekend"><p class="day-name">Sun</p><p class="day-count">0</p></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Notification Panel -->
+  <div class="notification-panel" id="notificationPanel">
+    <div class="notification-header">
+      <h3>Notifications</h3>
+      <button class="mark-read" id="markAllRead">Mark all read</button>
+    </div>
+    <ul class="notification-list">
+      <li class="unread"><div class="notification-icon blue"><i data-lucide="calendar"></i></div><div class="notification-content"><p><strong>New appointment request</strong> from Anita Poudel for Jan 20, 2024</p><span class="time">5 minutes ago</span></div></li>
+      <li class="unread"><div class="notification-icon yellow"><i data-lucide="alert-triangle"></i></div><div class="notification-content"><p><strong>Critical lab result</strong> for patient Bikash Magar (PAT-004)</p><span class="time">15 minutes ago</span></div></li>
+      <li><div class="notification-icon teal"><i data-lucide="message-square"></i></div><div class="notification-content"><p><strong>Message from pharmacist</strong> regarding Ram Kumar's prescription</p><span class="time">1 hour ago</span></div></li>
+      <li><div class="notification-icon purple"><i data-lucide="file-text"></i></div><div class="notification-content"><p><strong>Monthly report</strong> ready for download</p><span class="time">2 hours ago</span></div></li>
+    </ul>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modalTitle">Modal Title</h3>
+        <button class="close-modal" id="closeModal">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="doctor.js"></script>
+</body>
+</html>

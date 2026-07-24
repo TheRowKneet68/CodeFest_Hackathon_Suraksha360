@@ -1,0 +1,40 @@
+{
+  "title": "Very Common Diseases in Gandaki Province",
+  "diseases": [
+    {
+      "disease": "Common Cold",
+      "symptoms": ["Runny nose", "Sneezing", "Sore throat", "Mild fever", "Cough", "Headache"],
+      "department": "ENT / General",
+      "related": ["Sinusitis", "Allergic Rhinitis"],
+      "nepal_context": "Very common in winter and rainy season due to weather changes."
+    },
+    {
+      "disease": "Fever (Viral)",
+      "symptoms": ["High body temperature", "Chills", "Body ache", "Weakness", "Headache"],
+      "department": "General Medicine",
+      "related": ["Typhoid", "Dengue", "COVID"],
+      "nepal_context": "Common due to infections and monsoon."
+    },
+    {
+      "disease": "Headache",
+      "symptoms": ["Throbbing pain", "Sensitivity to light", "Nausea", "Neck stiffness"],
+      "department": "General / Neurology",
+      "related": ["Migraine", "Sinusitis", "Hypertension"],
+      "nepal_context": "Often due to stress, dehydration, or altitude."
+    },
+    {
+      "disease": "Diarrhea",
+      "symptoms": ["Loose stools", "Abdominal cramps", "Nausea", "Dehydration"],
+      "department": "General Medicine",
+      "related": ["Food poisoning", "Gastroenteritis"],
+      "nepal_context": "Water and food borne, very common in monsoon."
+    },
+    {
+      "disease": "Cough",
+      "symptoms": ["Dry or wet cough", "Chest discomfort", "Shortness of breath"],
+      "department": "General / ENT",
+      "related": ["TB", "Bronchitis", "Allergies"],
+      "nepal_context": "Pollution and cold weather trigger."
+    }
+  ]
+}

@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swasthya Sathi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="topbar" id="topbar">
+    <div class="topbar-inner">
+      <div class="logo-area">
+        <div class="logo-icon"><i data-lucide="heart-pulse"></i></div>
+        <span class="logo-text">Swasthya Sathi</span>
+      </div>
+      <div class="topbar-actions" id="topbar-actions" style="display:none;">
+        <button onclick="switchView('home')" class="topbar-btn active" data-nav="home">Home</button>
+        <button onclick="switchView('chat')" class="topbar-btn" data-nav="chat">AI Chat</button>
+        <button onclick="switchView('profile')" class="topbar-btn" data-nav="profile">Profile</button>
+        <button onclick="switchView('emergency')" class="topbar-btn" data-nav="emergency">Emergency</button>
+        <button onclick="handleSignOut()" class="topbar-btn" style="color:var(--error);">Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- LOGIN -->
+  <section id="login-view" class="login-view">
+    <div class="login-logo"><i data-lucide="heart-pulse"></i></div>
+    <h1 class="login-title">Swasthya Sathi</h1>
+    <div class="login-roles">
+      <div class="login-role" data-active="true" data-role="patient" onclick="selectRole(this)">
+        <div class="login-role-icon">Patient</div>
+        <div class="login-role-title">View records</div>
+      </div>
+      <div class="login-role" data-active="false" data-role="doctor" onclick="selectRole(this)">
+        <div class="login-role-icon">Doctor</div>
+        <div class="login-role-title">Manage patients</div>
+      </div>
+    </div>
+    <form class="login-form" onsubmit="handleLogin(event)">
+      <input id="login-id" class="login-input" type="text" placeholder="ID / License No." autocomplete="off">
+      <input id="login-pass" class="login-input" type="password" placeholder="Password" autocomplete="off">
+      <button type="submit" class="login-btn">Sign In</button>
+      <p id="login-status" class="login-hint" style="color:var(--error);"></p>
+      <p class="login-hint">Demo: any email and password</p>
+    </form>
+  </section>
+
+  <div class="main-content" id="main-content" style="display:none;">
+
+    <!-- HOME -->
+    <section id="home-view">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+        <div>
+          <p style="font-size:13px; color:var(--body);">Thursday, 23 July</p>
+          <h1 style="font-size:22px; font-weight:700; margin-top:2px;">Namaste, Sanskar</h1>
+        </div>
+        <img loading="lazy" src="profile.jpeg" alt="Profile"
+          style="width:48px; height:48px; border-radius:50%; object-fit:cover;">
+      </div>
+
+      <!-- Vitals -->
+      <div class="section">
+        <h2 class="section-title">Vitals</h2>
+        <div class="card-grid">
+          <div class="card">
+            <p class="metric-label">Temperature</p>
+            <p class="metric-value">98.4 F</p>
+          </div>
+          <div class="card">
+            <p class="metric-label">Blood Pressure</p>
+            <p class="metric-value">118/76</p>
+          </div>
+          <div class="card">
+            <p class="metric-label">Heart Rate</p>
+            <p class="metric-value">72 bpm</p>
+          </div>
+          <div class="card">
+            <p class="metric-label">SpO2</p>
+            <p class="metric-value">98%</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick actions -->
+      <div class="section">
+        <h2 class="section-title">Quick actions</h2>
+        <div class="card-grid card-grid-3">
+          <button data-tool="symptom" type="button" class="shortcut-card">
+            <span class="shortcut-icon"><i data-lucide="message-circle"></i></span>
+            <span>Symptom Check</span>
+          </button>
+          <button data-tool="medicine" type="button" class="shortcut-card">
+            <span class="shortcut-icon"><i data-lucide="pill"></i></span>
+            <span>Medicine</span>
+          </button>
+          <button data-tool="appointments" type="button" class="shortcut-card">
+            <span class="shortcut-icon"><i data-lucide="calendar"></i></span>
+            <span>Appointments</span>
+          </button>
+          <button data-tool="records" type="button" class="shortcut-card">
+            <span class="shortcut-icon"><i data-lucide="file-text"></i></span>
+            <span>Records</span>
+          </button>
+          <button data-tool="hospital" type="button" class="shortcut-card">
+            <span class="shortcut-icon"><i data-lucide="map-pin"></i></span>
+            <span>Nearby Hospital</span>
+          </button>
+          <button data-tool="emergency" type="button" class="shortcut-card">
+            <span class="shortcut-icon emergency"><i data-lucide="phone"></i></span>
+            <span style="color:var(--error);">Emergency</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- History -->
+      <div class="section">
+        <h2 class="section-title">Recent visits</h2>
+        <div class="card">
+          <div class="list-item">
+            <div>
+              <div class="list-item-title">General Checkup</div>
+              <div class="list-item-meta">Dr. Anita Shrestha - BP and heart rate normal</div>
+            </div>
+            <span class="list-item-date">18 Jul</span>
+          </div>
+          <div class="list-item">
+            <div>
+              <div class="list-item-title">Seasonal Allergy</div>
+              <div class="list-item-meta">Dr. Anita Shrestha - Prescribed antihistamines</div>
+            </div>
+            <span class="list-item-date">10 Jul</span>
+          </div>
+          <div class="list-item">
+            <div>
+              <div class="list-item-title">Blood Test (CBC)</div>
+              <div class="list-item-meta">City Lab - All values normal</div>
+            </div>
+            <span class="list-item-date">18 Jul</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prescriptions -->
+      <div class="section">
+        <h2 class="section-title">Prescriptions</h2>
+        <div class="card">
+          <div class="list-item">
+            <div>
+              <div class="list-item-title">Cetirizine 10mg</div>
+              <div class="list-item-meta">1 tablet daily after dinner</div>
+            </div>
+            <span class="list-item-date">5 days left</span>
+          </div>
+          <div class="list-item">
+            <div>
+              <div class="list-item-title">Vitamin D3 1000 IU</div>
+              <div class="list-item-meta">1 capsule daily with breakfast</div>
+            </div>
+            <span class="list-item-date">22 days left</span>
+          </div>
+          <div class="list-item">
+            <div>
+              <div class="list-item-title">Paracetamol 500mg</div>
+              <div class="list-item-meta">1 tablet every 6h if fever</div>
+            </div>
+            <span class="list-item-date">As needed</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EMERGENCY -->
+    <section id="emergency-view" class="hidden">
+      <div class="emergency-banner">
+        <h2 class="emergency-title">Emergency</h2>
+        <p class="emergency-subtitle">Call now if someone is in immediate danger.</p>
+        <div class="emergency-links">
+          <a href="tel:102" class="emergency-link primary">Ambulance - 102</a>
+          <a href="tel:100" class="emergency-link secondary">Police - 100</a>
+        </div>
+        <p class="emergency-note">Nepal emergency numbers.</p>
+      </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section id="profile-view" class="hidden">
+      <div class="card">
+        <div class="profile-header">
+          <img loading="lazy" class="profile-avatar" src="profile.jpeg" alt="Profile">
+          <div>
+            <div class="profile-name">Sanskar Paudel</div>
+            <div class="profile-id">NP-84-2716</div>
+          </div>
+        </div>
+        <div class="profile-grid">
+          <div class="card">
+            <p class="metric-label">Blood group</p>
+            <p class="metric-value">O+</p>
+          </div>
+          <div class="card">
+            <p class="metric-label">Emergency contact</p>
+            <p class="list-item-title">Maya Sharma</p>
+          </div>
+        </div>
+        <button onclick="handleSignOut()" class="signout-btn">Sign Out</button>
+      </div>
+    </section>
+
+    <!-- CHAT -->
+    <section id="chat-view" class="hidden">
+      <div class="chat-warning">
+        General health info only. Not a diagnosis. Call emergency services for severe symptoms.
+      </div>
+      <div class="chat-container">
+        <section class="chat-main">
+          <div class="chat-header">
+            <div class="chat-header-info">
+              <div class="ai-avatar"><i data-lucide="bot"></i></div>
+              <div>
+                <div class="chat-header-name">Dr. Mira</div>
+                <div class="chat-header-sub">Symptom checker</div>
+              </div>
+            </div>
+            <button id="new-chat-button" type="button" class="new-chat-btn">New chat</button>
+          </div>
+          <div id="message-stream" class="message-stream" aria-live="polite">
+            <div class="space-y-4">
+              <div class="message-ai">
+                <div class="ai-avatar"><i data-lucide="bot"></i></div>
+                <article class="ai-card">
+                  <p>Hello, I'm Dr. Mira. What are you experiencing?</p>
+                  <div
+                    style="margin-top:12px; background:var(--canvas-soft); padding:8px 12px; border-radius:6px; font-size:12px; color:var(--body);">
+                    When did it start, where is it, and how bad is it?</div>
+                </article>
+              </div>
+              <div class="patient-bubble">
+                <p>Headache and mild dizziness since yesterday.</p>
+              </div>
+              <div class="message-ai">
+                <div class="ai-avatar"><i data-lucide="bot"></i></div>
+                <article class="ai-card">
+                  <p>Headache with dizziness can be dehydration, lack of sleep, stress, or illness. A few details will
+                    help.</p>
+                  <p style="margin-top:12px; font-weight:600; font-size:13px;">Which best describes it?</p>
+                  <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;">
+                    <button type="button" data-question="It started this morning." class="question-chip">Started this
+                      morning</button>
+                    <button type="button" data-question="I also feel nauseous." class="question-chip">Also
+                      nauseous</button>
+                    <button type="button" data-question="The pain is getting worse." class="question-chip">Getting
+                      worse</button>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <div id="runtime-messages"></div>
+            <div id="typing-indicator" class="hidden message-ai" aria-label="Preparing response">
+              <div class="ai-avatar"><i data-lucide="bot"></i></div>
+              <div class="ai-card" style="display:flex; gap:4px; padding:12px 16px;">
+                <span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>
+              </div>
+            </div>
+            <div id="followup-response" class="hidden message-ai">
+              <div class="ai-avatar"><i data-lucide="bot"></i></div>
+              <article class="ai-card">
+                <p>Rest, drink water, see a doctor if symptoms continue.</p>
+                <p
+                  style="margin-top:8px; background:rgba(230,0,0,0.06); color:var(--primary); padding:8px 12px; border-radius:6px; font-size:12px; font-weight:600;">
+                  Call emergency for sudden severe headache, fainting, confusion, chest pain, or breathing difficulty.
+                </p>
+              </article>
+            </div>
+          </div>
+          <form id="message-form" class="chat-input">
+            <div class="chat-input-wrap">
+              <input id="message-input" type="text" autocomplete="off" maxlength="280"
+                placeholder="Describe your symptoms...">
+              <button id="send-button" type="submit" class="send-btn">Send<i data-lucide="arrow-up"
+                  style="width:14px;height:14px;"></i></button>
+            </div>
+            <p id="form-status" class="form-status" role="status"></p>
+          </form>
+        </section>
+        <aside style="display:flex; flex-direction:column; gap:12px;">
+          <div class="risk-card">
+            <p style="font-weight:600; font-size:13px;">Risk level</p>
+            <div class="risk-track"><span class="risk-low"></span><span class="risk-moderate"></span><span
+                class="risk-high"></span></div>
+            <p style="font-size:12px; color:var(--body); margin-top:8px;">Moderate - see a doctor if it persists.</p>
+          </div>
+          <div class="specialist-card">
+            <p class="label">Recommended</p>
+            <p class="name">General Physician</p>
+            <p class="desc">Can review symptoms and refer if needed.</p>
+            <button id="specialist-button" type="button" class="specialist-btn">View details</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SPECIALIST MODAL -->
+    <div id="specialist-modal" class="modal-overlay" role="dialog" aria-modal="true"
+      aria-labelledby="specialist-modal-title">
+      <div class="modal">
+        <div class="modal-header">
+          <h2 id="specialist-modal-title" style="font-size:18px; font-weight:600;">Consult a General Physician</h2>
+          <button id="modal-close" type="button" class="modal-close">&times;</button>
+        </div>
+        <p style="font-size:13px; color:var(--body); margin-top:8px;">Based on our chat. A clinician can do a full exam.
+        </p>
+        <div class="card" style="margin-top:12px;">
+          <p style="font-size:13px; font-weight:600;">Bring:</p>
+          <ul style="font-size:13px; color:var(--body); margin-top:4px; padding-left:16px;">
+            <li>When symptoms started</li>
+            <li>Any medicines taken</li>
+          </ul>
+        </div>
+        <button id="prepare-visit-button" type="button" class="send-btn"
+          style="width:100%; margin-top:12px; padding:10px;">Prepare for visit</button>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <template id="patient-message-template">
+      <div class="patient-bubble" style="margin-top:16px;">
+        <p class="dynamic-patient-text" style="font-size:14px;"></p>
+      </div>
+    </template>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

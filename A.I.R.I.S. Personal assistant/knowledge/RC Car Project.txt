@@ -1,0 +1,8 @@
+{
+    "description": "RC car project",
+    "status": "active",
+    "technologies": [],
+    "awards": [
+        "9th PEC Tech Expo"
+    ]
+}
