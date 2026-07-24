@@ -14,16 +14,22 @@ IMPORTANT
 - NodeMCU GND         -> OLED GND
 
 2. EMERGENCY BUTTON
-- NodeMCU D7 (GPIO13) -> One button terminal
+- NodeMCU D0 (GPIO16) -> One button terminal
 - NodeMCU GND         -> Other button terminal
 - The sketch uses INPUT_PULLUP, so no external pull-up resistor is needed.
 
-3. SIM800L SERIAL CONNECTION
-- SIM800L TX          -> NodeMCU RXD0 (GPIO3) directly
-- NodeMCU TXD0 (GPIO1) -> 1k ohm resistor -> SIM800L RX
+3. NEO-M8N GPS SERIAL CONNECTION
+- NEO-M8N TX          -> NodeMCU D5 (GPIO14)
+- NodeMCU D6 (GPIO12) -> NEO-M8N RX through a voltage divider, if the GPS RX
+  pin is used. GPS position reading only needs the NEO-M8N TX connection.
+- NEO-M8N GND         -> Common GND
+
+4. SIM800L SERIAL CONNECTION
+- SIM800L TX          -> NodeMCU D7 (GPIO13) directly
+- NodeMCU D8 (GPIO15) -> 1k ohm resistor -> SIM800L RX
 - At the SIM800L RX point, connect a 2k ohm resistor from SIM800L RX to GND.
 
-  NodeMCU TXD0 / GPIO1 (3.3V)
+  NodeMCU D8 / GPIO15 (3.3V)
           |
          1k ohm
           |
@@ -33,11 +39,11 @@ IMPORTANT
           |
          GND
 
-4. SIM800L POWER
+5. SIM800L POWER
 - SIM800L VCC         -> Positive terminal of separate 3.7V to 4.2V supply
 - SIM800L GND         -> Negative terminal of that supply and common GND
 - SIM800L TX/RX must share the same common GND with the NodeMCU.
 
-5. UPLOAD NOTE
-- Disconnect the SIM800L TX and RX wires while uploading the sketch to the
-  NodeMCU. Reconnect them after the upload finishes.
+6. UPLOAD NOTE
+- The sketch uses Serial.swap(), so USB uploading remains on the normal
+  NodeMCU USB serial pins while the SIM800L uses D7 and D8.

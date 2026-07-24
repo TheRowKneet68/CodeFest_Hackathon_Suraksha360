@@ -8,13 +8,15 @@
 
 #define OLED_SCL D1
 #define OLED_SDA D2
-#define BUTTON_PIN D7
+#define BUTTON_PIN D0
 
-// Hardware UART wiring:
-// SIM800L TX -> NodeMCU RXD0 (GPIO3)
-// NodeMCU TXD0 (GPIO1) -> 1k resistor -> SIM800L RX
+// UART0 is swapped after boot, so the GSM pins are:
+// SIM800L TX -> NodeMCU D7 (GPIO13)
+// NodeMCU D8 (GPIO15) -> 1k resistor -> SIM800L RX
 // SIM800L RX -> 2k resistor -> GND
 const unsigned long SIM800L_BAUD_RATE = 9600;
+const char OWNER_NUMBER[] = "+9779829117277";
+const char HELLO_MESSAGE[] = "Hello from ESP8266 SIM800L";
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 bool buttonWasPressed = false;
@@ -31,12 +33,13 @@ void showStatus(const char *title, const char *message) {
   display.display();
 }
 
-String sendCommand(const char *command, unsigned long timeoutMs) {
+void clearSerialInput() {
   while (Serial.available()) {
     Serial.read();
   }
+}
 
-  Serial.println(command);
+String readResponse(unsigned long timeoutMs) {
   String response;
   const unsigned long startedAt = millis();
 
@@ -48,6 +51,17 @@ String sendCommand(const char *command, unsigned long timeoutMs) {
   }
 
   return response;
+}
+
+String sendCommand(const char *command, unsigned long timeoutMs) {
+  clearSerialInput();
+  Serial.println(command);
+  return readResponse(timeoutMs);
+}
+
+bool initModule(const char *command, const char *expected, unsigned long timeoutMs) {
+  const String response = sendCommand(command, timeoutMs);
+  return response.indexOf(expected) >= 0;
 }
 
 bool registeredOnNetwork(const String &response) {
@@ -69,10 +83,26 @@ int readSignalStrength(const String &response) {
   return response.substring(start, end).toInt();
 }
 
-void testSim800l() {
+bool sendHelloSms() {
+  String smsCommand = "AT+CMGS=\"";
+  smsCommand += OWNER_NUMBER;
+  smsCommand += "\"";
+
+  const String prompt = sendCommand(smsCommand.c_str(), 3000);
+  if (prompt.indexOf('>') < 0) {
+    return false;
+  }
+
+  clearSerialInput();
+  Serial.print(HELLO_MESSAGE);
+  Serial.write(26); // Ctrl+Z sends the SMS.
+  const String receipt = readResponse(10000);
+  return receipt.indexOf("+CMGS:") >= 0 || receipt.indexOf("OK") >= 0;
+}
+
+void testSim800l(bool sendHello) {
   showStatus("SIM800L", "Testing AT...");
-  const String atResponse = sendCommand("AT", 2000);
-  if (atResponse.indexOf("OK") < 0) {
+  if (!initModule("AT", "OK", 2000)) {
     showStatus("ERROR", "No AT response");
     return;
   }
@@ -80,14 +110,19 @@ void testSim800l() {
   showStatus("SIM800L", "AT: OK");
   delay(1000);
 
-  const String simResponse = sendCommand("AT+CPIN?", 1500);
-  if (simResponse.indexOf("READY") < 0) {
+  if (!initModule("AT+CPIN?", "READY", 1500)) {
     showStatus("SIM800L", "SIM not ready");
     return;
   }
 
   showStatus("SIM800L", "SIM: READY");
   delay(1000);
+
+  if (!initModule("AT+CMGF=1", "OK", 1500) ||
+      !initModule("AT+CNMI=1,2,0,0,0", "OK", 1500)) {
+    showStatus("ERROR", "SMS setup failed");
+    return;
+  }
 
   const String networkResponse = sendCommand("AT+CREG?", 1500);
   if (!registeredOnNetwork(networkResponse)) {
@@ -103,6 +138,16 @@ void testSim800l() {
     result += signal;
   }
   showStatus("SIM800L", result.c_str());
+
+  if (sendHello) {
+    delay(1000);
+    showStatus("SIM800L", "Sending hello...");
+    if (sendHelloSms()) {
+      showStatus("SIM800L", "Hello SMS sent");
+    } else {
+      showStatus("ERROR", "SMS send failed");
+    }
+  }
 }
 
 void setup() {
@@ -115,16 +160,16 @@ void setup() {
     }
   }
 
-  // RXD0 is GPIO3 and TXD0 is GPIO1 on the NodeMCU hardware UART.
   Serial.begin(SIM800L_BAUD_RATE);
+  Serial.swap(); // Move UART0 RX/TX from GPIO3/GPIO1 to GPIO13/GPIO15.
   delay(3000); // Allow the SIM800L to finish starting.
-  testSim800l();
+  testSim800l(true);
 }
 
 void loop() {
   const bool buttonPressed = digitalRead(BUTTON_PIN) == LOW;
   if (buttonPressed && !buttonWasPressed) {
-    testSim800l();
+    testSim800l(false);
   }
   buttonWasPressed = buttonPressed;
   delay(50);
