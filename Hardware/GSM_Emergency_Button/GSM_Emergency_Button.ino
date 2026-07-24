@@ -11,12 +11,12 @@
 #define OLED_SDA D2
 
 // ESP8266 TX -> SIM RX and ESP8266 RX <- SIM TX.
-// Replace this with the phone number that should receive the alert.
-const char EMERGENCY_NUMBER[] = "+9779800000000";
-const char EMERGENCY_MESSAGE[] = "EMERGENCY: Button pressed. Immediate assistance needed.";
+// This version only checks GSM status; it does not send an SMS.
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
-bool alertSent = false;
+bool buttonWasPressed = false;
+unsigned long lastGsmCheck = 0;
+const unsigned long GSM_CHECK_INTERVAL = 10000;
 
 void showScreen(const char *line1, const char *line2 = "") {
   display.clearDisplay();
@@ -30,25 +30,65 @@ void showScreen(const char *line1, const char *line2 = "") {
   display.display();
 }
 
-bool sendCommand(const char *command, unsigned long waitMs) {
+String sendAtCommand(const char *command, unsigned long timeoutMs) {
+  while (Serial.available()) {
+    Serial.read();
+  }
+
   Serial.println(command);
-  delay(waitMs);
-  return true;
+  String response;
+  const unsigned long startedAt = millis();
+
+  while (millis() - startedAt < timeoutMs) {
+    while (Serial.available()) {
+      response += static_cast<char>(Serial.read());
+    }
+    yield();
+  }
+
+  return response;
 }
 
-bool sendEmergencySms() {
-  sendCommand("AT", 1000);
-  sendCommand("AT+CMGF=1", 1000);
+bool isRegistered(const String &response) {
+  return response.indexOf(",1") >= 0 || response.indexOf(",5") >= 0;
+}
 
-  Serial.print("AT+CMGS=\"");
-  Serial.print(EMERGENCY_NUMBER);
-  Serial.println("\"");
-  delay(1000);
+int signalStrength(const String &response) {
+  const int marker = response.indexOf("+CSQ: ");
+  if (marker < 0) {
+    return -1;
+  }
 
-  Serial.print(EMERGENCY_MESSAGE);
-  Serial.write(26); // Ctrl+Z sends the SMS.
-  delay(5000);
-  return true;
+  const int valueStart = marker + 6;
+  const int valueEnd = response.indexOf(',', valueStart);
+  return response.substring(valueStart, valueEnd).toInt();
+}
+
+void checkGsm() {
+  showScreen("GSM CHECK", "Contacting module...");
+  const String atResponse = sendAtCommand("AT", 1500);
+
+  if (atResponse.indexOf("OK") < 0) {
+    showScreen("GSM ERROR", "No AT response");
+    return;
+  }
+
+  const String networkResponse = sendAtCommand("AT+CREG?", 1500);
+  const String signalResponse = sendAtCommand("AT+CSQ", 1500);
+  const bool registered = isRegistered(networkResponse);
+  const int signal = signalStrength(signalResponse);
+
+  if (!registered) {
+    showScreen("GSM READY", "Network: waiting");
+    return;
+  }
+
+  String status = "Network OK";
+  if (signal >= 0 && signal != 99) {
+    status += "  Sig: ";
+    status += signal;
+  }
+  showScreen("GSM READY", status.c_str());
 }
 
 void setup() {
@@ -66,20 +106,22 @@ void setup() {
   // Serial uses the ESP8266 hardware UART: TX=GPIO1, RX=GPIO3.
   Serial.begin(9600);
   delay(1000);
-  showScreen("READY", "Waiting for button");
+  checkGsm();
+  lastGsmCheck = millis();
 }
 
 void loop() {
   const bool pressed = digitalRead(BUTTON_PIN) == LOW;
 
-  if (pressed && !alertSent) {
-    showScreen("EMERGENCY", "Sending SMS...");
-    sendEmergencySms();
-    alertSent = true;
-    showScreen("EMERGENCY", "SMS sent");
-  } else if (!pressed && alertSent) {
-    alertSent = false;
-    showScreen("READY", "Waiting for button");
+  if (pressed && !buttonWasPressed) {
+    checkGsm();
+    lastGsmCheck = millis();
+  }
+  buttonWasPressed = pressed;
+
+  if (millis() - lastGsmCheck >= GSM_CHECK_INTERVAL) {
+    checkGsm();
+    lastGsmCheck = millis();
   }
 
   delay(50);
