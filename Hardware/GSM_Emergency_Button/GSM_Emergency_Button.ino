@@ -17,6 +17,8 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 bool buttonWasPressed = false;
 unsigned long lastGsmCheck = 0;
 const unsigned long GSM_CHECK_INTERVAL = 10000;
+const unsigned long GSM_BAUD_RATES[] = {9600, 115200, 57600, 38400, 19200};
+unsigned long gsmBaudRate = 0;
 
 void showScreen(const char *line1, const char *line2 = "") {
   display.clearDisplay();
@@ -61,15 +63,36 @@ int signalStrength(const String &response) {
 
   const int valueStart = marker + 6;
   const int valueEnd = response.indexOf(',', valueStart);
+  if (valueEnd < valueStart) {
+    return -1;
+  }
   return response.substring(valueStart, valueEnd).toInt();
 }
 
-void checkGsm() {
-  showScreen("GSM CHECK", "Contacting module...");
-  const String atResponse = sendAtCommand("AT", 1500);
+bool connectToGsm() {
+  for (unsigned int i = 0; i < sizeof(GSM_BAUD_RATES) / sizeof(GSM_BAUD_RATES[0]); i++) {
+    const unsigned long baudRate = GSM_BAUD_RATES[i];
+    String status = "Trying ";
+    status += baudRate;
+    showScreen("GSM CHECK", status.c_str());
 
-  if (atResponse.indexOf("OK") < 0) {
-    showScreen("GSM ERROR", "No AT response");
+    Serial.begin(baudRate);
+    delay(300);
+    const String response = sendAtCommand("AT", 1200);
+
+    if (response.indexOf("OK") >= 0) {
+      gsmBaudRate = baudRate;
+      return true;
+    }
+  }
+
+  gsmBaudRate = 0;
+  return false;
+}
+
+void checkGsm() {
+  if (gsmBaudRate == 0 && !connectToGsm()) {
+    showScreen("GSM ERROR", "Check power/RX/TX");
     return;
   }
 
@@ -83,9 +106,10 @@ void checkGsm() {
     return;
   }
 
-  String status = "Network OK";
+  String status = "Net OK ";
+  status += gsmBaudRate;
   if (signal >= 0 && signal != 99) {
-    status += "  Sig: ";
+    status += " S:";
     status += signal;
   }
   showScreen("GSM READY", status.c_str());
@@ -104,7 +128,7 @@ void setup() {
   }
 
   // Serial uses the ESP8266 hardware UART: TX=GPIO1, RX=GPIO3.
-  Serial.begin(9600);
+  // connectToGsm() selects the module's baud rate.
   delay(1000);
   checkGsm();
   lastGsmCheck = millis();
