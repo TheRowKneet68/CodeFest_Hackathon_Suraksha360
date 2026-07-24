@@ -1,0 +1,511 @@
+[
+  {
+    "disease_name": "Ischaemic Heart Disease",
+    "ICD-10": ["I20","I21","I22","I23","I24","I25"],
+    "symptoms": {
+      "major": ["Chest pain or pressure (angina)", "Radiating pain to arm/jaw", "Dyspnea", "Diaphoresis", "Nausea"],
+      "minor": ["Fatigue", "Epigastric discomfort"], 
+      "timeline": {"acute": "minutes to hours (myocardial infarction)", "chronic": "months–years of stable angina"}
+    },
+    "causes": {
+      "genetic": ["Family history of early IHD", "Hypercholesterolemia (LDL)"],
+      "environmental": ["Air pollution", "Secondhand smoke"],
+      "lifestyle": ["Smoking", "Sedentary lifestyle", "High-fat/high-salt diet", "Diabetes mellitus"],
+      "pathogen": []
+    },
+    "diagnostic_tests": [
+      {"name": "Electrocardiogram (ECG)", "procedure": "Record heart’s electrical activity", "sensitivity": "60–70%", "specificity": "80–90%", "cost_public_NPR": "300", "cost_private_NPR": "500–1,000"},
+      {"name": "Serum Troponin I/T", "procedure": "Blood assay for cardiac enzymes (serial over hours)", "sensitivity": "98% for AMI", "specificity": "85–90%", "cost_public_NPR": "500", "cost_private_NPR": "800"},
+      {"name": "Echocardiography", "procedure": "Ultrasound imaging of heart", "sensitivity": "80%", "specificity": "80%", "cost_public_NPR": "1,000", "cost_private_NPR": "2,000"},
+      {"name": "Cardiac catheterization", "procedure": "Coronary angiography", "sensitivity": "N/A", "specificity": "N/A", "cost_public_NPR": "unspecified", "cost_private_NPR": "50,000–100,000"}
+    ],
+    "case_fatality_rate": {"Nepal": "6–7% (hospitalized MI)", "global": "≈5% (acute MI)"},
+    "mortality": {"Nepal": "IHD caused 10.6% of deaths in 2021", "global": "Leading cause of death globally"},
+    "severity": "Ranges from stable (mild angina) to critical (massive infarction).",
+    "complications": ["Arrhythmias", "Heart failure", "Cardiogenic shock", "Post-MI pericarditis"],
+    "home_remedies": [{"remedy": "Lifestyle modification (diet/exercise) and weight loss", "evidence": "observational studies"}],
+    "treatment": [
+      {"name": "Aspirin (antiplatelet)", "availability": "Widely available", "notes": "Evidence-based, reduces mortality"},
+      {"name": "Statins", "availability": "Available", "notes": "Lipid-lowering; secondary prevention"},
+      {"name": "Nitroglycerin (sublingual)", "availability": "Available", "notes": "For angina relief"},
+      {"name": "Thrombolytics (e.g. streptokinase)", "availability": "Limited in Nepal (mainly in tertiary centers)", "notes": "Acute MI reperfusion"},
+      {"name": "Beta-blockers, ACE inhibitors", "availability": "Available", "notes": "Standard post-MI care"}
+    ],
+    "prevention": "Tobacco cessation, blood pressure and lipid control, diabetes management, healthy diet, exercise",
+    "vaccination": "None",
+    "demographics": {"age": "Middle age and older", "sex": "Male > Female", "ethnicity": "All"},
+    "risk_factors": ["Hypertension", "Diabetes mellitus", "Smoking", "Dyslipidemia", "Obesity", "Family history", "Male sex"],
+    "commentary": "Rapid urbanization and smoking have driven Nepal’s IHD rates up. Public efforts to improve diet and control blood pressure are urgent."
+  },
+  {
+    "disease_name": "Stroke (Cerebrovascular Accident)",
+    "ICD-10": ["I63","I61","I64"],
+    "symptoms": {
+      "major": ["Sudden unilateral weakness or numbness of face/arm/leg", "Speech difficulty", "Vision loss", "Dizziness/ataxia", "Severe headache"],
+      "minor": ["Transient visual obscurations", "Transient focal numbness"], 
+      "timeline": {"acute": "seconds–minutes (onset of neurological deficit)","chronic": "sequelae can be permanent"}
+    },
+    "causes": {
+      "genetic": ["CADASIL", "Hypercoagulable states", "Family history of stroke"],
+      "environmental": ["Air pollution (exacerbates hypertension)"],
+      "lifestyle": ["Hypertension", "Diabetes", "Smoking", "Obesity"],
+      "pathogen": ["Rarely infective endocarditis can cause septic emboli (stroke)"]
+    },
+    "diagnostic_tests": [
+      {"name": "Non-contrast CT Brain", "procedure": "Head CT scan", "sensitivity": "Low for early ischemia", "specificity": "High to exclude hemorrhage", "cost_public_NPR": "1,000", "cost_private_NPR": "2,000"},
+      {"name": "MRI Brain (Diffusion-weighted)", "procedure": "Brain MRI", "sensitivity": ">95% for acute infarct", "specificity": "High", "cost_public_NPR": "unavailable/govt", "cost_private_NPR": "5,000+"},
+      {"name": "Carotid Doppler ultrasound", "procedure": "Neck vessel ultrasound", "sensitivity": "≈80%", "specificity": "≈90%", "cost_public_NPR": "500", "cost_private_NPR": "1,000"}
+    ],
+    "case_fatality_rate": {"Nepal": "≈9% in-hospital", "global": "≈6% in-hospital (higher in LMICs)"},
+    "mortality": {"Nepal": "6.9% of deaths in 2021; death rate ~48.1/100k (2017)", "global": "2nd leading cause of death"},
+    "severity": "Often moderate to severe; can cause permanent disability or death if critical",
+    "complications": ["Paralysis", "Epilepsy", "Aspiration pneumonia", "Venous thrombosis"],
+    "home_remedies": [{"remedy": "None proven (stroke requires medical emergency)","evidence": "no evidence"}],
+    "treatment": [
+      {"name": "Thrombolysis (tPA)", "availability": "Rare in Nepal (requires CT)", "notes": "Ideal if within 4.5 hours of onset"},
+      {"name": "Antiplatelet (aspirin)", "availability": "Widely available", "notes": "Given after stroke for secondary prevention"},
+      {"name": "Rehabilitation (PT/OT)", "availability": "Limited outside cities", "notes": "Essential for recovery"}
+    ],
+    "prevention": "Control hypertension, diabetes, smoking cessation, treat atrial fibrillation (anticoagulation)",
+    "vaccination": "None",
+    "demographics": {"age": "Predominantly ≥50 years", "sex": "Male ~ Female", "ethnicity": "All"},
+    "risk_factors": ["Hypertension (key)", "Atrial fibrillation", "Diabetes", "Smoking", "Hyperlipidemia"],
+    "commentary": "Stroke in Nepal often reflects untreated hypertension. Early recognition (FAST) and transfer to CT-capable centers are critical."
+  },
+  {
+    "disease_name": "Chronic Obstructive Pulmonary Disease (COPD)",
+    "ICD-10": ["J44"],
+    "symptoms": {
+      "major": ["Chronic cough (often productive)", "Progressive dyspnea", "Wheezing", "Chest tightness"],
+      "minor": ["Fatigue", "Weight loss (advanced)"], 
+      "timeline": {"chronic": "Develops over years; acute exacerbations last days–weeks"}
+    },
+    "causes": {
+      "genetic": ["Alpha-1 antitrypsin deficiency (rare)"],
+      "environmental": ["Indoor air pollution (biomass fuel)", "Outdoor air pollution"],
+      "lifestyle": ["Tobacco smoking (primary cause)", "Occupational dust exposure"],
+      "pathogen": []
+    },
+    "diagnostic_tests": [
+      {"name": "Spirometry", "procedure": "Pulmonary function test (post-bronchodilator)", "sensitivity": "N/A", "specificity": "N/A", "cost_public_NPR": "500", "cost_private_NPR": "800"},
+      {"name": "Chest X-ray", "procedure": "Imaging", "sensitivity": "Low for early COPD", "specificity": "R/O other causes", "cost_public_NPR": "500", "cost_private_NPR": "700"}
+    ],
+    "case_fatality_rate": {"Nepal": "Unknown", "global": "≈18% 5-year mortality after diagnosis"},
+    "mortality": {"Nepal": "10.9% of deaths in 2021", "global": "4th leading cause of death"},
+    "severity": "Chronic (mild to very severe); exacerbations can be life-threatening (critical)",
+    "complications": ["Respiratory failure", "Pulmonary hypertension", "Right heart failure"],
+    "home_remedies": [{"remedy": "Smoking cessation (most effective)", "evidence": "strong evidence"}],
+    "treatment": [
+      {"name": "Bronchodilators (e.g. salbutamol)", "availability": "Available", "notes": "Relieve symptoms"},
+      {"name": "Inhaled corticosteroids", "availability": "Available", "notes": "For frequent exacerbators"},
+      {"name": "Oxygen therapy", "availability": "Limited", "notes": "Home oxygen in severe cases (few providers)"}
+    ],
+    "prevention": "Avoid smoking and indoor pollution; use cleaner fuels in homes",
+    "vaccination": "Annual influenza and pneumococcal vaccines (if available)",
+    "demographics": {"age": "Usually >40 years", "sex": "Male > Female", "ethnicity": "All"},
+    "risk_factors": ["Smoking (present in ~80%)", "Age", "Biomass smoke exposure", "Prior lung infections"],
+    "commentary": "High smoking rates and household smoke make COPD a major burden in Nepal. Public health should target clean cooking fuels."
+  },
+  {
+    "disease_name": "Lower Respiratory Infections (e.g. Pneumonia)",
+    "ICD-10": ["J12","J15","J18"],
+    "symptoms": {
+      "major": ["Fever", "Cough with sputum", "Dyspnea", "Chest pain", "Tachypnea"],
+      "minor": ["Fatigue", "Malaise", "Headache"], 
+      "timeline": {"acute": "Days to 2 weeks (typically acute onset)", "chronic": ""}
+    },
+    "causes": {
+      "genetic": [],
+      "environmental": ["Air pollution", "Crowding"],
+      "lifestyle": ["Smoking", "Alcohol abuse"],
+      "pathogen": ["Streptococcus pneumoniae", "Mycoplasma pneumoniae", "Respiratory viruses (influenza, RSV)", "Klebsiella pneumoniae"]
+    },
+    "diagnostic_tests": [
+      {"name": "Chest X-ray", "procedure": "Imaging to confirm pneumonia", "sensitivity": "≈70%", "specificity": "≈80%", "cost_public_NPR": "500", "cost_private_NPR": "700"},
+      {"name": "Sputum Gram stain/culture", "procedure": "Microscopic exam and culture of sputum", "sensitivity": "Variable", "specificity": "Moderate", "cost_public_NPR": "300", "cost_private_NPR": "500"}
+    ],
+    "case_fatality_rate": {"Nepal": "2–5% (hospitalized pneumonia)", "global": "≈5% in adults (higher in young children)"},
+    "mortality": {"Nepal": "Lower respiratory infections: 5.9% of deaths (2021)", "global": "4th leading cause of DALYs"},
+    "severity": "Ranges from mild to critical respiratory failure",
+    "complications": ["Sepsis", "Pleural effusion", "Lung abscess", "Acute respiratory distress syndrome"],
+    "home_remedies": [{"remedy": "Steam inhalation, hydration, rest", "evidence": "anecdotal; no high-level evidence"}],
+    "treatment": [
+      {"name": "Antibiotics (e.g. Amoxicillin, Azithromycin)", "availability": "Widely available", "notes": "Empiric therapy usually effective"},
+      {"name": "Oxygen therapy", "availability": "Limited (mostly in hospitals)", "notes": "For hypoxemic patients"},
+      {"name": "Antivirals (if influenza)", "availability": "Rare", "notes": "No stock widely in Nepal"}
+    ],
+    "prevention": "Vaccination (pneumococcal, influenza if available), reduce indoor smoke, early care-seeking for cough",
+    "vaccination": "PCV and influenza vaccines (limited availability)",
+    "demographics": {"age": "All ages (very high in children <5, elderly)", "sex": "All", "ethnicity": "All"},
+    "risk_factors": ["Malnutrition (children)", "Smoking", "Poor immunity", "Chronic lung disease", "HIV infection"],
+    "commentary": "Pneumonia is a leading killer of Nepali children and elderly; improving vaccine coverage and indoor air quality are crucial."
+  },
+  {
+    "disease_name": "Type 2 Diabetes Mellitus",
+    "ICD-10": ["E11"],
+    "symptoms": {
+      "major": ["Polyuria", "Polydipsia", "Weight loss", "Fatigue"], 
+      "minor": ["Blurred vision", "Peripheral neuropathy pain"], 
+      "timeline": {"acute": "Hyperglycemic crises (rare DKA in T2)", "chronic": "Develops insidiously over years"}
+    },
+    "causes": {
+      "genetic": ["Family history of T2DM", "Certain genetic variants"],
+      "environmental": [],
+      "lifestyle": ["Obesity", "Sedentary lifestyle", "Unhealthy diet", "Urban living"],
+      "pathogen": []
+    },
+    "diagnostic_tests": [
+      {"name": "Fasting Blood Glucose", "procedure": "Blood draw after 8-hour fast", "sensitivity": "≈70%", "specificity": "≈90%", "cost_public_NPR": "75", "cost_private_NPR": "125"},
+      {"name": "HbA1c", "procedure": "Blood draw for glycated hemoglobin", "sensitivity": "≈65%", "specificity": "≈88%", "cost_public_NPR": "384 (USD3.84)", "cost_private_NPR": "1.92 (USD; unusually low in study)"}
+    ],
+    "case_fatality_rate": {"Nepal": "Data not found (chronic disease)", "global": "≈1.5% 5-year mortality post-diagnosis"},
+    "mortality": {"Nepal": "Diabetes caused 3.8% of deaths in 2021", "global": "7th leading global cause of DALYs"},
+    "severity": "Chronic, usually mild-moderate except if complications or ketoacidosis occur",
+    "complications": ["Cardiovascular disease", "Kidney failure", "Neuropathy", "Retinopathy"],
+    "home_remedies": [{"remedy": "Dietary management (low sugar diet), exercise", "evidence": "strong (reduces insulin resistance)"}],
+    "treatment": [
+      {"name": "Metformin", "availability": "Widely available", "notes": "First-line therapy"},
+      {"name": "Insulin", "availability": "Available but expensive", "notes": "For uncontrolled or gestational cases"},
+      {"name": "Sulfonylureas (e.g. glibenclamide)", "availability": "Available", "notes": "Second-line"}
+    ],
+    "prevention": "Healthy diet, weight control, physical activity",
+    "vaccination": "None (general vaccines as indicated)",
+    "demographics": {"age": "Adults, rising in younger age", "sex": "Slightly more in males", "ethnicity": "All"},
+    "risk_factors": ["Obesity", "Physical inactivity", "Family history", "Hypertension", "Dyslipidemia"],
+    "commentary": "Urbanization has driven a surge in diabetes in Nepal. Urban poor with limited healthy food choices are especially at risk."
+  },
+  {
+    "disease_name": "Chronic Kidney Disease (CKD)",
+    "ICD-10": ["N18"],
+    "symptoms": {
+      "major": ["Fatigue", "Edema (swelling)", "Hypertension", "Uremic symptoms (itching, nausea)"],
+      "minor": ["Anemia", "Bone pain (renal osteodystrophy)"], 
+      "timeline": {"chronic": "Progressive over years; end-stage renal disease occurs after kidney function drops <15%"}
+    },
+    "causes": {
+      "genetic": ["Polycystic kidney disease (rare)"],
+      "environmental": ["Heavy metals (industrial exposure)"],
+      "lifestyle": ["Diabetes (leading cause)", "Hypertension", "NSAID overuse"],
+      "pathogen": ["Chronic glomerulonephritis (post-infectious)"]
+    },
+    "diagnostic_tests": [
+      {"name": "Serum Creatinine & eGFR", "procedure": "Blood test", "sensitivity": "N/A", "specificity": "N/A", "cost_public_NPR": "125", "cost_private_NPR": "250"},
+      {"name": "Urinalysis (protein)", "procedure": "Dipstick urine test", "sensitivity": "High for dipstick albumin", "specificity": "Moderate", "cost_public_NPR": "34 (proteinuria)", "cost_private_NPR": "96"}
+    ],
+    "case_fatality_rate": {"Nepal": "Unspecified; high in ESRD without dialysis", "global": "10–20% 5-year mortality in advanced CKD"},
+    "mortality": {"Nepal": "Kidney diseases caused 5.3% of deaths in 2021", "global": "Ranked top-15 global cause of death"},
+    "severity": "Chronic progressive; end-stage renal disease (ESRD) is life-threatening",
+    "complications": ["Cardiovascular disease", "Anemia", "Mineral bone disorder", "End-stage renal failure"],
+    "home_remedies": [{"remedy": "Low-salt and low-protein diet, hydration", "evidence": "supportive (slows CKD progression)"}],
+    "treatment": [
+      {"name": "Blood pressure control (ACE inhibitors)", "availability": "Available", "notes": "Slows progression"},
+      {"name": "Dialysis (hemodialysis)", "availability": "Available in few centers, costly", "notes": "ESRD care"},
+      {"name": "Renal transplantation", "availability": "Limited (few centers)", "notes": "Long-term solution"}
+    ],
+    "prevention": "Control diabetes/hypertension, avoid nephrotoxins",
+    "vaccination": "HBV vaccination recommended (ESRD patients), influenza",
+    "demographics": {"age": "Older adults", "sex": "Male > Female", "ethnicity": "All"},
+    "risk_factors": ["Diabetes", "Hypertension", "Family history of CKD"],
+    "commentary": "CKD is often underdiagnosed in Nepal; many present in late stages due to lack of screening. Nephrology services are scarce."
+  },
+  {
+    "disease_name": "Tuberculosis (Pulmonary)",
+    "ICD-10": ["A15","A16"],
+    "symptoms": {
+      "major": ["Prolonged cough (>2 weeks, often productive or blood-tinged)", "Fever (evening)", "Night sweats", "Weight loss", "Fatigue"],
+      "minor": ["Chest pain", "Loss of appetite"], 
+      "timeline": {"chronic": "Weeks to months (insidious onset)","acute_exacerbations": "Occasional hemoptysis events"}
+    },
+    "causes": {
+      "genetic": ["Immune deficiency (HIV co-infection greatly increases TB risk)"],
+      "environmental": ["Crowding", "Poor ventilation", "Indoor air pollution"],
+      "lifestyle": ["Malnutrition", "Diabetes", "Smoking"],
+      "pathogen": ["Mycobacterium tuberculosis (airborne)"]
+    },
+    "diagnostic_tests": [
+      {"name": "Sputum smear microscopy (AFB stain)", "procedure": "Microscopic exam of sputum", "sensitivity": "45–60%", "specificity": "98%", "cost_public_NPR": "Free (NTP)", "cost_private_NPR": "100–200"},
+      {"name": "GeneXpert MTB/RIF", "procedure": "PCR test for M. tuberculosis and rifampicin resistance", "sensitivity": "88%", "specificity": "98%", "cost_public_NPR": "≈1,500", "cost_private_NPR": "≈2,000"},
+      {"name": "Chest X-ray", "procedure": "Imaging for suggestive TB lesions", "sensitivity": "75%", "specificity": "approx 50%", "cost_public_NPR": "500", "cost_private_NPR": "700"}
+    ],
+    "case_fatality_rate": {"Nepal": "≈25% (estimated CFR)", "global": "≈15% (TB CFR)"},
+    "mortality": {"Nepal": "9.0% of deaths in 2021 (15.5/100k)", "global": "TB caused ~1.5 million deaths globally (2020)"},
+    "severity": "Chronic; can be critical if untreated (massive hemoptysis, miliary spread)",
+    "complications": ["Pleural effusion", "Bronchiectasis", "Laryngeal TB", "Miliary TB", "Tracheobronchial stenosis"],
+    "home_remedies": [{"remedy": "None effective; do not delay medical therapy", "evidence": "no evidence"}],
+    "treatment": [
+      {"name": "RIPE therapy (Rifampin, Isoniazid, Pyrazinamide, Ethambutol)", "availability": "Free in public sector (NTP)", "notes": "6-month DOTS regimen"},
+      {"name": "Treatment of MDR-TB (bedaquiline, etc.)", "availability": "Limited (referral centers)", "notes": "18–20 month regimen"}
+    ],
+    "prevention": "BCG vaccination at birth (reduces severe TB in children), respiratory precautions, improve living conditions",
+    "vaccination": "BCG (widely given to neonates)",
+    "demographics": {"age": "All ages; highest in young adults", "sex": "Male ~ Female", "ethnicity": "All"},
+    "risk_factors": ["HIV infection", "Diabetes mellitus", "Malnutrition", "Close contact with TB patient"],
+    "commentary": "Nepal has a high latent TB reservoir (~half population). Active case finding and completing DOTS treatment are keys to control."
+  },
+  {
+    "disease_name": "Diarrheal Diseases (e.g. Cholera, Typhoid, Acute Gastroenteritis)",
+    "ICD-10": ["A00","A01","A02","A03","A04","A06"],
+    "symptoms": {
+      "major": ["Watery diarrhea", "Dehydration", "Vomiting", "Abdominal cramps", "Fever (in typhoid/shigellosis)"],
+      "minor": ["Headache", "Weakness"], 
+      "timeline": {"acute": "Hours to days", "chronic": "not typically chronic"}
+    },
+    "causes": {
+      "genetic": [],
+      "environmental": ["Contaminated water/food", "Poor sanitation", "Flooding"],
+      "lifestyle": ["Eating street food", "Open defecation"],
+      "pathogen": ["Vibrio cholerae (cholera)", "Salmonella typhi (typhoid)", "Rotavirus", "Norovirus", "Shigella spp."]
+    },
+    "diagnostic_tests": [
+      {"name": "Stool culture", "procedure": "Microbiological culture for bacteria", "sensitivity": "Variable (requires lab)", "specificity": "High", "cost_public_NPR": "300", "cost_private_NPR": "500"},
+      {"name": "Widal test (for typhoid)", "procedure": "Serology for Salmonella O/H antibodies", "sensitivity": "low", "specificity": "low", "cost_public_NPR": "200", "cost_private_NPR": "400"}
+    ],
+    "case_fatality_rate": {"Nepal": "Cholera ~1–3%; Typhoid ~1%", "global": "Varies (cholera <1% with rehydration, up to 50% untreated)"},
+    "mortality": {"Nepal": "Acute diarrheal diseases ~3.3% of deaths", "global": "Leading cause of under-5 mortality worldwide"},
+    "severity": "Typically acute and self-limited; can be severe (dehydration shock) especially in cholera or in children",
+    "complications": ["Severe dehydration", "Renal failure", "Electrolyte imbalances"],
+    "home_remedies": [{"remedy": "Oral rehydration solution (ORS)", "evidence": "RCT-level (WHO recommendation)"}],
+    "treatment": [
+      {"name": "Rehydration therapy (ORS/IV fluids)", "availability": "ORS cheap & widely available", "notes": "Life-saving"},
+      {"name": "Antibiotics (e.g. azithromycin for cholera, ceftriaxone for typhoid)", "availability": "Available", "notes": "Reduce duration (empiric)"},
+      {"name": "Zinc supplements (children)", "availability": "Often given", "notes": "Reduces duration in pediatric diarrhea"}
+    ],
+    "prevention": "Safe water, sanitation/hygiene (WASH), food safety education",
+    "vaccination": "Oral cholera vaccine (limited use), Typhoid conjugate vaccine (new, limited), Rotavirus vaccine for infants",
+    "demographics": {"age": "Children under 5 most affected", "sex": "All", "ethnicity": "All"},
+    "risk_factors": ["Poor sanitation", "Crowding", "Malnutrition", "Seasonal monsoon floods"],
+    "commentary": "Nepal’s hilly terrain and monsoon rains contribute to recurrent outbreaks of diarrheal diseases. Strengthening water/sanitation is critical."
+  },
+  {
+    "disease_name": "HIV/AIDS",
+    "ICD-10": ["B20–B24"],
+    "symptoms": {
+      "major": ["Chronic fever", "Weight loss", "Opportunistic infections", "Chronic diarrhea", "Night sweats"],
+      "minor": ["Lymphadenopathy", "Rash"], 
+      "timeline": {"chronic": "Infection to AIDS ~8–10 years without treatment"}
+    },
+    "causes": {
+      "genetic": [],
+      "environmental": [],
+      "lifestyle": ["Unprotected sex", "Needle sharing"],
+      "pathogen": ["Human immunodeficiency virus (HIV-1/2)"]
+    },
+    "diagnostic_tests": [
+      {"name": "HIV antibody/antigen test", "procedure": "ELISA or rapid test", "sensitivity": ">99%", "specificity": "99%", "cost_public_NPR": "Free (government VCT centers)", "cost_private_NPR": "500–1,050"},
+      {"name": "HIV viral load PCR", "procedure": "Quantitative HIV RNA", "sensitivity": "High", "specificity": "High", "cost_public_NPR": "≈3,000", "cost_private_NPR": "≈5,000"}
+    ],
+    "case_fatality_rate": {"Nepal": "≈2.5% (low due to low prevalence)", "global": "100% if untreated over ~10 years"},
+    "mortality": {"Nepal": "~0.2% of deaths (HIV relatively low incidence)", "global": "≈850,000 deaths in 2020"},
+    "severity": "Chronic; progression to AIDS fatal without ART",
+    "complications": ["Opportunistic infections (TB, candidiasis)", "Kaposi sarcoma"],
+    "home_remedies": [{"remedy": "None (strictly medical management)","evidence": "no evidence"}],
+    "treatment": [
+      {"name": "Antiretroviral therapy (ART)", "availability": "Free through National AIDS Program", "notes": "Lifelong therapy (e.g. TDF/3TC/EFV)"},
+      {"name": "Prophylaxis (Co-trimoxazole)", "availability": "Available", "notes": "Reduces opportunistic infections"}
+    ],
+    "prevention": "Condom use, safe needle programs, blood screening",
+    "vaccination": "None (be careful: no HIV vaccine yet)",
+    "demographics": {"age": "Adults (peak 25–49)", "sex": "Male ~ Female", "ethnicity": "All"},
+    "risk_factors": ["Multiple sexual partners", "Unprotected sex", "Intravenous drug use"],
+    "commentary": "Nepal has a concentrated epidemic (key populations). Scaling up testing and early ART is essential to reduce mortality."
+  },
+  {
+    "disease_name": "Dengue Fever",
+    "ICD-10": ["A90","A91"],
+    "symptoms": {
+      "major": ["High fever", "Severe headache", "Retro-orbital pain", "Muscle/joint pain", "Skin rash", "Nausea"],
+      "minor": ["Mild bleeding (gum/nose)"], 
+      "timeline": {"acute": "Incubation 4–10 days; symptoms 2–7 days; possible critical phase days 3–7"}
+    },
+    "causes": {
+      "genetic": [],
+      "environmental": ["Aedes mosquito habitat", "Monsoon climate"],
+      "lifestyle": [],
+      "pathogen": ["Dengue virus (Flavivirus) serotypes 1–4"]
+    },
+    "diagnostic_tests": [
+      {"name": "NS1 antigen ELISA", "procedure": "Detects viral antigen in early illness", "sensitivity": "80–90% (days 1–5)", "specificity": "95%", "cost_public_NPR": "unspecified", "cost_private_NPR": "1,500"},
+      {"name": "IgM/IgG serology", "procedure": "Antibody detection after day 5", "sensitivity": "70%", "specificity": "85%", "cost_public_NPR": "unspecified", "cost_private_NPR": "1,500 (combined package)"}
+    ],
+    "case_fatality_rate": {"Nepal": "≈0.16% (88/54,784 in 2022)", "global": "≈0.1–0.2% with care"},
+    "mortality": {"Nepal": "88 dengue deaths in 2022", "global": "≈20,000 dengue deaths/year"},
+    "severity": "Acute; classic dengue (mild) to dengue hemorrhagic fever/shock (critical)",
+    "complications": ["Severe plasma leakage (shock)", "Hemorrhage", "Organ failure"],
+    "home_remedies": [{"remedy": "Oral hydration, rest", "evidence": "supportive (no specific cure)"}],
+    "treatment": [
+      {"name": "Symptomatic care (fluids, paracetamol)", "availability": "All healthcare", "notes": "Avoid NSAIDs due bleeding risk"},
+      {"name": "Platelet transfusion", "availability": "Scarce", "notes": "Used for severe hemorrhage (often unavailable)"}
+    ],
+    "prevention": "Mosquito control (eliminate standing water), repellents, nets",
+    "vaccination": "No widely used vaccine (Dengvaxia limited, controversial)",
+    "demographics": {"age": "All ages, peak 10–40", "sex": "All", "ethnicity": "All"},
+    "risk_factors": ["Prior dengue infection (risk of hemorrhagic form)", "Unscreened blood transfusion"],
+    "commentary": "Dengue is re-emerging explosively in Nepal; healthcare capacity is strained by seasonal outbreaks."
+  },
+  {
+    "disease_name": "Malaria",
+    "ICD-10": ["B50","B51","B54"],
+    "symptoms": {
+      "major": ["Periodic fever (tertian/quartan)", "Chills", "Sweats", "Headache", "Myalgia"],
+      "minor": ["Anemia", "Splenomegaly"], 
+      "timeline": {"acute": "1–4 weeks after bite; cycles every 48–72 hours depending on species"}
+    },
+    "causes": {
+      "genetic": ["Hemoglobinopathies (sickle cell trait confers partial protection)"],
+      "environmental": ["Presence of Anopheles mosquitoes", "Warm climate"],
+      "lifestyle": [],
+      "pathogen": ["Plasmodium vivax (most common in Nepal)", "Plasmodium falciparum"]
+    },
+    "diagnostic_tests": [
+      {"name": "Peripheral blood smear (thick and thin)", "procedure": "Microscopic detection of parasites", "sensitivity": "50–90% (species dependent)", "specificity": "98%", "cost_public_NPR": "Free (government)", "cost_private_NPR": "150–200"},
+      {"name": "Rapid diagnostic test (RDT)", "procedure": "Antigen detection (HRP2/pLDH)", "sensitivity": "90%", "specificity": "90%", "cost_public_NPR": "Free (govt programs)", "cost_private_NPR": "200"}
+    ],
+    "case_fatality_rate": {"Nepal": "Virtually 0% (only ~36 cases in 2022)", "global": "0.3% (with treatment)"},
+    "mortality": {"Nepal": "Malaria eliminated (no recent deaths)", "global": "409,000 deaths (2019)"},
+    "severity": "Without treatment P. falciparum can be fatal (cerebral malaria); P. vivax rarely fatal if treated",
+    "complications": ["Cerebral malaria (neurological)", "Severe anemia", "Acute renal failure"],
+    "home_remedies": [{"remedy": "None – seek medical treatment immediately", "evidence": "no evidence"}],
+    "treatment": [
+      {"name": "Chloroquine (P. vivax)", "availability": "Free in Nepal (govt)", "notes": "Used in vivax-endemic areas"},
+      {"name": "Artemisinin-based combination therapy (ACT)", "availability": "Available via govt", "notes": "For suspected falciparum or chloroquine-resistant cases"}
+    ],
+    "prevention": "Mosquito nets, insect repellents, indoor residual spraying",
+    "vaccination": "No effective vaccine yet (RTS,S not used in Nepal)",
+    "demographics": {"age": "Affected travelers; local very low risk", "sex": "All", "ethnicity": "All"},
+    "risk_factors": ["Travel to malaria-endemic areas (south India, African travelers)"],
+    "commentary": "Nepal’s malaria program achieved elimination by 2022. Vigilance for imported cases remains essential."
+  },
+  {
+    "disease_name": "Visceral Leishmaniasis (Kala-azar)",
+    "ICD-10": ["B55.1"],
+    "symptoms": {
+      "major": ["Prolonged fever", "Weight loss", "Splenomegaly", "Pancytopenia (anemia, leukopenia)"],
+      "minor": ["Weakness", "Darkening of skin"], 
+      "timeline": {"subacute": "Symptoms over weeks–months without treatment"}
+    },
+    "causes": {
+      "genetic": [],
+      "environmental": ["Sandfly habitat (rural Terai)", "Poor housing conditions"],
+      "lifestyle": [],
+      "pathogen": ["Leishmania donovani (parasite, transmitted by Phlebotomus sandfly)"]
+    },
+    "diagnostic_tests": [
+      {"name": "rK39 Rapid Test (serology)", "procedure": "Fingerstick or serum dipstick for Leishmania antibody", "sensitivity": "≈90%", "specificity": "≈90%", "cost_public_NPR": "Free (program)", "cost_private_NPR": "200"},
+      {"name": "Bone marrow or splenic aspirate microscopy", "procedure": "Visualization of amastigotes", "sensitivity": "60–80%", "specificity": "High", "cost_public_NPR": "Free", "cost_private_NPR": "500"}
+    ],
+    "case_fatality_rate": {"Nepal": "≈5–10% if untreated (program data)", "global": "10–20% without treatment"},
+    "mortality": {"Nepal": "218 cases in 2018; now <1/10,000 population (elimination goal)", "global": "Up to 20% of cases die if untreated"},
+    "severity": "Chronic; usually fatal if untreated due to organ failure",
+    "complications": ["Massive splenomegaly complications", "Secondary infections"],
+    "home_remedies": [{"remedy": "None (requires specific drug therapy)","evidence": "no evidence"}],
+    "treatment": [
+      {"name": "Liposomal amphotericin B", "availability": "Donated (WHO/Gilead) but limited supply", "notes": "First-line, high cure rate"},
+      {"name": "Miltefosine", "availability": "Expensive, limited use", "notes": "Oral treatment; issues with resistance"},
+      {"name": "Pentavalent antimonials (Sodium stibogluconate)", "availability": "Limited (toxicity issues)", "notes": "Used historically"}
+    ],
+    "prevention": "Sandfly control (insecticide spraying, bed nets), case surveillance",
+    "vaccination": "None",
+    "demographics": {"age": "Mostly children and young adults", "sex": "All", "ethnicity": "Rural Terai populations"},
+    "risk_factors": ["Living in endemic rural areas", "Malnutrition"],
+    "commentary": "Nepal has reduced visceral leishmaniasis to near-elimination, but vigilance in new foci is needed."
+  },
+  {
+    "disease_name": "Japanese Encephalitis",
+    "ICD-10": ["A83.0"],
+    "symptoms": {
+      "major": ["Fever", "Headache", "Vomiting", "Altered mental status", "Neurological deficits (seizures, paralysis)"],
+      "minor": ["Lethargy"], 
+      "timeline": {"acute": "Incubation 5–15 days; rapid progression over days"}
+    },
+    "causes": {
+      "genetic": [],
+      "environmental": ["Rice paddy irrigation (mosquito breeding)", "Swine (amplifying hosts)"],
+      "lifestyle": [],
+      "pathogen": ["Japanese encephalitis virus (Flavivirus, transmitted by Culex mosquitoes)"]
+    },
+    "diagnostic_tests": [
+      {"name": "CSF/Serum IgM ELISA", "procedure": "IgM antibodies detection", "sensitivity": "75–80%", "specificity": "90%", "cost_public_NPR": "unspecified", "cost_private_NPR": "2,000–3,000"},
+      {"name": "PCR for JEV", "procedure": "CSF PCR", "sensitivity": "lower than IgM", "specificity": "High", "cost_public_NPR": "rare", "cost_private_NPR": "3,000+"}
+    ],
+    "case_fatality_rate": {"Nepal": "≈20–30% (reported cases)", "global": "Up to 30%"},
+    "mortality": {"Nepal": "Endemic; few cases in Kathmandu (rare traveler cases)", "global": "≈13,000 deaths/year globally"},
+    "severity": "Acute and severe; can cause long-term neurological disability in survivors",
+    "complications": ["Permanent neurological deficits", "Cerebral edema"],
+    "home_remedies": [{"remedy": "None – supportive only (hospitalize)", "evidence": "no evidence"}],
+    "treatment": [
+      {"name": "Supportive ICU care", "availability": "Limited (few ICU beds in Nepal)", "notes": "Ventilation for respiratory failure"},
+      {"name": "Corticosteroids (no proven benefit)", "availability": "Available", "notes": "Used experimentally"}
+    ],
+    "prevention": "Avoid mosquito bites (repellents, nets), vaccinate pigs/community",
+    "vaccination": "JE vaccine (inactivated/live attenuated) – not in routine Nepali program yet",
+    "demographics": {"age": "Children > Adults", "sex": "All", "ethnicity": "Terai regions"},
+    "risk_factors": ["Living in rice-growing areas", "Pig rearing"],
+    "commentary": "JE outbreaks have occurred in Nepal’s Terai; vaccination campaigns have started selectively."
+  },
+  {
+    "disease_name": "Hepatitis E",
+    "ICD-10": ["B17.2"],
+    "symptoms": {
+      "major": ["Acute jaundice", "Fever", "Fatigue", "Abdominal pain", "Nausea"],
+      "minor": ["Pruritus"], 
+      "timeline": {"acute": "Incubation 2–6 weeks; acute phase ~2 weeks; usually resolves in 1–2 months"}
+    },
+    "causes": {
+      "genetic": [],
+      "environmental": ["Contaminated water supply"],
+      "lifestyle": [],
+      "pathogen": ["Hepatitis E virus (HEV, fecal-oral transmission)"]
+    },
+    "diagnostic_tests": [
+      {"name": "Anti-HEV IgM ELISA", "procedure": "Serology for acute infection", "sensitivity": "≈80%", "specificity": "90%", "cost_public_NPR": "unspecified", "cost_private_NPR": "1,000"},
+      {"name": "HEV RNA PCR", "procedure": "Blood PCR", "sensitivity": "High", "specificity": "High", "cost_public_NPR": "rare", "cost_private_NPR": "2,000"}
+    ],
+    "case_fatality_rate": {"Nepal": "0.5–4% (normal); up to 25% in pregnant women", "global": "≈1% (higher in pregnancy)"},
+    "mortality": {"Nepal": "Several small outbreaks; exact numbers unspecified", "global": "≈70,000 deaths/year (mostly South Asia)"},
+    "severity": "Acute; severe in pregnant women (fulminant hepatic failure possible)",
+    "complications": ["Fulminant hepatic failure (esp. in pregnancy)"],
+    "home_remedies": [{"remedy": "Nutritional support, hydration", "evidence": "supportive care (observational)"}],
+    "treatment": [
+      {"name": "Supportive care", "availability": "All healthcare", "notes": "Rest, fluids; no specific antivirals in Nepal"},
+      {"name": "Ribavirin", "availability": "Not standard", "notes": "Used in chronic HEV (immunosuppressed)"}
+    ],
+    "prevention": "Safe drinking water, sanitation; pregnant women ensure water safety",
+    "vaccination": "HEV vaccine (Hecolin) exists but not used in Nepal",
+    "demographics": {"age": "Young adults", "sex": "All", "ethnicity": "All"},
+    "risk_factors": ["Poor sanitation", "Flood-related water contamination"],
+    "commentary": "Hepatitis E is endemic in Nepal (waterborne outbreaks). Pregnant women require special vigilance."
+  },
+  {
+    "disease_name": "Typhoid Fever",
+    "ICD-10": ["A01.0"],
+    "symptoms": {
+      "major": ["Prolonged fever", "Headache", "Abdominal pain", "Rose-colored rash (on chest)", "Encephalopathy (confusion) in severe"],
+      "minor": ["Constipation or diarrhea", "Bradycardia (relative)"], 
+      "timeline": {"subacute": "Insidious fever over 1–2 weeks"}
+    },
+    "causes": {
+      "genetic": [],
+      "environmental": ["Contaminated water/food (often water)"],
+      "lifestyle": ["Poor hand hygiene"],
+      "pathogen": ["Salmonella typhi", "S. Paratyphi A/B (paratyphoid)"]
+    },
+    "diagnostic_tests": [
+      {"name": "Blood culture", "procedure": "Culture of Salmonella from blood", "sensitivity": "60–70%", "specificity": "High", "cost_public_NPR": "free in surveillance programs", "cost_private_NPR": "1,000"},
+      {"name": "Widal test", "procedure": "Serology for O/H antigens", "sensitivity": "Lower (~70%)", "specificity": "Poor", "cost_public_NPR": "200", "cost_private_NPR": "400"}
+    ],
+    "case_fatality_rate": {"Nepal": "≈1–4% (untreated); <1% with treatment", "global": "≈0.3% (treated cases)"},
+    "mortality": {"Nepal": "Significant cause of gastroenteritis; exact mortality low due to treatment", "global": "Typhoid causes ~200,000 deaths/year globally"},
+    "severity": "Potentially severe with complications (intestinal hemorrhage/perforation) if untreated",
+    "complications": ["Intestinal perforation", "Intestinal hemorrhage", "Neuropsychiatric (delirium)"],
+    "home_remedies": [{"remedy": "Hydration, nutrition", "evidence": "supportive only"}],
+    "treatment": [
+      {"name": "Ceftriaxone (IV) or Azithromycin (oral)", "availability": "Available", "notes": "Standard therapy; rising resistance a concern"},
+      {"name": "Fluoroquinolones", "availability": "Available but resistance common", "notes": "Use with local resistance data"}
+    ],
+    "prevention": "Safe water, sanitation, handwashing",
+    "vaccination": "Typhoid conjugate vaccine (recently introduced in South Asia; not routine in Nepal)",
+    "demographics": {"age": "Children/Young adults", "sex": "All", "ethnicity": "All"},
+    "risk_factors": ["Travelers (water exposure)", "Post-flooding contamination"],
+    "commentary": "Typhoid remains endemic in Nepal’s urban areas. Clean water provision and new vaccines are needed."
+  }
+]
