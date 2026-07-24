@@ -1,0 +1,227 @@
+{
+  "healthcare_departments": [
+    {
+      "department_id": "DEP_TROP_INF",
+      "department_name": "Tropical & Infectious Disease",
+      "nepali_translation": "सरुवा तथा ट्रोपिकल रोग विभाग",
+      "common_diseases": [
+        {
+          "disease_id": "DIS_DENGUE",
+          "disease_name": "Dengue Fever / Severe Dengue",
+          "nepali_name": "डेङ्गु ज्वरो",
+          "description": "Mosquito-borne viral infection endemic across Nepalese plains and urban valleys during post-monsoon.",
+          "symptoms": [
+            "High fever",
+            "Severe headache",
+            "Retro-orbital pain (pain behind eyes)",
+            "Severe muscle and joint aches (breakbone fever)",
+            "Nausea/Vomiting",
+            "Petechiae (skin rash)"
+          ],
+          "local_context_symptoms": [
+            "आँखाको पछाडि दुख्ने (Pain behind eyes)",
+            "हड्डी घोटिएको जस्तो मांसपेशी दुख्ने (Breakbone body pain)"
+          ]
+        },
+        {
+          "disease_id": "DIS_SCRUB_TYPHUS",
+          "disease_name": "Scrub Typhus",
+          "nepali_name": "स्क्रब टाइफस",
+          "description": "Bacterial disease transmitted by chigger mites, prevalent during agricultural and harvest seasons.",
+          "symptoms": [
+            "Fever with chills",
+            "Eschar (black scab-like lesion at mite bite site)",
+            "Generalized lymphadenopathy",
+            "Mental confusion/Altered sensorium",
+            "Myalgia"
+          ],
+          "local_context_symptoms": [
+            "कालो खटिरा वा दाग (Eschar mark near groin/axilla)",
+            "काँपेर कडा ज्वरो आउने (Fever with chills)"
+          ]
+        },
+        {
+          "disease_id": "DIS_TYPHOID",
+          "disease_name": "Typhoid Fever (Enteric Fever)",
+          "nepali_name": "टाइफाइड / आन्तरिक ज्वरो",
+          "description": "Systemic infection caused by Salmonella Typhi, often due to water contamination in urban/rural areas.",
+          "symptoms": [
+            "Step-ladder rising fever",
+            "Coated tongue",
+            "Abdominal pain",
+            "Hepatosplenomegaly",
+            "Constipation or diarrhea"
+          ],
+          "local_context_symptoms": [
+            "जिब्रोमा सेतो लेदो जम्रेको (Coated white tongue)",
+            "दिनप्रतिदिन ज्वरो बढ्दै जाने (Step-ladder fever pattern)"
+          ]
+        }
+      ]
+    },
+    {
+      "department_id": "DEP_PULMONOLOGY",
+      "department_name": "Pulmonology & Respiratory Medicine",
+      "nepali_translation": "छाती तथा श्वासप्रश्वास रोग विभाग",
+      "common_diseases": [
+        {
+          "disease_id": "DIS_COPD",
+          "disease_name": "Chronic Obstructive Pulmonary Disease (COPD)",
+          "nepali_name": "दम रोग / दीर्घकालीन फोक्सोको रोग",
+          "description": "High prevalence in rural Nepal due to indoor biomass fuel smoke (chula) and urban air pollution.",
+          "symptoms": [
+            "Chronic progressive dyspnea (shortness of breath)",
+            "Productive cough with sputum",
+            "Wheezing",
+            "Chest tightness",
+            "Frequent respiratory infections"
+          ],
+          "local_context_symptoms": [
+            "दाउराको धूवाँले गर्दा सास फेर्न गाह्रो हुने (Breathing difficulty from biomass smoke)",
+            "छातीबाट सिट्टी बजेजस्तो आवाज आउने (Wheezing noise)"
+          ]
+        },
+        {
+          "disease_id": "DIS_TB",
+          "disease_name": "Pulmonary Tuberculosis",
+          "nepali_name": "क्षयरोग (टिबी)",
+          "description": "Airborne bacterial infection remain high priority in public health throughout Nepal.",
+          "symptoms": [
+            "Cough lasting more than 2 weeks",
+            "Hemoptysis (coughing up blood)",
+            "Night sweats",
+            "Unexplained weight loss",
+            "Low-grade evening fever"
+          ],
+          "local_context_symptoms": [
+            "दुई हप्ताभन्दा बढी खकार आउने खोकी (Cough >2 weeks)",
+            "राति पसिना आउने र बेलुका ज्वरो आउने (Night sweats & evening fever)"
+          ]
+        }
+      ]
+    },
+    {
+      "department_id": "DEP_GASTRO",
+      "department_name": "Gastroenterology & Hepatology",
+      "nepali_translation": "ग्यास्ट्रो तथा कलेजो रोग विभाग",
+      "common_diseases": [
+        {
+          "disease_id": "DIS_AGE",
+          "disease_name": "Acute Gastroenteritis / Cholera",
+          "nepali_name": "झाडापखाला / हैजा",
+          "description": "Frequent outbreaks during monsoon seasons due to water supply contamination.",
+          "symptoms": [
+            "Rice-watery diarrhea",
+            "Severe vomiting",
+            "Signs of dehydration (sunken eyes, dry mouth, poor skin turgor)",
+            "Abdominal cramps",
+            "Anuria (no urination)"
+          ],
+          "local_context_symptoms": [
+            "चामल धोएको जस्तो सेतो पखाला (Rice-water diarrhea)",
+            "आँखा गढ्ने र पिसाब रोकिने (Sunken eyes & reduced urine)"
+          ]
+        },
+        {
+          "disease_id": "DIS_HEP_E",
+          "disease_name": "Acute Hepatitis E",
+          "nepali_name": "हेपाटाइटिस 'इ' (कलेजोको सुजन)",
+          "description": "Fecal-oral transmission via contaminated drinking water; poses extreme risk to pregnant women.",
+          "symptoms": [
+            "Jaundice (yellow eyes and skin)",
+            "Dark tea-colored urine",
+            "Clay-colored stools",
+            "Anorexia (loss of appetite)",
+            "Right upper quadrant abdominal discomfort"
+          ],
+          "local_context_symptoms": [
+            "आँखा र छाला पहेंलो हुने (Yellowing of eyes)",
+            "कडा चिया जस्तो गाढा पिसाब (Dark tea-colored urine)"
+          ]
+        }
+      ]
+    },
+    {
+      "department_id": "DEP_EMERGENCY_ALT",
+      "department_name": "High-Altitude & Emergency Medicine",
+      "nepali_translation": "हिमाली तथा आकस्मिक चिकित्सा विभाग",
+      "common_diseases": [
+        {
+          "disease_id": "DIS_AMS_HAPE",
+          "disease_name": "HAPE / HACE (High Altitude Pulmonary/Cerebral Edema)",
+          "nepali_name": "लेक लाग्ने / उच्च स्थानको जटिलता",
+          "description": "Life-threatening altitude sickness triggered above 2,500m-3,000m during trekking or pilgrimage.",
+          "symptoms": [
+            "Severe throbbing headache non-responsive to paracetamol",
+            "Ataxia (unsteadiness/loss of coordination)",
+            "Pink frothy sputum",
+            "Breathlessness at rest",
+            "Confusion and altered mental state"
+          ],
+          "local_context_symptoms": [
+            "हिँड्दा ढल्किने वा सन्तुलन गुम्ने (Loss of physical balance while walking)",
+            "लेक लागेर गुलाबी फिँजयुक्त खकार आउने (Pink frothy sputum at high altitude)"
+          ]
+        }
+      ]
+    }
+  ],
+  "extreme_test_cases_for_judges": [
+    {
+      "case_id": "EDGE_001",
+      "title": "Atypical Scrub Typhus vs. Meningitis Presentation",
+      "patient_profile": "32-year-old male farmer from Chitwan",
+      "reported_symptoms": [
+        "High fever for 6 days",
+        "Severe confusion and altered behavior",
+        "Neck stiffness",
+        "Small black eschar mark hidden near groin region"
+      ],
+      "diagnostic_challenge": "Symptoms mimic pyogenic meningitis or encephalitis due to neurological alteration. Misrouting to Neurology without checking for vector-borne eschar can delay critical Doxycycline administration.",
+      "expected_department": "Tropical & Infectious Disease / Critical Care",
+      "recommended_action": "High-priority triage: Route to Infectious Diseases or ER immediately due to signs of systemic infection with CNS involvement."
+    },
+    {
+      "case_id": "EDGE_002",
+      "title": "Atypical Dengue Manifesting as Acute Abdomen",
+      "patient_profile": "24-year-old female from Kathmandu",
+      "reported_symptoms": [
+        "Sudden high fever resolving on day 4",
+        "Severe continuous right-upper quadrant abdominal pain",
+        "Persistent vomiting",
+        "Extreme fatigue and cold clammy extremities"
+      ],
+      "diagnostic_challenge": "Often misidentified as acute appendicitis or acute cholecystitis (Surgical Gastroenterology). However, this marks the critical capillary leak phase of Severe Dengue Hemorrhagic Fever.",
+      "expected_department": "Emergency Medicine / Infectious Disease",
+      "recommended_action": "Critical Emergency Warning: Flag plasma leakage phase of Severe Dengue. Immediate fluid management in ER required."
+    },
+    {
+      "case_id": "EDGE_003",
+      "title": "Severe Altitude Sickness (HACE) Mimicking Acute Stroke",
+      "patient_profile": "45-year-old trekker at Mustang (3,800m altitude)",
+      "reported_symptoms": [
+        "Inability to walk straight (staggering gait)",
+        "Slurred speech",
+        "Severe headache",
+        "Extreme drowsiness"
+      ],
+      "diagnostic_challenge": "Looks like an acute ischemic stroke (Neurology). At high altitude, this pattern points directly to High Altitude Cerebral Edema (HACE).",
+      "expected_department": "High-Altitude Medicine / Emergency Evacuation",
+      "recommended_action": "Emergency Altitude Protocol: Primary trigger must order immediate descent/oxygen therapy alongside referral to High-Altitude Medicine."
+    },
+    {
+      "case_id": "EDGE_004",
+      "title": "Fulminant Hepatitis E in Pregnancy",
+      "patient_profile": "26-year-old pregnant female (3rd trimester) from Biratnagar",
+      "reported_symptoms": [
+        "Progressive yellowish discoloration of eyes for 3 days",
+        "Tea-colored urine",
+        "Excessive sleepiness and disorientation (early encephalopathy)",
+        "Frequent vomiting"
+      ],
+      "diagnostic_challenge": "Presents as routine gastroenterology/jaundice issue, but Hepatitis E in 3rd-trimester pregnancy carries high mortality from Acute Liver Failure.",
+      "expected_department": "Hepatology / High-Risk Obstetrics / ICU",
+      "recommended_action": "High-Risk Multi-Specialty Flag: Alert both Hepatology and Obstetrics for rapid triage to prevent acute hepatic necrosis."
+    }
+  ]
+}

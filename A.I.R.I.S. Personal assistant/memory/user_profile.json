@@ -1,0 +1,75 @@
+{
+    "name": "Ronit Baniya Gupta",
+    "preferred_name": "Ronit",
+    "vehicles": {
+        "bikes": [
+            "Yamaha Fascino",
+            "Super Splendor"
+        ],
+        "cars": [
+            "Bolero",
+            "Suzuki Zxi"
+        ]
+    },
+    "devices": {
+        "phones": [
+            "Redmi Note 13 Pro"
+        ],
+        "computers": [],
+        "microcontrollers": [
+            "ESP32",
+            "Arduino"
+        ]
+    },
+    "technical_interests": [
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Computer Vision",
+        "Robotics",
+        "IoT",
+        "Automation",
+        "Embedded Systems",
+        "Computer Engineering",
+        "Calculus",
+        "Instrumentation",
+        "ROS2",
+        "GPS Tracking for Swift Ignite",
+        "xyz"
+    ],
+    "programming_languages": [
+        "Python",
+        "C",
+        "C++",
+        "Java",
+        "JavaScript",
+        "HTML",
+        "CSS"
+    ],
+    "achievements": [
+        "Best of the Best Award - UDAAN 2025",
+        "Best Innovative Project",
+        "Best Demonstration",
+        "Most Unique Project",
+        "Best Project Demonstration - OCTATE 2025",
+        "Most Creative Project",
+        "Most Innovative Project (Public Choice)",
+        "Innosphere Hardware Exhibition First Runner-Up"
+    ],
+    "current_goal": "Build AIRIS into a complete lifelong personal AI assistant.",
+    "current_studies": [
+        "Calculus 1",
+        "Instrumentation",
+        "Computer Engineering Subjects"
+    ],
+    "airis": {
+        "name": "AIRIS",
+        "full_form": "Artificial Intelligence Research and Information System",
+        "mission": "Become a lifelong AI assistant capable of managing projects, studies, knowledge, documents and personal productivity."
+    },
+    "gender": "male",
+    "preferences": {
+        "likes": [
+            "That"
+        ]
+    }
+}

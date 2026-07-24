@@ -1,0 +1,161 @@
+{
+  "province": "Gandaki Province",
+  "focus_area": "Pokhara and surrounding areas",
+  "departments": [
+    {
+      "department": "ENT",
+      "doctors": [
+        {
+          "name": "Dr. Nabin Raj Gautam",
+          "qualification": "MS",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant ENT, Head and Neck Surgery",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://scontent.fktm14-1.fna.fbcdn.net/v/t39.30808-1/298985816_127369100030173_8252326022393851678_n.jpg?stp=dst-jpg_tt6&cstp=mx1202x1220&ctp=s200x200&_nc_cat=106&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=EmQBq3m6HMkQ7kNvwEs8oUo&_nc_oc=AdrS81wI_2HxCkZbRtLgUrqEyCt0BxhRuW0guA2iCqRvjYvaTn8rS7k3OY1ft1yn4tQ&_nc_zt=24&_nc_ht=scontent.fktm14-1.fna&_nc_gid=OpTs8UPIBigWo_LRNlBT2w&_nc_ss=7b2a8&oh=00_AQB266qLQSxYfTKg8JILB2xDnddI7vxnInLU-r-H88JYvg&oe=6A68AD5B"
+        },
+        {
+          "name": "Dr. Donjan Bahadur Lamechhine",
+          "qualification": "MBBS, MS",
+          "hospital": "Fewa City Hospital",
+          "specialty": "ENT",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://imgs.search.brave.com/LdND5rr9-YalsdJJdObeQ6uNI6U2EHW2wCvmczjgjrc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9mY2gu/Y29tLm5wL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDI2LzA0L0Rv/bmphbi1iZHItbGFt/aWNoaGFuZS5wbmc"
+        },
+        {
+          "name": "Dr. Bonu Gaudel",
+          "qualification": "MBBS, MS",
+          "hospital": "Fewa City Hospital",
+          "specialty": "ENT",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://imgs.search.brave.com/STcpBORTwpnuaAUzAhvyt6sfhjDfSXGeAWQ2JadC8dM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9mY2gu/Y29tLm5wL3dwLWNv/bnRlbnQvdXBsb2Fk/cy8yMDI2LzA0L0J1/bnUtZ2F1ZGVsLnBu/Zw"
+        }
+      ]
+    },
+    {
+      "department": "General Medicine",
+      "doctors": [
+        {
+          "name": "Dr. Maan Bahadur Gurung",
+          "qualification": "MD",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Senior Consultant General Physician",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://cmh.com.np/_next/image?url=https%3A%2F%2Fapi.cmh.com.np%2Fmedia%2Ffiler_public%2Fd9%2Ff0%2Fd9f04ea2-7af5-4a14-b8db-120f5501b2cc%2Fdr_maan_2.png&w=640&q=75"
+        },
+        {
+          "name": "Dr. Bhoj Raj Neupane",
+          "qualification": "MBBS, MS",
+          "hospital": "Fewa City Hospital",
+          "specialty": "General Surgeon",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://scontent.fktm14-1.fna.fbcdn.net/v/t39.30808-6/460874170_3744660109127512_6658135740812281727_n.jpg?stp=dst-jpg_tt6&cstp=mx1536x1536&ctp=s1536x1536&_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=68M0s2bVOxgQ7kNvwGZR5sJ&_nc_oc=AdoPw9vSor-Uzofdf9hYyzhY3tt5s3s1oUk9KOQ55fwM7QjAiRQY5IS3zTSlWu8cEAY&_nc_zt=23&_nc_ht=scontent.fktm14-1.fna&_nc_gid=qh9-mhy0rUICcw5yy8xugw&_nc_ss=7b2a8&oh=00_AQBzXcDdORBT7BegmmKo7l_QZv5bc9pX9kmjZovcI9OiSA&oe=6A68C3A0"
+        }
+      ]
+    },
+    {
+      "department": "Cardiology",
+      "doctors": [
+        {
+          "name": "Dr. SK Jayswal",
+          "qualification": "MD",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Cardiologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://cmh.com.np/_next/image?url=https%3A%2F%2Fapi.cmh.com.np%2Fmedia%2Ffiler_public%2F27%2F8f%2F278ff459-fc17-4d10-aadc-1304df9a010c%2Fsk_jayswal.jpeg&w=640&q=75"
+        },
+        {
+          "name": "Dr. Arun Kadel",
+          "qualification": "MBBS, MD",
+          "hospital": "Fewa City Hospital",
+          "specialty": "Cardiologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://fch.com.np/wp-content/uploads/2026/04/Arun-kandel.png"
+        }
+      ]
+    },
+    {
+      "department": "Orthopedics",
+      "doctors": [
+        {
+          "name": "Dr. Jhapindra Pokharel",
+          "qualification": "MS",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Senior Consultant Orthopaedic and Trauma",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://cmh.com.np/_next/image?url=https%3A%2F%2Fapi.cmh.com.np%2Fmedia%2Ffiler_public%2Fe3%2Fbd%2Fe3bd4363-c2c3-402c-9ff7-4395f456da88%2Fjhapindra_pokhrel.jpeg&w=640&q=75"
+        },
+        {
+          "name": "Dr. Bharat Bahadur Khatri",
+          "qualification": "MBBS, MS Ortho",
+          "hospital": "Metrocity Hospital",
+          "specialty": "Senior Orthopedic Surgeon",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://www.onlinekhabar.com/wp-content/uploads/2023/10/Dr-Bharat-Bahadur-Khatri-270x170.jpg"
+        }
+      ]
+    },
+    {
+      "department": "Ophthalmology",
+      "doctors": [
+        {
+          "name": "Dr. Jamuna Gurung",
+          "qualification": "MS",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Ophthalmology",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://cmh.com.np/_next/image?url=https%3A%2F%2Fapi.cmh.com.np%2Fmedia%2Ffiler_public%2Fee%2Fec%2Feeec4cea-c185-4fa8-a9cb-856bd7183c1c%2Fdr_jamuna.png&w=640&q=75"
+        },
+        {
+          "name": "Dr. Renu Poudel",
+          "qualification": "MBBS, MD",
+          "hospital": "Fewa City Hospital",
+          "specialty": "Ophthalmologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://fch.com.np/wp-content/uploads/2026/04/renu-poudel.png"
+        }
+      ]
+    },
+    {
+      "department": "Dermatology",
+      "doctors": [
+        {
+          "name": "Dr. Pravin Baniya",
+          "qualification": "MD",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Senior Consultant Dermatologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://cmh.com.np/_next/image?url=https%3A%2F%2Fapi.cmh.com.np%2Fmedia%2Ffiler_public%2F4e%2F6e%2F4e6e5032-b40b-4bdd-94b5-c6f98721081c%2F4f784c11-0ed9-4bae-8fd0-773e3ea391d6.jpg&w=640&q=75"
+        },
+        {
+          "name": "Dr. Saraswati Neupane Sharma",
+          "qualification": "MBBS, MD",
+          "hospital": "Metrocity Hospital",
+          "specialty": "Senior Dermatologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://scontent.fktm14-1.fna.fbcdn.net/v/t39.30808-6/468546951_10158968797949567_350466675459375391_n.jpg?stp=dst-jpg_tt6&cstp=mx541x921&ctp=s541x921&_nc_cat=110&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=CJArOh6gIaUQ7kNvwG1XDgN&_nc_oc=Adq8RcWelF53elfJdCEWVNzEM9GBgsPw2ZfOQxcreNjkxq8FOg9xWXpfMxyaJAHyqDg&_nc_zt=23&_nc_ht=scontent.fktm14-1.fna&_nc_gid=IqPQU6HAju5ISAvw2PPL4g&_nc_ss=7b2a8&oh=00_AQAxuhbyJDr3Lu6bYnv43ceIuyhb77HSouGfXZ3A7XC-CQ&oe=6A68ABC6"
+        }
+      ]
+    },
+    {
+      "department": "Neurology",
+      "doctors": [
+        {
+          "name": "Dr. Krishna Dhungana",
+          "qualification": "DM",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Neurologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://hamshospital.com/wp-content/uploads/2022/09/Dr.-Krishna-Dhungana.jpeg"
+        },
+        {
+          "name": "Dr. Rajan Kumar Sharma",
+          "qualification": "MS, MCh",
+          "hospital": "Charak / Fewa City",
+          "specialty": "Neurosurgeon",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital.",
+          "photo_url": "https://cmh.com.np/_next/image?url=https%3A%2F%2Fapi.cmh.com.np%2Fmedia%2Ffiler_public%2F99%2Fc5%2F99c532a4-aa41-427a-a3ca-062fcd557210%2Fdr_rajan_sharma.jpeg&w=640&q=75"
+        }
+      ]
+    }
+  ],
+}

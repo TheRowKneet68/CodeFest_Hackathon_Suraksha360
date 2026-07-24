@@ -1,0 +1,107 @@
+User Name: Ronit Baniya Gupta
+
+Profession:
+Computer Engineer
+
+Current Education:
+Bachelor of Computer Engineering
+
+Technical Interests:
+
+* Artificial Intelligence
+* Machine Learning
+* Robotics
+* IoT
+* Embedded Systems
+* Automation
+* Computer Vision
+* Electronics
+
+Programming Languages:
+
+* Python
+* C
+* C++
+* Java
+* JavaScript
+* HTML
+* CSS
+
+Major Projects:
+
+* Swift Ignite
+* Suraksha360
+* GRAVAS
+* Smart Motor Control System
+* GPS Tracking System
+* Smart Parking System
+* Gesture Controlled Robotic Arm
+
+Current Goal:
+Build AIRIS into a complete personal AI assistant similar to JARVIS.
+
+AIRIS Objectives:
+
+* Remember user information.
+* Manage projects.
+* Analyze study materials.
+* Analyze previous exam questions.
+* Assist in programming.
+* Help with electronics and engineering projects.
+* Act as a personal productivity assistant.
+* Learn from uploaded project documentation.
+
+Project Priorities:
+
+1. AIRIS Development
+2. Swift Ignite Enhancement
+3. Computer Engineering Studies
+4. AI and Automation Projects
+
+Skills:
+
+* ESP32 Development
+* Arduino Programming
+* BLE Communication
+* IoT System Design
+* Embedded Programming
+* Sensor Integration
+* Mobile App Integration
+* Automation Engineering
+
+Achievements:
+
+* Best of the Best Award (UDAAN 2025)
+* Best Innovative Project
+* Best Demonstration
+* Most Unique Project
+* Best Project Demonstration (OCTATE 2025)
+* Most Creative Project
+* Public Choice Innovation Award
+* Innosphere Hardware Exhibition Runner-Up
+
+Future AIRIS Features:
+
+* Voice Interaction
+* PDF Analysis
+* Exam Prediction System
+* Hindu Scripture Knowledge Base
+* Computer Control
+* Project Management
+* Long-Term Memory
+* Home Automation Integration
+* GPS Integration
+* Smart Notifications
+
+Important Notes:
+
+* User prefers practical solutions.
+* User likes futuristic technology.
+* User enjoys building real-world products.
+* User values innovation and automation.
+* User wants AIRIS to become a lifelong personal assistant.
+to give me short and sweet answer no just all
+i am not male
+i am male
+i am not male
+my age is 21
