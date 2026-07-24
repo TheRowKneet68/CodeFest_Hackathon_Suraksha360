@@ -12,7 +12,7 @@ create extension if not exists "uuid-ossp";
 -- ============================================================
 
 -- 1a. User Profiles (patients & doctors)
-create table profiles (
+create table if not exists profiles (
   id            uuid primary key references auth.users(id) on delete cascade,
   role          text not null check (role in ('patient', 'doctor')),
   name          text not null,
@@ -29,7 +29,7 @@ create table profiles (
 );
 
 -- 1b. Medical Departments
-create table departments (
+create table if not exists departments (
   id            uuid primary key default gen_random_uuid(),
   name          text not null unique,
   nepali_name   text,
@@ -38,7 +38,7 @@ create table departments (
 );
 
 -- 1c. Hospitals
-create table hospitals (
+create table if not exists hospitals (
   id            uuid primary key default gen_random_uuid(),
   name          text not null,
   address       text,
@@ -49,7 +49,7 @@ create table hospitals (
 );
 
 -- 1d. Doctors
-create table doctors (
+create table if not exists doctors (
   id            uuid primary key default gen_random_uuid(),
   profile_id    uuid references profiles(id) on delete set null,
   name          text not null,
@@ -64,7 +64,7 @@ create table doctors (
 );
 
 -- 1e. Diseases
-create table diseases (
+create table if not exists diseases (
   id              uuid primary key default gen_random_uuid(),
   department_id   uuid references departments(id),
   name            text not null,
@@ -75,7 +75,7 @@ create table diseases (
 );
 
 -- 1f. Symptoms
-create table symptoms (
+create table if not exists symptoms (
   id            uuid primary key default gen_random_uuid(),
   name          text not null unique,
   nepali_name   text,
@@ -83,14 +83,14 @@ create table symptoms (
 );
 
 -- 1g. Disease-Symptom mapping
-create table disease_symptoms (
+create table if not exists disease_symptoms (
   disease_id    uuid references diseases(id) on delete cascade,
   symptom_id    uuid references symptoms(id) on delete cascade,
   primary key (disease_id, symptom_id)
 );
 
 -- 1h. Disease-disease related mapping
-create table disease_relations (
+create table if not exists disease_relations (
   disease_id      uuid references diseases(id) on delete cascade,
   related_disease_id uuid references diseases(id) on delete cascade,
   primary key (disease_id, related_disease_id),
@@ -98,7 +98,7 @@ create table disease_relations (
 );
 
 -- 1i. Patient Vitals
-create table vitals (
+create table if not exists vitals (
   id              uuid primary key default gen_random_uuid(),
   patient_id      uuid not null references profiles(id) on delete cascade,
   temperature     numeric(4,1),
@@ -111,7 +111,7 @@ create table vitals (
 );
 
 -- 1j. Appointments
-create table appointments (
+create table if not exists appointments (
   id              uuid primary key default gen_random_uuid(),
   patient_id      uuid not null references profiles(id) on delete cascade,
   doctor_id       uuid references doctors(id),
@@ -125,7 +125,7 @@ create table appointments (
 );
 
 -- 1k. Prescriptions / Medications
-create table prescriptions (
+create table if not exists prescriptions (
   id              uuid primary key default gen_random_uuid(),
   patient_id      uuid not null references profiles(id) on delete cascade,
   doctor_id       uuid references doctors(id),
@@ -141,7 +141,7 @@ create table prescriptions (
 );
 
 -- 1l. Health Records / Visit History
-create table health_records (
+create table if not exists health_records (
   id              uuid primary key default gen_random_uuid(),
   patient_id      uuid not null references profiles(id) on delete cascade,
   doctor_id       uuid references doctors(id),
@@ -156,7 +156,7 @@ create table health_records (
 );
 
 -- 1m. AI Chat Messages
-create table chat_messages (
+create table if not exists chat_messages (
   id              uuid primary key default gen_random_uuid(),
   patient_id      uuid not null references profiles(id) on delete cascade,
   role            text not null check (role in ('patient','assistant')),
@@ -166,7 +166,7 @@ create table chat_messages (
 );
 
 -- 1n. Emergency Contacts
-create table emergency_contacts (
+create table if not exists emergency_contacts (
   id              uuid primary key default gen_random_uuid(),
   patient_id      uuid not null references profiles(id) on delete cascade,
   name            text not null,
@@ -177,7 +177,7 @@ create table emergency_contacts (
 );
 
 -- 1o. Notifications
-create table notifications (
+create table if not exists notifications (
   id              uuid primary key default gen_random_uuid(),
   profile_id      uuid not null references profiles(id) on delete cascade,
   title           text not null,
@@ -191,18 +191,18 @@ create table notifications (
 -- 2. INDEXES
 -- ============================================================
 
-create index idx_profiles_role on profiles(role);
-create index idx_profiles_swasthya_id on profiles(swasthya_id);
-create index idx_doctors_department on doctors(department_id);
-create index idx_doctors_hospital on doctors(hospital_id);
-create index idx_diseases_department on diseases(department_id);
-create index idx_vitals_patient on vitals(patient_id, recorded_at desc);
-create index idx_appointments_patient on appointments(patient_id, appointment_date desc);
-create index idx_appointments_doctor on appointments(doctor_id, appointment_date desc);
-create index idx_prescriptions_patient on prescriptions(patient_id);
-create index idx_health_records_patient on health_records(patient_id, visit_date desc);
-create index idx_chat_messages_patient on chat_messages(patient_id, created_at desc);
-create index idx_notifications_profile on notifications(profile_id, created_at desc);
+create index if not exists idx_profiles_role on profiles(role);
+create index if not exists idx_profiles_swasthya_id on profiles(swasthya_id);
+create index if not exists idx_doctors_department on doctors(department_id);
+create index if not exists idx_doctors_hospital on doctors(hospital_id);
+create index if not exists idx_diseases_department on diseases(department_id);
+create index if not exists idx_vitals_patient on vitals(patient_id, recorded_at desc);
+create index if not exists idx_appointments_patient on appointments(patient_id, appointment_date desc);
+create index if not exists idx_appointments_doctor on appointments(doctor_id, appointment_date desc);
+create index if not exists idx_prescriptions_patient on prescriptions(patient_id);
+create index if not exists idx_health_records_patient on health_records(patient_id, visit_date desc);
+create index if not exists idx_chat_messages_patient on chat_messages(patient_id, created_at desc);
+create index if not exists idx_notifications_profile on notifications(profile_id, created_at desc);
 
 -- ============================================================
 -- 3. ROW LEVEL SECURITY
@@ -225,67 +225,49 @@ alter table emergency_contacts enable row level security;
 alter table notifications enable row level security;
 
 -- Profiles: users read their own, doctors can read patient profiles
-create policy "Users view own profile"
-  on profiles for select using (auth.uid() = id);
+drop policy if exists "Users view own profile" on profiles; create policy "Users view own profile" on profiles for select using (auth.uid() = id);
 
-create policy "Users insert own profile"
-  on profiles for insert with check (auth.uid() = id);
+drop policy if exists "Users insert own profile" on profiles; create policy "Users insert own profile" on profiles for insert with check (auth.uid() = id);
 
-create policy "Users update own profile"
-  on profiles for update using (auth.uid() = id);
+drop policy if exists "Users update own profile" on profiles; create policy "Users update own profile" on profiles for update using (auth.uid() = id);
 
 -- Public read for reference tables
-create policy "Public read departments"
-  on departments for select using (true);
+drop policy if exists "Public read departments" on departments; create policy "Public read departments" on departments for select using (true);
 
-create policy "Public read hospitals"
-  on hospitals for select using (true);
+drop policy if exists "Public read hospitals" on hospitals; create policy "Public read hospitals" on hospitals for select using (true);
 
-create policy "Public read doctors"
-  on doctors for select using (true);
+drop policy if exists "Public read doctors" on doctors; create policy "Public read doctors" on doctors for select using (true);
 
-create policy "Public read diseases"
-  on diseases for select using (true);
+drop policy if exists "Public read diseases" on diseases; create policy "Public read diseases" on diseases for select using (true);
 
-create policy "Public read symptoms"
-  on symptoms for select using (true);
+drop policy if exists "Public read symptoms" on symptoms; create policy "Public read symptoms" on symptoms for select using (true);
 
-create policy "Public read disease_symptoms"
-  on disease_symptoms for select using (true);
+drop policy if exists "Public read disease_symptoms" on disease_symptoms; create policy "Public read disease_symptoms" on disease_symptoms for select using (true);
 
-create policy "Public read disease_relations"
-  on disease_relations for select using (true);
+drop policy if exists "Public read disease_relations" on disease_relations; create policy "Public read disease_relations" on disease_relations for select using (true);
 
 -- Vitals: patients own, doctors read assigned patients
-create policy "Patients manage own vitals"
-  on vitals for all using (auth.uid() = patient_id);
+drop policy if exists "Patients manage own vitals" on vitals; create policy "Patients manage own vitals" on vitals for all using (auth.uid() = patient_id);
 
 -- Appointments
-create policy "Patients manage own appointments"
-  on appointments for all using (auth.uid() = patient_id);
+drop policy if exists "Patients manage own appointments" on appointments; create policy "Patients manage own appointments" on appointments for all using (auth.uid() = patient_id);
 
 -- Prescriptions
-create policy "Patients manage own prescriptions"
-  on prescriptions for all using (auth.uid() = patient_id);
+drop policy if exists "Patients manage own prescriptions" on prescriptions; create policy "Patients manage own prescriptions" on prescriptions for all using (auth.uid() = patient_id);
 
 -- Health records
-create policy "Patients manage own records"
-  on health_records for all using (auth.uid() = patient_id);
+drop policy if exists "Patients manage own records" on health_records; create policy "Patients manage own records" on health_records for all using (auth.uid() = patient_id);
 
 -- Chat messages
-create policy "Patients manage own messages"
-  on chat_messages for all using (auth.uid() = patient_id);
+drop policy if exists "Patients manage own messages" on chat_messages; create policy "Patients manage own messages" on chat_messages for all using (auth.uid() = patient_id);
 
 -- Emergency contacts
-create policy "Patients manage own emergency contacts"
-  on emergency_contacts for all using (auth.uid() = patient_id);
+drop policy if exists "Patients manage own emergency contacts" on emergency_contacts; create policy "Patients manage own emergency contacts" on emergency_contacts for all using (auth.uid() = patient_id);
 
 -- Notifications
-create policy "Users view own notifications"
-  on notifications for select using (auth.uid() = profile_id);
+drop policy if exists "Users view own notifications" on notifications; create policy "Users view own notifications" on notifications for select using (auth.uid() = profile_id);
 
-create policy "Users update own notifications"
-  on notifications for update using (auth.uid() = profile_id);
+drop policy if exists "Users update own notifications" on notifications; create policy "Users update own notifications" on notifications for update using (auth.uid() = profile_id);
 
 -- ============================================================
 -- 4. AUTOMATED UPDATED_AT TRIGGER
@@ -299,6 +281,7 @@ begin
 end;
 $$ language plpgsql;
 
+drop trigger if exists profiles_updated_at on profiles;
 create trigger profiles_updated_at
   before update on profiles
   for each row execute function update_updated_at();
@@ -487,7 +470,7 @@ $$;
 -- ============================================================
 
 -- 8a. Consent grants: patient grants doctor access to their history
-create table medical_history_consents (
+create table if not exists medical_history_consents (
   id              uuid primary key default gen_random_uuid(),
   patient_id      uuid not null references profiles(id) on delete cascade,
   doctor_id       uuid not null references profiles(id) on delete cascade,
@@ -499,7 +482,7 @@ create table medical_history_consents (
 );
 
 -- 8b. Emergency access log: when a doctor accesses history in emergency
-create table emergency_access_logs (
+create table if not exists emergency_access_logs (
   id              uuid primary key default gen_random_uuid(),
   patient_id      uuid not null references profiles(id) on delete cascade,
   doctor_id       uuid not null references profiles(id) on delete cascade,
@@ -517,25 +500,20 @@ alter table profiles add column if not exists share_health_records boolean not n
 -- 8d. RLS for consent table
 alter table medical_history_consents enable row level security;
 
-create policy "Patients manage own consents"
-  on medical_history_consents for all using (auth.uid() = patient_id);
+drop policy if exists "Patients manage own consents" on medical_history_consents; create policy "Patients manage own consents" on medical_history_consents for all using (auth.uid() = patient_id);
 
-create policy "Doctors view consents granted to them"
-  on medical_history_consents for select using (auth.uid() = doctor_id);
+drop policy if exists "Doctors view consents granted to them" on medical_history_consents; create policy "Doctors view consents granted to them" on medical_history_consents for select using (auth.uid() = doctor_id);
 
 -- 8e. RLS for emergency access logs
 alter table emergency_access_logs enable row level security;
 
-create policy "Patients view own emergency logs"
-  on emergency_access_logs for select using (auth.uid() = patient_id);
+drop policy if exists "Patients view own emergency logs" on emergency_access_logs; create policy "Patients view own emergency logs" on emergency_access_logs for select using (auth.uid() = patient_id);
 
-create policy "Doctors insert emergency access logs"
-  on emergency_access_logs for insert with check (auth.uid() = doctor_id);
+drop policy if exists "Doctors insert emergency access logs" on emergency_access_logs; create policy "Doctors insert emergency access logs" on emergency_access_logs for insert with check (auth.uid() = doctor_id);
 
 -- 8f. Doctor can read patient health data ONLY with consent or emergency
 -- Vitals access with consent
-create policy "Doctors read patient vitals with consent"
-  on vitals for select using (
+drop policy if exists "Doctors read patient vitals with consent" on vitals; create policy "Doctors read patient vitals with consent" on vitals for select using (
     exists (
       select 1 from medical_history_consents c
       where c.patient_id = vitals.patient_id
@@ -547,8 +525,7 @@ create policy "Doctors read patient vitals with consent"
   );
 
 -- Prescriptions access with consent
-create policy "Doctors read patient prescriptions with consent"
-  on prescriptions for select using (
+drop policy if exists "Doctors read patient prescriptions with consent" on prescriptions; create policy "Doctors read patient prescriptions with consent" on prescriptions for select using (
     exists (
       select 1 from medical_history_consents c
       where c.patient_id = prescriptions.patient_id
@@ -560,8 +537,7 @@ create policy "Doctors read patient prescriptions with consent"
   );
 
 -- Health records access with consent
-create policy "Doctors read patient health records with consent"
-  on health_records for select using (
+drop policy if exists "Doctors read patient health records with consent" on health_records; create policy "Doctors read patient health records with consent" on health_records for select using (
     exists (
       select 1 from medical_history_consents c
       where c.patient_id = health_records.patient_id
@@ -574,8 +550,7 @@ create policy "Doctors read patient health records with consent"
 
 -- 8g. Emergency override: doctors with 'doctor' role can read in emergencies
 -- (emergency_data_access flag on profile controls this)
-create policy "Emergency override: doctors read vitals"
-  on vitals for select using (
+drop policy if exists "Emergency override: doctors read vitals" on vitals; create policy "Emergency override: doctors read vitals" on vitals for select using (
     exists (
       select 1 from profiles p
       where p.id = vitals.patient_id
@@ -584,8 +559,7 @@ create policy "Emergency override: doctors read vitals"
     )
   );
 
-create policy "Emergency override: doctors read prescriptions"
-  on prescriptions for select using (
+drop policy if exists "Emergency override: doctors read prescriptions" on prescriptions; create policy "Emergency override: doctors read prescriptions" on prescriptions for select using (
     exists (
       select 1 from profiles p
       where p.id = prescriptions.patient_id
@@ -594,8 +568,7 @@ create policy "Emergency override: doctors read prescriptions"
     )
   );
 
-create policy "Emergency override: doctors read health records"
-  on health_records for select using (
+drop policy if exists "Emergency override: doctors read health records" on health_records; create policy "Emergency override: doctors read health records" on health_records for select using (
     exists (
       select 1 from profiles p
       where p.id = health_records.patient_id
@@ -604,8 +577,7 @@ create policy "Emergency override: doctors read health records"
     )
   );
 
-create policy "Emergency override: doctors read profiles"
-  on profiles for select using (
+drop policy if exists "Emergency override: doctors read profiles" on profiles; create policy "Emergency override: doctors read profiles" on profiles for select using (
     emergency_data_access = true
     and auth.uid() in (select id from profiles where role = 'doctor')
     and id <> auth.uid()
@@ -627,8 +599,7 @@ create table if not exists diagnostic_tests (
 );
 
 alter table diagnostic_tests enable row level security;
-create policy "Public read diagnostic tests"
-  on diagnostic_tests for select using (true);
+drop policy if exists "Public read diagnostic tests" on diagnostic_tests; create policy "Public read diagnostic tests" on diagnostic_tests for select using (true);
 
 -- ============================================================
 -- 10. EDGE CASES TABLE (critical misdiagnosis scenarios)
@@ -646,5 +617,4 @@ create table if not exists edge_cases (
 );
 
 alter table edge_cases enable row level security;
-create policy "Public read edge cases"
-  on edge_cases for select using (true);
+drop policy if exists "Public read edge cases" on edge_cases; create policy "Public read edge cases" on edge_cases for select using (true);

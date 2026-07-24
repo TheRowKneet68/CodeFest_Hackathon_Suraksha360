@@ -17,11 +17,14 @@ insert into departments (name) values
   ('Cardiothoracic & Vascular Surgery')
 on conflict (name) do nothing;
 
--- 2. ADDITIONAL HOSPITALS
-insert into hospitals (name, address, phone) values
-  ('Pokhara Health Care', 'Pokhara', '+977-61-5XXXXX'),
-  ('Province Hospital, Pokhara', 'Pokhara, Gandaki Province', '+977-61-5XXXXX')
-on conflict (name) do nothing;
+-- 2. ADDITIONAL HOSPITALS (with safe existence check)
+insert into hospitals (name, address, phone)
+select 'Pokhara Health Care', 'Pokhara', '+977-61-5XXXXX'
+where not exists (select 1 from hospitals where name = 'Pokhara Health Care');
+
+insert into hospitals (name, address, phone)
+select 'Province Hospital, Pokhara', 'Pokhara, Gandaki Province', '+977-61-5XXXXX'
+where not exists (select 1 from hospitals where name = 'Province Hospital, Pokhara');
 
 -- 3. ADDITIONAL SYMPTOMS (from all JSON sources)
 insert into symptoms (name) values
