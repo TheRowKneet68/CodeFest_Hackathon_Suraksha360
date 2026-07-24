@@ -20,16 +20,16 @@ IMPORTANT
 
 3. SIM800L SERIAL CONNECTION
 - SIM800L TX          -> NodeMCU RX (RX / GPIO3) directly
-- NodeMCU TX (TX / GPIO1) -> 10k ohm resistor -> SIM800L RX
-- At the SIM800L RX point, connect a 20k ohm resistor from SIM800L RX to GND.
+- NodeMCU TX (TX / GPIO1) -> 1k ohm resistor -> SIM800L RX
+- At the SIM800L RX point, connect a 2k ohm resistor from SIM800L RX to GND.
 
   ESP8266 TX (3.3V)
           |
-        10k ohm
+         1k ohm
           |
           +----------> SIM800L RX
           |
-        20k ohm
+         2k ohm
           |
          GND
 
