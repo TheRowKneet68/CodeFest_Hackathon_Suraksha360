@@ -1,0 +1,91 @@
+{
+  "province": "Gandaki Province",
+  "departments": [
+    {
+      "department": "ENT",
+      "common_diseases": [
+        {
+          "disease": "Chronic Sinusitis / Allergic Rhinitis",
+          "symptoms": ["Persistent nasal congestion", "Runny nose", "Post-nasal drip", "Facial pain/pressure", "Headache"],
+          "nepal_context": "Worsened by dust and pollution."
+        },
+        {
+          "disease": "Acute Otitis Media",
+          "symptoms": ["Ear pain", "Fever", "Hearing loss", "Fluid drainage"],
+          "nepal_context": "Common in children after colds."
+        }
+      ]
+    },
+    {
+      "department": "General Medicine",
+      "common_diseases": [
+        {
+          "disease": "Typhoid Fever",
+          "symptoms": ["High fever", "Headache", "Abdominal pain", "Weakness"],
+          "nepal_context": "Waterborne illness."
+        },
+        {
+          "disease": "Type 2 Diabetes",
+          "symptoms": ["Increased thirst/urination", "Fatigue", "Blurred vision"],
+          "nepal_context": "Rising in urban areas."
+        }
+      ]
+    },
+    {
+      "department": "Cardiology",
+      "common_diseases": [
+        {
+          "disease": "Coronary Artery Disease",
+          "symptoms": ["Chest pain", "Shortness of breath", "Fatigue"],
+          "nepal_context": "Linked to hypertension."
+        }
+      ]
+    },
+    {
+      "department": "Orthopedics",
+      "common_diseases": [
+        {
+          "disease": "Osteoarthritis",
+          "symptoms": ["Joint pain", "Stiffness", "Swelling"],
+          "nepal_context": "Common from physical labor."
+        }
+      ]
+    },
+    {
+      "department": "Ophthalmology",
+      "common_diseases": [
+        {
+          "disease": "Cataract",
+          "symptoms": ["Blurred vision", "Glare", "Faded colors"],
+          "nepal_context": "Age and UV related."
+        }
+      ]
+    },
+    {
+      "department": "Dermatology",
+      "common_diseases": [
+        {
+          "disease": "Fungal Infections",
+          "symptoms": ["Itchy red patches", "Scaling skin"],
+          "nepal_context": "Humid climate."
+        }
+      ]
+    },
+    {
+      "department": "Neurology",
+      "common_diseases": [
+        {
+          "disease": "Migraine",
+          "symptoms": ["Throbbing headache", "Nausea", "Light sensitivity"],
+          "nepal_context": "Stress and altitude triggers."
+        },
+        {
+          "disease": "Stroke",
+          "symptoms": ["Sudden weakness", "Speech difficulty", "Severe headache"],
+          "nepal_context": "Hypertension related."
+        }
+      ]
+    }
+  ],
+  "note": "Use this with doctors file for symptom matching."
+}
