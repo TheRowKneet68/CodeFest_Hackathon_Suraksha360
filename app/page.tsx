@@ -317,6 +317,31 @@ export default function PatientPortal() {
   const departments = ["All", ...new Set(doctors.map(d => d.department).filter(Boolean))];
   const totalTests = tests.reduce((sum, item) => sum + (item.required_diagnostic_tests || []).length, 0);
 
+  function severityLevel(diagnosis: string): { level: "critical" | "high" | "medium" | "low" | "healthy"; label: string } {
+    const d = (diagnosis || "").toLowerCase();
+    if (d.includes("heart failure") || d.includes("stroke") || d.includes("hape") || d.includes("hace") || d.includes("pulmonary tuberculosis") || d.includes("severe dengue")) return { level: "critical", label: "Critical" };
+    if (d.includes("dengue") || d.includes("copd") || d.includes("coronary artery") || d.includes("angina") || d.includes("hypertension") || d.includes("diabetes") || d.includes("scrub typhus") || d.includes("typhoid") || d.includes("pneumonia")) return { level: "high", label: "High" };
+    if (d.includes("gastroenteritis") || d.includes("sinusitis") || d.includes("migraine") || d.includes("osteoarthritis") || d.includes("tonsillitis") || d.includes("otitis media") || d.includes("hepatitis")) return { level: "medium", label: "Medium" };
+    if (d.includes("cold") || d.includes("viral fever") || d.includes("allergic") || d.includes("rhinitis") || d.includes("rash") || d.includes("fungal") || d.includes("cataract")) return { level: "low", label: "Low" };
+    if (d.includes("routine") || d.includes("checkup") || d.includes("normal") || d.includes("healthy")) return { level: "healthy", label: "Healthy" };
+    return { level: "low", label: "Low" };
+  }
+
+  const severityColors: Record<string, string> = {
+    critical: "var(--danger)",
+    high: "var(--amber)",
+    medium: "#f59e0b",
+    low: "var(--primary)",
+    healthy: "var(--success)",
+  };
+  const severityBgs: Record<string, string> = {
+    critical: "var(--danger-soft)",
+    high: "var(--amber-soft)",
+    medium: "#fef3c7",
+    low: "var(--primary-soft)",
+    healthy: "var(--success-soft)",
+  };
+
   const handleSendChat = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!chatInput.trim()) return;
@@ -767,18 +792,24 @@ export default function PatientPortal() {
                 </div>
                 {healthRecords.length ? (
                   <div className="condition-list">
-                    {healthRecords.map((r, i) => (
-                      <article key={i} className="condition-item">
-                        <span className="pill">{r.record_type || "visit"}</span>
-                        <h3>{r.diagnosis || "No diagnosis recorded"}</h3>
-                        <p>{r.treatment || "No treatment notes"}</p>
-                        <div className="meta-line">
-                          <span className="tag">{r.visit_date || "Unknown date"}</span>
-                          <span className="tag">{r.status || "completed"}</span>
-                        </div>
-                        {r.notes && <p style={{ marginTop: 6, fontSize: "0.85rem", color: "var(--muted)" }}>{r.notes}</p>}
-                      </article>
-                    ))}
+                    {healthRecords.map((r, i) => {
+                      const sev = severityLevel(r.diagnosis || "");
+                      return (
+                        <article key={i} className="condition-item" style={{ borderLeft: `5px solid ${severityColors[sev.level]}`, background: severityBgs[sev.level] }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+                            <span className="pill" style={{ background: severityColors[sev.level], color: "#fff", borderColor: "transparent" }}>{sev.label}</span>
+                            <span className="pill">{r.record_type || "visit"}</span>
+                          </div>
+                          <h3>{r.diagnosis || "No diagnosis recorded"}</h3>
+                          <p>{r.treatment || "No treatment notes"}</p>
+                          <div className="meta-line">
+                            <span className="tag">{r.visit_date || "Unknown date"}</span>
+                            <span className="tag">{r.status || "completed"}</span>
+                          </div>
+                          {r.notes && <p style={{ marginTop: 6, fontSize: "0.85rem", color: "var(--muted)" }}>{r.notes}</p>}
+                        </article>
+                      );
+                    })}
                   </div>
                 ) : (
                   <div className="empty-state"><SearchX /><h3>No past records</h3><p>Your visit history will appear here once recorded by a doctor.</p></div>
