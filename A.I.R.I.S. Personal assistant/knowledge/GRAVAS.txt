@@ -1,0 +1,82 @@
+GRAVAS
+
+Full Name:
+GRAVAS (Gesture Recognition and Vision Assisted System)
+
+Project Type:
+Computer Vision + Robotics + Automation Project
+
+Developer:
+Ronit Baniya Gupta
+
+Project Description:
+GRAVAS is a gesture-controlled robotic and automation system that uses computer vision to recognize hand gestures and convert them into control commands. The system is designed to allow touchless interaction between humans and machines.
+
+Core Technologies:
+
+* Python
+* OpenCV
+* Computer Vision
+* Hand Tracking
+* Gesture Recognition
+* Arduino
+* Serial Communication
+* Artificial Intelligence
+
+Main Features:
+
+* Real-time hand tracking
+* Gesture recognition
+* Contactless control
+* Arduino integration
+* Live camera processing
+* Human-machine interaction
+
+Working Principle:
+
+1. Camera captures live video feed.
+2. OpenCV processes image frames.
+3. Hand landmarks are detected.
+4. Gestures are identified.
+5. Commands are generated.
+6. Commands are sent to Arduino.
+7. Arduino controls connected hardware.
+
+Applications:
+
+* Robotics Control
+* Smart Home Automation
+* Assistive Technology
+* Human Machine Interfaces
+* Industrial Automation
+* Educational Demonstrations
+
+Project Goals:
+
+* Create an intuitive gesture-based control system.
+* Reduce dependency on physical buttons.
+* Demonstrate practical use of computer vision.
+* Integrate software intelligence with hardware control.
+
+Skills Demonstrated:
+
+* Computer Vision
+* Image Processing
+* Embedded Systems
+* Arduino Programming
+* Python Programming
+* Automation
+* Human Computer Interaction
+
+Future Improvements:
+
+* Voice Control Integration
+* AI-Based Gesture Learning
+* Wireless Communication
+* Mobile App Interface
+* Multi-Hand Recognition
+* Custom Gesture Training
+* Integration with AIRIS
+
+Notes:
+GRAVAS represents the combination of software intelligence and hardware control, allowing natural human gestures to control electronic systems without physical contact.

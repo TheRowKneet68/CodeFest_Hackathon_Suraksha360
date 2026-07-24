@@ -1,0 +1,65 @@
+{
+    "GRAVAS": {
+        "file": "knowledge\\GRAVAS.txt",
+        "keywords": [
+            "gravas",
+            "gravas"
+        ]
+    },
+    "Suraksha360": {
+        "file": "knowledge\\Suraksha360.txt",
+        "keywords": [
+            "suraksha360",
+            "suraksha360"
+        ]
+    },
+    "Swift Ignite": {
+        "file": "knowledge\\Swift Ignite.txt",
+        "keywords": [
+            "swift ignite",
+            "swift ignite"
+        ]
+    },
+    "Air Mouse": {
+        "file": "knowledge\\Air Mouse.txt",
+        "keywords": [
+            "air mouse",
+            "air mouse"
+        ]
+    },
+    "RC Car": {
+        "file": "knowledge\\RC Car.txt",
+        "keywords": [
+            "rc car",
+            "rc car"
+        ]
+    },
+    "RC Car Project": {
+        "file": "knowledge\\RC Car Project.txt",
+        "keywords": [
+            "rc car project",
+            "rc car project"
+        ]
+    },
+    "SwiftIgnite": {
+        "file": "knowledge\\SwiftIgnite.txt",
+        "keywords": [
+            "swiftignite",
+            "swiftignite"
+        ]
+    },
+    "AIRIS": {
+        "file": "knowledge\\AIRIS.txt",
+        "keywords": [
+            "airis",
+            "airis"
+        ]
+    },
+    "RUDRA-1": {
+        "file": "knowledge\\RUDRA-1.txt",
+        "keywords": [
+            "rudra-1",
+            "rudra 1"
+        ]
+    }
+}

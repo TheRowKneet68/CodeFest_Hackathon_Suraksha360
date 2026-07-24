@@ -1,0 +1,10 @@
+{
+    "description": "Remote controlled robotic vehicle platform.",
+    "status": "active",
+    "technologies": [
+        "ESP32",
+        "Motor Driver",
+        "Wireless Control"
+    ],
+    "awards": []
+}
