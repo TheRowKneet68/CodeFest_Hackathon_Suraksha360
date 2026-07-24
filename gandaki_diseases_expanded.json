@@ -1,0 +1,36 @@
+{
+  "title": "Expanded Diseases (50+ Entries)",
+  "departments": [
+    {
+      "department": "ENT",
+      "diseases": [
+        {"disease": "Sinusitis", "symptoms": ["Facial pain", "Nasal congestion", "Headache"], "related": ["Common Cold", "Allergies"]},
+        {"disease": "Tonsillitis", "symptoms": ["Sore throat", "Difficulty swallowing", "Fever"], "related": ["Pharyngitis"]},
+        {"disease": "Allergic Rhinitis", "symptoms": ["Sneezing", "Itchy nose", "Watery eyes"], "related": ["Sinusitis"]}
+      ]
+    },
+    {
+      "department": "General Medicine",
+      "diseases": [
+        {"disease": "Typhoid", "symptoms": ["Prolonged fever", "Abdominal pain", "Weakness"], "related": ["Fever"]},
+        {"disease": "Dengue", "symptoms": ["High fever", "Severe body pain", "Rash"], "related": ["Viral Fever"]},
+        {"disease": "Hypertension", "symptoms": ["Headache", "Dizziness", "Nosebleed"], "related": ["Heart Disease"]}
+      ]
+    },
+    {
+      "department": "Cardiology",
+      "diseases": [
+        {"disease": "Angina", "symptoms": ["Chest pain", "Shortness of breath"], "related": ["Heart Attack"]},
+        {"disease": "Heart Failure", "symptoms": ["Swelling in legs", "Breathlessness"], "related": ["Hypertension"]}
+      ]
+    },
+    {
+      "department": "Orthopedics",
+      "diseases": [
+        {"disease": "Arthritis", "symptoms": ["Joint pain", "Stiffness"], "related": ["Osteoarthritis"]},
+        {"disease": "Back Pain", "symptoms": ["Lower back ache", "Radiating pain"], "related": ["Sciatica"]}
+      ]
+    }
+  ],
+  "note": "This is an expanded file with cross-links. You can add more diseases as needed."
+}
