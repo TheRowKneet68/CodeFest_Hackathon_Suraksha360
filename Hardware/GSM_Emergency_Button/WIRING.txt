@@ -18,15 +18,12 @@ IMPORTANT
 - NodeMCU GND         -> Other button terminal
 - The sketch uses INPUT_PULLUP, so no external pull-up resistor is needed.
 
-3. SIM800L SERIAL CONNECTION (RECOMMENDED)
-- SIM800L TX          -> NodeMCU D5 (GPIO14) directly
-- NodeMCU D6 (GPIO12) -> 1k ohm resistor -> SIM800L RX
+3. SIM800L SERIAL CONNECTION
+- SIM800L TX          -> NodeMCU RXD0 (GPIO3) directly
+- NodeMCU TXD0 (GPIO1) -> 1k ohm resistor -> SIM800L RX
 - At the SIM800L RX point, connect a 2k ohm resistor from SIM800L RX to GND.
 
-- This uses a software serial connection and avoids the NodeMCU RX/TX pins,
-  which are shared with the USB upload and serial interface.
-
-  NodeMCU D6 (3.3V)
+  NodeMCU TXD0 / GPIO1 (3.3V)
           |
          1k ohm
           |

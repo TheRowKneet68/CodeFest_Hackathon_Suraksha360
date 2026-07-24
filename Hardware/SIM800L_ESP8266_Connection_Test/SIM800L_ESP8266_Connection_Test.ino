@@ -1,7 +1,6 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-#include <SoftwareSerial.h>
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
@@ -10,17 +9,14 @@
 #define OLED_SCL D1
 #define OLED_SDA D2
 #define BUTTON_PIN D7
-#define GSM_RX_PIN D5
-#define GSM_TX_PIN D6
 
-// Dedicated software UART wiring, keeping USB serial free for uploading:
-// SIM800L TX -> NodeMCU D5 (GPIO14)
-// NodeMCU D6 (GPIO12) -> 1k resistor -> SIM800L RX
+// Hardware UART wiring:
+// SIM800L TX -> NodeMCU RXD0 (GPIO3)
+// NodeMCU TXD0 (GPIO1) -> 1k resistor -> SIM800L RX
 // SIM800L RX -> 2k resistor -> GND
 const unsigned long SIM800L_BAUD_RATE = 9600;
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
-SoftwareSerial sim800(GSM_RX_PIN, GSM_TX_PIN);
 bool buttonWasPressed = false;
 
 void showStatus(const char *title, const char *message) {
@@ -36,17 +32,17 @@ void showStatus(const char *title, const char *message) {
 }
 
 String sendCommand(const char *command, unsigned long timeoutMs) {
-  while (sim800.available()) {
-    sim800.read();
+  while (Serial.available()) {
+    Serial.read();
   }
 
-  sim800.println(command);
+  Serial.println(command);
   String response;
   const unsigned long startedAt = millis();
 
   while (millis() - startedAt < timeoutMs) {
-    while (sim800.available()) {
-      response += static_cast<char>(sim800.read());
+    while (Serial.available()) {
+      response += static_cast<char>(Serial.read());
     }
     yield();
   }
@@ -119,7 +115,8 @@ void setup() {
     }
   }
 
-  sim800.begin(SIM800L_BAUD_RATE);
+  // RXD0 is GPIO3 and TXD0 is GPIO1 on the NodeMCU hardware UART.
+  Serial.begin(SIM800L_BAUD_RATE);
   delay(3000); // Allow the SIM800L to finish starting.
   testSim800l();
 }
