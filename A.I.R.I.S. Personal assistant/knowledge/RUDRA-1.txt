@@ -1,6 +1,0 @@
-{
-    "description": "",
-    "status": "active",
-    "technologies": [],
-    "awards": []
-}
