@@ -1,0 +1,188 @@
+{
+  "province": "Pokhara",
+  "focus_area": "Pokhara and surrounding areas",
+  "departments": [
+    {
+      "department": "Pulmonology & Respiratory Medicine",
+      "doctors": [
+        {
+          "name": "Dr. Buddhisagar Lamichhane",
+          "qualification": "MD, DM",
+          "nmc_number": "7786",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Senior Consultant Pulmonologist & Chest Physician",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital."
+        }
+      ]
+    },
+    {
+      "department": "Urology",
+      "doctors": [
+        {
+          "name": "Prof. Dr. Dhruba Bahadur Adhikari",
+          "qualification": "MS",
+          "nmc_number": "1921",
+          "hospital": "Charak Memorial Hospital / Fewa City Hospital",
+          "specialty": "Professor & Consultant Urologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital."
+        }
+      ]
+    },
+    {
+      "department": "Nephrology",
+      "doctors": [
+        {
+          "name": "Dr. Bikash Khatri",
+          "qualification": "MD, DM",
+          "nmc_number": "8183",
+          "hospital": "Charak Memorial Hospital / Fewa City Hospital",
+          "specialty": "Consultant Nephrologist & Kidney Specialist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital."
+        }
+      ]
+    },
+    {
+      "department": "Pediatrics & Neonatology",
+      "doctors": [
+        {
+          "name": "Dr. Kiran Sharma",
+          "qualification": "MD",
+          "nmc_number": "10838",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Neonatal and Pediatrician",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital."
+        }
+      ]
+    },
+    {
+      "department": "Obstetrics & Gynecology",
+      "doctors": [
+        {
+          "name": "Dr. Rupa Paneru",
+          "qualification": "MD Obstetrics & Gynaecology",
+          "nmc_number": "14278",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Obstetrics and Gynecology",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital."
+        },
+        {
+          "name": "Dr. Madan Khadka",
+          "qualification": "MS",
+          "nmc_number": "10271",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Gynaec Endoscopic Surgeon & Infertility Specialist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital."
+        }
+      ]
+    },
+    {
+      "department": "Oncology",
+      "doctors": [
+        {
+          "name": "Dr. Deependra Man Shrestha Simangainda",
+          "qualification": "MD",
+          "nmc_number": "4724",
+          "hospital": "Charak Memorial Hospital / Fewa City Hospital",
+          "specialty": "Consultant Medical Oncologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital."
+        }
+      ]
+    },
+    {
+      "department": "Psychiatry & Behavioral Health",
+      "doctors": [
+        {
+          "name": "Dr. Basanta Dhungana",
+          "qualification": "MD",
+          "nmc_number": "14187",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Neuropsychiatrist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital."
+        }
+      ]
+    },
+    {
+      "department": "Endocrinology & Diabetology",
+      "doctors": [
+        {
+          "name": "Dr. Dipak Malla",
+          "qualification": "MD, DM",
+          "hospital": "Pokhara Health Care",
+          "specialty": "Consultant Endocrinologist (Diabetes, Thyroid & Hormonal Specialist)",
+          "opd_timing": "Specialist Clinic: Saturdays. Confirm with clinic."
+        }
+      ]
+    },
+    {
+      "department": "Gastroenterology & Hepatology",
+      "doctors": [
+        {
+          "name": "Dr. Pasand Sharma",
+          "qualification": "MD Gastroenterology",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Gastroenterologist & Hepatologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital."
+        },
+        {
+          "name": "Dr. Suresh Thapa",
+          "qualification": "MD, DM Gastroenterology",
+          "hospital": "Fewa City Hospital",
+          "specialty": "Consultant Gastroenterologist",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital."
+        }
+      ]
+    },
+    {
+      "department": "General Practice & Emergency Medicine",
+      "doctors": [
+        {
+          "name": "Dr. Pooja Sinha",
+          "qualification": "MDGP",
+          "hospital": "Province Hospital, Pokhara",
+          "specialty": "MDGP & Emergency Medicine Consultant",
+          "opd_timing": "Emergency / General OPD. Confirm with hospital."
+        }
+      ]
+    },
+    {
+      "department": "Neurosurgery",
+      "doctors": [
+        {
+          "name": "Dr. Bikas Thapa",
+          "qualification": "MD, MCh",
+          "nmc_number": "15260",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Brain and Spine Surgeon",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital."
+        }
+      ]
+    },
+    {
+      "department": "Cardiothoracic & Vascular Surgery (CTVS)",
+      "doctors": [
+        {
+          "name": "Dr. Krishna Prasad Bashyal",
+          "qualification": "MS, MCh",
+          "nmc_number": "10176",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Cardiothoracic and Vascular Surgeon",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital."
+        }
+      ]
+    },
+    {
+      "department": "Orthopedics & Joint Replacement",
+      "doctors": [
+        {
+          "name": "Dr. Manoj Kumar Tiwari",
+          "qualification": "MS Orthopedic Surgery",
+          "nmc_number": "16138",
+          "hospital": "Charak Memorial Hospital",
+          "specialty": "Consultant Orthopedic, Hip/Knee Replacement & Arthroscopy Surgeon",
+          "opd_timing": "General OPD: 9:00 AM - 1:00 PM (Sun-Fri). Confirm with hospital."
+        }
+      ]
+    }
+  ],
+  
+}

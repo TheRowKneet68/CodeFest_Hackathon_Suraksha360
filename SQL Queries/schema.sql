@@ -481,3 +481,132 @@ begin
   return score;
 end;
 $$;
+
+-- ============================================================
+-- 8. MEDICAL HISTORY CONSENT & EMERGENCY ACCESS
+-- ============================================================
+
+-- 8a. Consent grants: patient grants doctor access to their history
+create table medical_history_consents (
+  id              uuid primary key default gen_random_uuid(),
+  patient_id      uuid not null references profiles(id) on delete cascade,
+  doctor_id       uuid not null references profiles(id) on delete cascade,
+  granted_at      timestamptz not null default now(),
+  expires_at      timestamptz,
+  is_revoked      boolean not null default false,
+  scope           text not null default 'full' check (scope in ('full', 'vitals_only', 'prescriptions_only')),
+  unique(patient_id, doctor_id)
+);
+
+-- 8b. Emergency access log: when a doctor accesses history in emergency
+create table emergency_access_logs (
+  id              uuid primary key default gen_random_uuid(),
+  patient_id      uuid not null references profiles(id) on delete cascade,
+  doctor_id       uuid not null references profiles(id) on delete cascade,
+  accessed_at     timestamptz not null default now(),
+  reason          text not null,
+  accessed_sections text[] not null default array['vitals', 'prescriptions', 'health_records', 'allergies']
+);
+
+-- 8c. Add consent flags to profiles
+alter table profiles add column if not exists emergency_data_access boolean not null default true;
+alter table profiles add column if not exists share_vitals boolean not null default true;
+alter table profiles add column if not exists share_prescriptions boolean not null default true;
+alter table profiles add column if not exists share_health_records boolean not null default true;
+
+-- 8d. RLS for consent table
+alter table medical_history_consents enable row level security;
+
+create policy "Patients manage own consents"
+  on medical_history_consents for all using (auth.uid() = patient_id);
+
+create policy "Doctors view consents granted to them"
+  on medical_history_consents for select using (auth.uid() = doctor_id);
+
+-- 8e. RLS for emergency access logs
+alter table emergency_access_logs enable row level security;
+
+create policy "Patients view own emergency logs"
+  on emergency_access_logs for select using (auth.uid() = patient_id);
+
+create policy "Doctors insert emergency access logs"
+  on emergency_access_logs for insert with check (auth.uid() = doctor_id);
+
+-- 8f. Doctor can read patient health data ONLY with consent or emergency
+-- Vitals access with consent
+create policy "Doctors read patient vitals with consent"
+  on vitals for select using (
+    exists (
+      select 1 from medical_history_consents c
+      where c.patient_id = vitals.patient_id
+        and c.doctor_id = auth.uid()
+        and c.is_revoked = false
+        and (c.expires_at is null or c.expires_at > now())
+        and c.scope in ('full', 'vitals_only')
+    )
+  );
+
+-- Prescriptions access with consent
+create policy "Doctors read patient prescriptions with consent"
+  on prescriptions for select using (
+    exists (
+      select 1 from medical_history_consents c
+      where c.patient_id = prescriptions.patient_id
+        and c.doctor_id = auth.uid()
+        and c.is_revoked = false
+        and (c.expires_at is null or c.expires_at > now())
+        and c.scope in ('full', 'prescriptions_only')
+    )
+  );
+
+-- Health records access with consent
+create policy "Doctors read patient health records with consent"
+  on health_records for select using (
+    exists (
+      select 1 from medical_history_consents c
+      where c.patient_id = health_records.patient_id
+        and c.doctor_id = auth.uid()
+        and c.is_revoked = false
+        and (c.expires_at is null or c.expires_at > now())
+        and c.scope = 'full'
+    )
+  );
+
+-- 8g. Emergency override: doctors with 'doctor' role can read in emergencies
+-- (emergency_data_access flag on profile controls this)
+create policy "Emergency override: doctors read vitals"
+  on vitals for select using (
+    exists (
+      select 1 from profiles p
+      where p.id = vitals.patient_id
+        and p.emergency_data_access = true
+        and auth.uid() in (select id from profiles where role = 'doctor')
+    )
+  );
+
+create policy "Emergency override: doctors read prescriptions"
+  on prescriptions for select using (
+    exists (
+      select 1 from profiles p
+      where p.id = prescriptions.patient_id
+        and p.emergency_data_access = true
+        and auth.uid() in (select id from profiles where role = 'doctor')
+    )
+  );
+
+create policy "Emergency override: doctors read health records"
+  on health_records for select using (
+    exists (
+      select 1 from profiles p
+      where p.id = health_records.patient_id
+        and p.emergency_data_access = true
+        and auth.uid() in (select id from profiles where role = 'doctor')
+    )
+  );
+
+create policy "Emergency override: doctors read profiles"
+  on profiles for select using (
+    emergency_data_access = true
+    and auth.uid() in (select id from profiles where role = 'doctor')
+    and id <> auth.uid()
+  );
